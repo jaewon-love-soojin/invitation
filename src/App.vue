@@ -4,11 +4,13 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
   <div>
+<!--
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Wedding Invitation</title>
     <link rel="stylesheet" href="style.css" />
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans&display=swap"y>
+-->
     <div class="container">
       <h1 class="title">You're Invited!</h1>
       <p class="subtitle">Join us in celebrating our wedding</p>
