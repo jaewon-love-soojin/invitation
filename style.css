@@ -1,0 +1,26 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background: #fff0f5;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.container {
+  padding: 20px;
+}
+
+h1 {
+  color: #d6336c;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #d6336c;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
