@@ -2,12 +2,17 @@
   <div class="gallery-wrapper">
     <div class="gallery">
       <div
-        v-for="(image, index) in images"
+        v-for="(image, index) in pagedImages"
         :key="index"
         class="gallery-item"
-        @click="openModal(index)"
+        @click="openModal(currentPage * pageSize + index)"
       >
         <img :src="fullPath(image.src)" :alt="image.alt || 'Gallery Image'" />
+      </div>
+      <div class="pagination">
+        <button @click="prevPage" :disabled="currentPage === 0">‹ Prev</button>
+        <span>{{ currentPage + 1 }} / {{ totalPages }}</span>
+        <button @click="nextPage" :disabled="currentPage === totalPages - 1">Next ›</button>
       </div>
     </div>
 
@@ -45,6 +50,23 @@ const props = defineProps({
 
 const transitionDirection = ref(null)
 const selectedImage = ref(null)
+
+import { computed } from 'vue'
+
+const pageSize = 6
+const currentPage = ref(0)
+const totalPages = computed(() => Math.ceil(props.images.length / pageSize))
+
+const pagedImages = computed(() =>
+  props.images.slice(currentPage.value * pageSize, (currentPage.value + 1) * pageSize)
+)
+
+const nextPage = () => {
+  if (currentPage.value < totalPages.value - 1) currentPage.value++
+}
+const prevPage = () => {
+  if (currentPage.value > 0) currentPage.value--
+}
 
 const openModal = (index) => {
   selectedImage.value = index
@@ -191,5 +213,22 @@ onBeforeUnmount(() => {
   transform: translateX(100%);
   opacity: 0;
 }
-
+.pagination {
+  margin-top: 16px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+}
+.pagination button {
+  padding: 6px 12px;
+  background: #eee;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
 </style>
