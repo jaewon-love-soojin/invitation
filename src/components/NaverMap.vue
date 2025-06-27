@@ -7,7 +7,7 @@ import { onMounted } from 'vue'
 
 onMounted(() => {
   const script = document.createElement('script')
-  const apiKey = process.env.X_NCP_APIGW_API_KEY_ID
+  const apiKey = import.meta.env.VITE_X_NCP_APIGW_API_KEY_ID
   script.src = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${apiKey}`
 
   script.async = true
