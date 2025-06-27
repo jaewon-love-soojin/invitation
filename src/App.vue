@@ -1,5 +1,6 @@
 <script setup>
 import BgMusic from './components/BgMusic.vue'
+import FallingFlowers from './components/FallingFlowers.vue'
 import Gallery from './components/Gallery.vue'
 import Calendar from './components/Calendar.vue'
 import Countdown from './components/Countdown.vue'
@@ -18,7 +19,8 @@ const weddingDate = new Date('2025-09-21T12:00:00')
 </script>
 
 <template>
- <div class="container">
+  <FallingFlowers />
+  <div class="container">
     <h1 class="title">You're Invited!</h1>
     <p class="subtitle">Join us in celebrating our wedding</p>
     <h2 class="names">💑 Hello & World</h2>
