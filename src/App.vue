@@ -1,30 +1,78 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
+import Countdown from './components/Countdown.vue'
+const weddingDate = new Date('2025-09-21T00:00:00')
+import NaverMap from './components/NaverMap.vue'
 </script>
 
 <template>
   <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+   <div class="container">
+      <h1 class="title">You're Invited!</h1>
+      <p class="subtitle">Join us in celebrating our wedding</p>
+      <h2 class="names">💑 Hello & World</h2>
+      <p class="details">📅 October 12, 2025<br>📍 Seoul, South Korea</p>
+      <p class="rsvp-text">Please RSVP below</p>
+      <a href="https:///your-rsvp-form" class="btn"></a>
+    </div>
   </div>
-  <HelloWorld msg="Vite + Vue" />
+  <Countdown :targetDate="weddingDate" />
+  <NaverMap />
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans&display=swap');
+
+.container {
+  max-width: 480px;
+  margin: auto;
+  padding: 2rem;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #fff0f5;
+  color: #333;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+
+.title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.5em;
+  color: #d6336c;
+  margin-bottom: 10px;
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+.subtitle {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.names {
+  font-size: 1.8em;
+  color: #6a1b9a;
+  margin-bottom: 10px;
+}
+
+.details {
+  font-size: 1em;
+  margin-bottom: 20px;
+}
+
+.rsvp-text {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #d6336c;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #c2185b;
 }
 </style>
