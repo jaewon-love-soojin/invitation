@@ -1,6 +1,12 @@
 <script setup>
 import BgMusic from './components/BgMusic.vue'
 import Gallery from './components/Gallery.vue'
+import Calendar from './components/Calendar.vue'
+import Countdown from './components/Countdown.vue'
+import NaverMap from './components/NaverMap.vue'
+import Navigation from './components/Navigation.vue'
+import Footer from './components/Footer.vue'
+
 const images = [
   { src: '/images/1.jpg', alt: 'Image 1' },
   { src: '/images/2.jpg', alt: 'Image 2' },
@@ -8,46 +14,35 @@ const images = [
   { src: '/images/4.jpg', alt: 'Image 4' },
   { src: '/images/5.jpg', alt: 'Image 5' },
 ]
-
-import Calendar from './components/Calendar.vue'
-import Countdown from './components/Countdown.vue'
 const weddingDate = new Date('2025-09-21T12:00:00')
-import NaverMap from './components/NaverMap.vue'
-import Navigation from './components/Navigation.vue'
-import Footer from './components/Footer.vue'
 </script>
 
 <template>
-  <div>
-   <div class="container">
-      <h1 class="title">You're Invited!</h1>
-      <p class="subtitle">Join us in celebrating our wedding</p>
-      <h2 class="names">💑 Hello & World</h2>
-      <p class="details">📅 September 21, 2025<br>📍 Seoul, South Korea</p>
-      <p class="rsvp-text">Please RSVP below</p>
-      <a href="https:///your-rsvp-form" class="btn"></a>
-    </div>
+ <div class="container">
+    <h1 class="title">You're Invited!</h1>
+    <p class="subtitle">Join us in celebrating our wedding</p>
+    <h2 class="names">💑 Hello & World</h2>
+    <p class="details">📅 September 21, 2025<br>📍 Seoul, South Korea</p>
+    <p class="rsvp-text">Please RSVP below</p>
+    <a href="https:///your-rsvp-form" class="btn"></a>
+    <BgMusic />
+    <Gallery :images="images" />
+    <Calendar :year="2025" :month="8" :pinned-day="21" />
+    <Countdown :targetDate="weddingDate" />
+    <NaverMap />
+    <Navigation />
+    <Footer />
   </div>
-  <BgMusic />
-  <Gallery :images="images" />
-  <Calendar :year="2025" :month="8" :pinned-day="21" />
-  <Countdown :targetDate="weddingDate" />
-  <NaverMap />
-  <Navigation />
-  <Footer />
 </template>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans&display=swap');
 
 .container {
-  max-width: 480px;
-  margin: auto;
-  padding: 2rem;
-  text-align: center;
-  font-family: 'Open Sans', sans-serif;
-  background-color: #fff0f5;
-  color: #333;
+  max-width: 480px;         /* typical mobile max */
+  margin: 0 auto;
+  width: 100%;
+  background: white;        /* optional background */
 }
 
 .title {
