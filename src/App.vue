@@ -1,8 +1,19 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
+import Gallery from './components/Gallery.vue'
+const images = [
+  { src: '/images/1.jpg', alt: 'Image 1' },
+  { src: '/images/2.jpg', alt: 'Image 2' },
+  { src: '/images/3.jpg', alt: 'Image 3' },
+  { src: '/images/4.jpg', alt: 'Image 4' },
+  { src: '/images/5.jpg', alt: 'Image 5' },
+]
+
+import Calendar from './components/Calendar.vue'
 import Countdown from './components/Countdown.vue'
-const weddingDate = new Date('2025-09-21T00:00:00')
+const weddingDate = new Date('2025-09-21T12:00:00')
 import NaverMap from './components/NaverMap.vue'
+import Navigation from './components/Navigation.vue'
 </script>
 
 <template>
@@ -11,13 +22,16 @@ import NaverMap from './components/NaverMap.vue'
       <h1 class="title">You're Invited!</h1>
       <p class="subtitle">Join us in celebrating our wedding</p>
       <h2 class="names">💑 Hello & World</h2>
-      <p class="details">📅 October 12, 2025<br>📍 Seoul, South Korea</p>
+      <p class="details">📅 September 21, 2025<br>📍 Seoul, South Korea</p>
       <p class="rsvp-text">Please RSVP below</p>
       <a href="https:///your-rsvp-form" class="btn"></a>
     </div>
   </div>
+  <Gallery :images="images" />
+  <Calendar :year="2025" :month="8" :pinned-day="21" />
   <Countdown :targetDate="weddingDate" />
   <NaverMap />
+  <Navigation />
 </template>
 
 <style scoped>

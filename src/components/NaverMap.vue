@@ -13,12 +13,12 @@ onMounted(() => {
   script.async = true
   script.onload = () => {
     const map = new naver.maps.Map('map', {
-      center: new naver.maps.LatLng(37.3994995, 127.1094075), // Example: Seoul City Hall
+      center: new naver.maps.LatLng(37.3995154, 127.1083402),
       zoom: 15
     })
 
     new naver.maps.Marker({
-      position: new naver.maps.LatLng(37.3994995, 127.1094075),
+      position: new naver.maps.LatLng(37.3995154, 127.1083402),
       map: map
     })
   }
