@@ -1,5 +1,6 @@
 <script setup>
 import BgMusic from './components/BgMusic.vue'
+import LandingOverlay from './components/LandingOverlay.vue'
 import FallingFlowers from './components/FallingFlowers.vue'
 import Gallery from './components/Gallery.vue'
 import Calendar from './components/Calendar.vue'
@@ -19,6 +20,7 @@ const weddingDate = new Date('2025-09-21T12:00:00')
 </script>
 
 <template>
+  <LandingOverlay />
   <FallingFlowers />
   <div class="container">
     <h1 class="title">You're Invited!</h1>
