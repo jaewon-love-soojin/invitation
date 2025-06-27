@@ -21,12 +21,13 @@
     >
       <span class="close-btn" @click="closeModal">×</span>
       <transition :name="transitionDirection || 'fade'" mode="out-in">
-        <img
-          class="modal-image"
-          :key="selectedImage"
-          :src="fullPath(images[selectedImage].src)"
-          :alt="images[selectedImage].alt"
-        />
+        <div class="modal-image-wrapper" :key="selectedImage">
+          <img
+            class="modal-image"
+            :src="fullPath(images[selectedImage].src)"
+            :alt="images[selectedImage].alt"
+          />
+        </div>
       </transition>
 
       <!-- Dots Pagination -->
@@ -44,7 +45,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, watch, onMounted, onBeforeUnmount } from 'vue'
 
 const props = defineProps({
   images: {
@@ -113,6 +114,14 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('keydown', onKeydown)
 })
+watch(selectedImage, (newVal) => {
+  if (newVal !== null) {
+    document.body.style.overflow = 'hidden'
+  } else {
+    document.body.style.overflow = ''
+  }
+})
+
 </script>
 
 <style scoped>
@@ -147,9 +156,21 @@ onBeforeUnmount(() => {
   align-items: center;
   z-index: 999;
 }
+.modal-image-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .modal-image {
-  max-width: 90%;
-  max-height: 80%;
+  max-width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
   border-radius: 6px;
   box-shadow: 0 0 12px #000;
 }
@@ -210,5 +231,8 @@ onBeforeUnmount(() => {
 .right-leave-to {
   transform: translateX(100%);
   opacity: 0;
+}
+.modal {
+  touch-action: none;
 }
 </style>
