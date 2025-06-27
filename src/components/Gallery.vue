@@ -109,6 +109,7 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .gallery-wrapper {
+  max-width: 480px;
   padding: 20px;
   display: flex;
   justify-content: center;

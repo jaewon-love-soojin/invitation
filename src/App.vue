@@ -1,5 +1,5 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import BgMusic from './components/BgMusic.vue'
 import Gallery from './components/Gallery.vue'
 const images = [
   { src: '/images/1.jpg', alt: 'Image 1' },
@@ -14,6 +14,7 @@ import Countdown from './components/Countdown.vue'
 const weddingDate = new Date('2025-09-21T12:00:00')
 import NaverMap from './components/NaverMap.vue'
 import Navigation from './components/Navigation.vue'
+import Footer from './components/Footer.vue'
 </script>
 
 <template>
@@ -27,11 +28,13 @@ import Navigation from './components/Navigation.vue'
       <a href="https:///your-rsvp-form" class="btn"></a>
     </div>
   </div>
+  <BgMusic />
   <Gallery :images="images" />
   <Calendar :year="2025" :month="8" :pinned-day="21" />
   <Countdown :targetDate="weddingDate" />
   <NaverMap />
   <Navigation />
+  <Footer />
 </template>
 
 <style scoped>

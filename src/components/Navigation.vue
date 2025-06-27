@@ -15,7 +15,7 @@ const name = '엔씨소프트R&D센터'
 const naverLink = `https://map.naver.com/v5/search/${encodeURIComponent(name)}`
 
 // 📍 Tmap (Intent or App URL)
-const tmapLink = `tmap://?name=${encodeURIComponent(name)}`
+const tmapLink = `tmap://?name=${encodeURIComponent(name)}&lon=${lng}&lat=${lat}&app=tm`
 
 // 📍 Kakao (Web Link)
 const kakaoLink = `https://map.kakao.com/link/to/${encodeURIComponent(name)},${lat},${lng}`
@@ -23,6 +23,7 @@ const kakaoLink = `https://map.kakao.com/link/to/${encodeURIComponent(name)},${l
 
 <style>
 .nav-links a {
+  max-width: 480px;
   display: inline-block;
   margin: 6px;
   padding: 8px 12px;
