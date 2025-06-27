@@ -20,11 +20,14 @@
       @touchend="onTouchEnd"
     >
       <span class="close-btn" @click="closeModal">×</span>
-      <img
-        class="modal-image"
-        :src="fullPath(images[selectedImage].src)"
-        :alt="images[selectedImage].alt"
-      />
+      <transition :name="transitionDirection || 'fade'" mode="out-in">
+        <img
+          class="modal-image"
+          :key="selectedImage"
+          :src="fullPath(images[selectedImage].src)"
+          :alt="images[selectedImage].alt"
+        />
+      </transition>
     </div>
   </div>
 </template>
@@ -40,6 +43,7 @@ const props = defineProps({
   }
 })
 
+const transitionDirection = ref(null)
 const selectedImage = ref(null)
 
 const openModal = (index) => {
@@ -64,14 +68,17 @@ const onTouchEnd = (e) => {
   touchEndX = e.changedTouches[0].clientX
   handleSwipe()
 }
+
 const handleSwipe = () => {
   if (selectedImage.value === null) return
   const delta = touchEndX - touchStartX
   if (Math.abs(delta) < SWIPE_THRESHOLD) return
   if (delta < 0 && selectedImage.value < props.images.length - 1) {
-    selectedImage.value += 1 // Swipe left → next
+    transitionDirection.value = 'left'
+    selectedImage.value += 1
   } else if (delta > 0 && selectedImage.value > 0) {
-    selectedImage.value -= 1 // Swipe right → prev
+    transitionDirection.value = 'right'
+    selectedImage.value -= 1
   }
 }
 
@@ -79,9 +86,11 @@ const handleSwipe = () => {
 const onKeydown = (e) => {
   if (selectedImage.value === null) return
   if (e.key === 'ArrowRight' && selectedImage.value < props.images.length - 1) {
+    transitionDirection.value = 'left'
     selectedImage.value += 1
   }
   if (e.key === 'ArrowLeft' && selectedImage.value > 0) {
+    transitionDirection.value = 'right'
     selectedImage.value -= 1
   }
   if (e.key === 'Escape') {
@@ -149,4 +158,37 @@ onBeforeUnmount(() => {
   font-weight: bold;
   cursor: pointer;
 }
+
+/* Default fade fallback */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+
+/* Slide left */
+.left-enter-active, .left-leave-active,
+.right-enter-active, .right-leave-active {
+  transition: all 0.3s ease;
+  position: absolute;
+  width: 100%;
+}
+.left-enter-from {
+  transform: translateX(100%);
+  opacity: 0;
+}
+.left-leave-to {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+.right-enter-from {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+.right-leave-to {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
 </style>
