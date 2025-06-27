@@ -18,7 +18,7 @@ const naverLink = `https://map.naver.com/v5/search/${encodeURIComponent(name)}`
 const tmapLink = `tmap://?route?rGoName=${encodeURIComponent(name)}&rGoX=${lng}&rGoY=${lat}`
 
 // 📍 Kakao (Web Link)
-const kakaoLink = `https://map.kakao.com/link/to/${encodeURIComponent(name)},${lat},${lng}`
+const kakaoLink = `kakaomap://route?ep=${lat},${lng}&by=CAR`
 </script>
 
 <style>
