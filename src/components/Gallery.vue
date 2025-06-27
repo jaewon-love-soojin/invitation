@@ -2,17 +2,12 @@
   <div class="gallery-wrapper">
     <div class="gallery">
       <div
-        v-for="(image, index) in pagedImages"
+        v-for="(image, index) in images"
         :key="index"
         class="gallery-item"
-        @click="openModal(currentPage * pageSize + index)"
+        @click="openModal(index)"
       >
         <img :src="fullPath(image.src)" :alt="image.alt || 'Gallery Image'" />
-      </div>
-      <div class="pagination">
-        <button @click="prevPage" :disabled="currentPage === 0">‹ Prev</button>
-        <span>{{ currentPage + 1 }} / {{ totalPages }}</span>
-        <button @click="nextPage" :disabled="currentPage === totalPages - 1">Next ›</button>
       </div>
     </div>
 
@@ -33,6 +28,17 @@
           :alt="images[selectedImage].alt"
         />
       </transition>
+
+      <!-- Dots Pagination -->
+      <div class="modal-dots">
+        <span
+          v-for="(image, i) in images"
+          :key="i"
+          class="dot"
+          :class="{ active: i === selectedImage }"
+          @click="selectImage(i)"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -48,37 +54,22 @@ const props = defineProps({
   }
 })
 
-const transitionDirection = ref(null)
 const selectedImage = ref(null)
-
-import { computed } from 'vue'
-
-const pageSize = 6
-const currentPage = ref(0)
-const totalPages = computed(() => Math.ceil(props.images.length / pageSize))
-
-const pagedImages = computed(() =>
-  props.images.slice(currentPage.value * pageSize, (currentPage.value + 1) * pageSize)
-)
-
-const nextPage = () => {
-  if (currentPage.value < totalPages.value - 1) currentPage.value++
-}
-const prevPage = () => {
-  if (currentPage.value > 0) currentPage.value--
-}
+const transitionDirection = ref(null)
 
 const openModal = (index) => {
   selectedImage.value = index
 }
-
 const closeModal = () => {
   selectedImage.value = null
 }
-
+const selectImage = (index) => {
+  if (index === selectedImage.value) return
+  transitionDirection.value = index > selectedImage.value ? 'left' : 'right'
+  selectedImage.value = index
+}
 const fullPath = (src) => `${import.meta.env.BASE_URL}${src.replace(/^\/+/, '')}`
 
-// 🔥 Swipe handling
 let touchStartX = 0
 let touchEndX = 0
 const SWIPE_THRESHOLD = 50
@@ -90,40 +81,35 @@ const onTouchEnd = (e) => {
   touchEndX = e.changedTouches[0].clientX
   handleSwipe()
 }
-
 const handleSwipe = () => {
   if (selectedImage.value === null) return
   const delta = touchEndX - touchStartX
   if (Math.abs(delta) < SWIPE_THRESHOLD) return
   if (delta < 0 && selectedImage.value < props.images.length - 1) {
     transitionDirection.value = 'left'
-    selectedImage.value += 1
+    selectedImage.value++
   } else if (delta > 0 && selectedImage.value > 0) {
     transitionDirection.value = 'right'
-    selectedImage.value -= 1
+    selectedImage.value--
   }
 }
 
-// 🔁 Optional: desktop arrow key navigation
 const onKeydown = (e) => {
   if (selectedImage.value === null) return
   if (e.key === 'ArrowRight' && selectedImage.value < props.images.length - 1) {
     transitionDirection.value = 'left'
-    selectedImage.value += 1
+    selectedImage.value++
   }
   if (e.key === 'ArrowLeft' && selectedImage.value > 0) {
     transitionDirection.value = 'right'
-    selectedImage.value -= 1
+    selectedImage.value--
   }
-  if (e.key === 'Escape') {
-    closeModal()
-  }
+  if (e.key === 'Escape') closeModal()
 }
 
 onMounted(() => {
   window.addEventListener('keydown', onKeydown)
 })
-
 onBeforeUnmount(() => {
   window.removeEventListener('keydown', onKeydown)
 })
@@ -136,7 +122,6 @@ onBeforeUnmount(() => {
   display: flex;
   justify-content: center;
 }
-
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -144,7 +129,6 @@ onBeforeUnmount(() => {
   max-width: 800px;
   width: 100%;
 }
-
 .gallery-item img {
   width: 100%;
   height: auto;
@@ -153,25 +137,22 @@ onBeforeUnmount(() => {
   object-fit: cover;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
-
-/* Modal */
 .modal {
   position: fixed;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.85);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 999;
 }
-
 .modal-image {
   max-width: 90%;
-  max-height: 90%;
+  max-height: 80%;
   border-radius: 6px;
   box-shadow: 0 0 12px #000;
 }
-
 .close-btn {
   position: absolute;
   top: 24px;
@@ -181,16 +162,33 @@ onBeforeUnmount(() => {
   font-weight: bold;
   cursor: pointer;
 }
-
-/* Default fade fallback */
+.modal-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+  gap: 10px;
+}
+.dot {
+  width: 10px;
+  height: 10px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.4;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.dot.active {
+  opacity: 1;
+  transform: scale(1.4);
+  background: #fff;
+}
+/* Animations */
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.2s ease;
 }
 .fade-enter-from, .fade-leave-to {
   opacity: 0;
 }
-
-/* Slide left */
 .left-enter-active, .left-leave-active,
 .right-enter-active, .right-leave-active {
   transition: all 0.3s ease;
@@ -212,23 +210,5 @@ onBeforeUnmount(() => {
 .right-leave-to {
   transform: translateX(100%);
   opacity: 0;
-}
-.pagination {
-  margin-top: 16px;
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  justify-content: center;
-}
-.pagination button {
-  padding: 6px 12px;
-  background: #eee;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-.pagination button:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
 }
 </style>
