@@ -7,15 +7,15 @@
 </template>
 
 <script setup>
-const lat = 37.5665
-const lng = 126.9780
+const lat = 37.3995154
+const lng = 127.1083402
 const name = '엔씨소프트R&D센터'
 
 // 📍 Naver (Web Link)
 const naverLink = `https://map.naver.com/v5/search/${encodeURIComponent(name)}`
 
 // 📍 Tmap (Intent or App URL)
-const tmapLink = `tmap://?name=${encodeURIComponent(name)}&app=tmaps`
+const tmapLink = `tmap://?route?rGoName=${encodeURIComponent(name)}&rGoX=${lng}&rGoY=${lat}`
 
 // 📍 Kakao (Web Link)
 const kakaoLink = `https://map.kakao.com/link/to/${encodeURIComponent(name)},${lat},${lng}`
