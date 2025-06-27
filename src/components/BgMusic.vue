@@ -22,7 +22,7 @@ const isProd = import.meta.env.MODE === 'production'
 // 📁 Replace with your own local or hosted music file
 const musicUrl = import.meta.env.MODE === 'production'
   ? 'https://cdn.jsdelivr.net/gh/hellojaewon/wed/public/assets/AShamaluevMusic.mp3'
-  : '`${import.meta.env.BASE_URL}/assets/AShamaluevMusic.mp3'
+  : '`${import.meta.env.BASE_URL}/assets/AShamaluevMusic.mp3`'
 const audio = ref(null)
 const isPlaying = ref(false)
 

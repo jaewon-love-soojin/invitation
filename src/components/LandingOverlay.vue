@@ -1,11 +1,18 @@
 <template>
   <transition name="fade">
-    <div v-if="show" class="landing-overlay">
-      <div class="landing-content">
-        <h1>💍 jw & sj</h1>
-        <p>Wedding Invitation</p>
-      </div>
+  <div v-if="show" class="landing-overlay">
+    <div class="landing-content">
+      <lottie-player
+        :src="landingUrl"
+        background="transparent"
+        speed="1"
+        style="width: 120px; height: 120px"
+        autoplay
+      ></lottie-player>
+      <h1 class="fade-in-delay-1">💍 jw & sj</h1>
+      <p class="fade-in-delay-2">Wedding Invitation</p>
     </div>
+  </div>
   </transition>
 </template>
 
@@ -13,6 +20,8 @@
 import { ref, onMounted } from 'vue'
 
 const show = ref(true)
+
+const landingUrl = `${import.meta.env.BASE_URL}/animations/landing.json`
 
 onMounted(() => {
   setTimeout(() => {
@@ -70,6 +79,13 @@ onMounted(() => {
 }
 .fade-enter-from, .fade-leave-to {
   opacity: 0;
+}
+
+lottie-player {
+  animation: fadeZoomIn 1s ease-out forwards;
+  opacity: 0;
+  transform: scale(0.9);
+  animation-delay: 0.1s;
 }
 </style>
 
