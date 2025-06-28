@@ -233,7 +233,7 @@ watch(selectedImage, (newVal) => {
 .panorama-left-leave-active,
 .panorama-right-enter-active,
 .panorama-right-leave-active {
-  transition: transform 0.4s ease-in-out;
+  transition: transform 0.2s ease-in-out;
   position: absolute;
   width: 100%;
   height: 100%;
