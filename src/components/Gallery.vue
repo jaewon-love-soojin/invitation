@@ -1,10 +1,10 @@
 <template>
-  <div class="gallery-wrapper">
-    <div class="gallery">
+  <div class="gallery-mood-wrapper">
+    <div class="gallery-mood-grid">
       <div
         v-for="(image, index) in images"
         :key="index"
-        class="gallery-item"
+        class="gallery-mood-item"
         @click="openModal(index)"
       >
         <img :src="fullPath(image.src)" :alt="image.alt || 'Gallery Image'" />
@@ -23,8 +23,8 @@
         class="modal-bg"
         :style="{ backgroundImage: `url(${fullPath(images[selectedImage].src)})` }"
       ></div>
-
       <span class="close-btn" @click="closeModal">×</span>
+
       <div class="modal-content">
         <transition :name="transitionDirection || 'panorama'" mode="out-in">
           <div class="modal-image-wrapper" :key="selectedImage">
@@ -127,26 +127,33 @@ watch(selectedImage, (newVal) => {
 </script>
 
 <style scoped>
-.gallery-wrapper {
-  max-width: 480px;
+.gallery-mood-wrapper {
+  max-width: 960px;
+  margin: 0 auto;
   padding: 20px;
+}
+.gallery-mood-grid {
   display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
   justify-content: center;
 }
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 12px;
-  max-width: 800px;
-  width: 100%;
-}
-.gallery-item img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
+.gallery-mood-item {
+  flex: 1 0 30%;
+  max-width: 180px;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  border-radius: 10px;
   cursor: pointer;
+}
+.gallery-mood-item img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+.gallery-mood-item:hover img {
+  transform: scale(1.05);
 }
 .modal {
   position: fixed;
