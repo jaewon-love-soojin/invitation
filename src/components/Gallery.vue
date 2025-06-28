@@ -182,6 +182,7 @@ watch(selectedImage, (newVal) => {
   color: white;
   font-weight: bold;
   cursor: pointer;
+  z-index: 1001;
 }
 .modal-dots {
   display: flex;
