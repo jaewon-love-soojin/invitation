@@ -3,14 +3,13 @@
     <div class="footer-line"></div>
 
     <div class="footer-text">
-      <p class="footer-names">💍 jw & sj </p>
-      <p class="footer-date">September 21, 2025 · Seoul</p>
+      <p class="footer-names">💍 Jaewon & Soojin</p>
+      <p class="footer-date">September 21, 2025 · Pangyo</p>
     </div>
 
     <div class="footer-links">
       <a href="#gallery">📸 Gallery</a>
       <a href="#map">🗺️ Map</a>
-      <a href="#rsvp">💌 RSVP</a>
     </div>
   </footer>
 </template>

@@ -33,10 +33,8 @@ const weddingDate = new Date('2025-09-21T12:00:00')
   <div class="container">
     <h1 class="title">You're Invited!</h1>
     <p class="subtitle">Join us in celebrating our wedding</p>
-    <h2 class="names">💑 Hello & World</h2>
-    <p class="details">🗓️ September 21, 2025<br>📍 Seoul, South Korea</p>
-    <p class="rsvp-text">Please RSVP below</p>
-    <a href="https:///your-rsvp-form" class="btn"></a>
+    <h2 class="names">💑 Jaewon & Soojin</h2>
+    <p class="details">🗓️ September 21, 2025<br>📍 Pangyo, Gyeonggi-do, South Korea</p>
     <BgMusic />
     <Gallery :images="images" />
     <Calendar :year="2025" :month="8" :pinned-day="21" />
@@ -78,11 +76,6 @@ const weddingDate = new Date('2025-09-21T12:00:00')
 .details {
   font-size: 1em;
   margin-bottom: 20px;
-}
-
-.rsvp-text {
-  font-size: 1.1em;
-  margin-bottom: 10px;
 }
 
 .btn {
