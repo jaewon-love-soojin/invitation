@@ -2,6 +2,7 @@
 import BgMusic from './components/BgMusic.vue'
 import LandingOverlay from './components/LandingOverlay.vue'
 import TopBar from './components/TopBar.vue'
+import Invitation from './components/Invitation.vue'
 import FallingFlowers from './components/FallingFlowers.vue'
 import Gallery from './components/Gallery.vue'
 import Calendar from './components/Calendar.vue'
@@ -34,6 +35,7 @@ const weddingDate = new Date('2025-09-21T12:00:00')
   <div class="container">
     <BgMusic />
     <TopBar />
+    <Invitation />
     <Gallery :images="images" />
     <Calendar :year="2025" :month="8" :pinned-day="21" />
     <Countdown :targetDate="weddingDate" />

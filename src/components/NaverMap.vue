@@ -1,5 +1,11 @@
 <template>
-  <div id="map" class="map-container"></div>
+  <div>
+    <h2 class="title2">LOCATION</h2>
+    <h2 class="title2">오시는길</h2>
+    <p class="subtitle">📍 엔씨소프트 R&D 센터 지하1층 컨벤션 홀</p>
+    <p class="subtitle">경기 성남시 분당구 대왕판교로644번길 12</p>
+    <div id="map" class="map-container"></div>
+  </div>
 </template>
 
 <script setup>

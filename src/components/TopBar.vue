@@ -6,7 +6,6 @@
       <img :src="welcomeImage" alt="Welcome" class="topbar-img" />
       <div class="wave"></div>
     </div>
-    <h2 class="topbar-text">Welcome to Our Gallery</h2>
     <div class="flower-container">
       <div v-for="n in 10" :key="n" class="flower" :style="{ '--i': n }"></div>
     </div>
@@ -44,32 +43,53 @@
   height: auto;
   display: block;
 }
-.topbar-text {
-  font-size: 20px;
-  font-weight: bold;
-  color: #b4466c;
-  margin: 0;
-}
 .flower-container {
   pointer-events: none;
 }
 .flower {
   position: absolute;
   top: -30px;
-  width: 24px;
-  height: 24px;
-  background-image: url('/images/flower.png');
-  background-size: cover;
-  opacity: 0.7;
-  animation: fall 10s linear infinite;
   left: calc(100% * var(--i) / 10);
+  width: 18px;
+  height: 18px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: flutter 8s linear infinite;
   animation-delay: calc(-1s * var(--i));
+  box-shadow:
+    0 0 2px #ccc,
+    0 0 6px #eee,
+    0 0 10px rgba(255, 255, 255, 0.5);
 }
-@keyframes fall {
-  0% { transform: translateY(-10px) rotate(0deg); }
-  100% { transform: translateY(120vh) rotate(360deg); }
+@keyframes flutter {
+  0% { transform: translateY(-20px) translateX(0px) rotate(0deg); opacity: 0.8; }
+  25% { transform: translateY(25vh) translateX(-10px) rotate(45deg); }
+  50% { transform: translateY(50vh) translateX(10px) rotate(90deg); }
+  75% { transform: translateY(75vh) translateX(-15px) rotate(135deg); }
+  100% { transform: translateY(120vh) translateX(0px) rotate(180deg); opacity: 0; }
+}
+@keyframes waveShift {
+  0% { background-position-x: 0%; }
+  100% { background-position-x: 100%; }
 }
 
+.wave {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: linear-gradient(to top, #fef6f9, transparent);
+  mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 120 28" xmlns="http://www.w3.org/2000/svg"><path d="M0 20 Q 30 0, 60 20 T 120 20 V28 H0 Z" fill="black"/></svg>');
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg viewBox=\"0 0 120 28\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M0 20 Q 30 0, 60 20 T 120 20 V28 H0 Z\" fill=\"black\"/></svg>');
+  mask-size: 200% 100%;
+  -webkit-mask-size: 200% 100%;
+  mask-repeat: repeat-x;
+  -webkit-mask-repeat: repeat-x;
+  animation: waveShift 4s linear infinite;
+  z-index: 2;
+}
 .title {
   font-family: 'Great Vibes', cursive;
   font-size: 2.5em;
@@ -94,20 +114,3 @@
 }
 </style>
 
-<style>
-.wave {
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 100%;
-  height: 40px;
-  background: linear-gradient(to top, #fef6f9, transparent);
-  mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 120 28" xmlns="http://www.w3.org/2000/svg"><path d="M0 20 Q 30 0, 60 20 T 120 20 V28 H0 Z" fill=\"black\"/></svg>');
-  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg viewBox=\"0 0 120 28\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M0 20 Q 30 0, 60 20 T 120 20 V28 H0 Z\" fill=\"black\"/></svg>');
-  mask-size: 100% 100%;
-  -webkit-mask-size: 100% 100%;
-  mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
-  z-index: 2;
-}
-</style>
