@@ -20,25 +20,29 @@
       @touchend="onTouchEnd"
     >
       <span class="close-btn" @click="closeModal">×</span>
-      <transition :name="transitionDirection || 'fade'" mode="out-in">
-        <div class="modal-image-wrapper" :key="selectedImage">
-          <img
-            class="modal-image"
-            :src="fullPath(images[selectedImage].src)"
-            :alt="images[selectedImage].alt"
+
+      <!-- 👇 wrap transition + dots together -->
+      <div class="modal-content">
+        <transition :name="transitionDirection || 'fade'" mode="out-in">
+          <div class="modal-image-wrapper" :key="selectedImage">
+            <img
+              class="modal-image"
+              :src="fullPath(images[selectedImage].src)"
+              :alt="images[selectedImage].alt"
+            />
+          </div>
+        </transition>
+
+        <!-- Dots Pagination -->
+        <div class="modal-dots">
+          <span
+            v-for="(image, i) in images"
+            :key="i"
+            class="dot"
+            :class="{ active: i === selectedImage }"
+            @click="selectImage(i)"
           />
         </div>
-      </transition>
-
-      <!-- Dots Pagination -->
-      <div class="modal-dots">
-        <span
-          v-for="(image, i) in images"
-          :key="i"
-          class="dot"
-          :class="{ active: i === selectedImage }"
-          @click="selectImage(i)"
-        />
       </div>
     </div>
   </div>
@@ -158,21 +162,14 @@ watch(selectedImage, (newVal) => {
 }
 .modal-image-wrapper {
   width: 100%;
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  top: 0;
-  left: 0;
 }
-
 .modal-image {
   max-width: 100%;
-  max-height: 90vh;
+  max-height: 70vh;
   object-fit: contain;
-  border-radius: 6px;
-  box-shadow: 0 0 12px #000;
 }
 .close-btn {
   position: absolute;
@@ -236,4 +233,14 @@ watch(selectedImage, (newVal) => {
 .modal {
   touch-action: none;
 }
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-height: 90vh;
+  gap: 16px;
+}
+
 </style>

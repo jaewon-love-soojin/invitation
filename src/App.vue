@@ -34,7 +34,7 @@ const weddingDate = new Date('2025-09-21T12:00:00')
     <h1 class="title">You're Invited!</h1>
     <p class="subtitle">Join us in celebrating our wedding</p>
     <h2 class="names">💑 Hello & World</h2>
-    <p class="details">📅 September 21, 2025<br>📍 Seoul, South Korea</p>
+    <p class="details">🗓️ September 21, 2025<br>📍 Seoul, South Korea</p>
     <p class="rsvp-text">Please RSVP below</p>
     <a href="https:///your-rsvp-form" class="btn"></a>
     <BgMusic />
