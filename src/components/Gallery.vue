@@ -19,11 +19,14 @@
       @touchstart="onTouchStart"
       @touchend="onTouchEnd"
     >
-      <span class="close-btn" @click="closeModal">×</span>
+      <div
+        class="modal-bg"
+        :style="{ backgroundImage: `url(${fullPath(images[selectedImage].src)})` }"
+      ></div>
 
-      <!-- 👇 wrap transition + dots together -->
+      <span class="close-btn" @click="closeModal">×</span>
       <div class="modal-content">
-        <transition :name="transitionDirection || 'fade'" mode="out-in">
+        <transition :name="transitionDirection || 'panorama'" mode="out-in">
           <div class="modal-image-wrapper" :key="selectedImage">
             <img
               class="modal-image"
@@ -70,7 +73,7 @@ const closeModal = () => {
 }
 const selectImage = (index) => {
   if (index === selectedImage.value) return
-  transitionDirection.value = index > selectedImage.value ? 'left' : 'right'
+  transitionDirection.value = index > selectedImage.value ? 'panorama-left' : 'panorama-right'
   selectedImage.value = index
 }
 const fullPath = (src) => `${import.meta.env.BASE_URL}${src.replace(/^\/+/, '')}`
@@ -91,10 +94,10 @@ const handleSwipe = () => {
   const delta = touchEndX - touchStartX
   if (Math.abs(delta) < SWIPE_THRESHOLD) return
   if (delta < 0 && selectedImage.value < props.images.length - 1) {
-    transitionDirection.value = 'left'
+    transitionDirection.value = 'panorama-left'
     selectedImage.value++
   } else if (delta > 0 && selectedImage.value > 0) {
-    transitionDirection.value = 'right'
+    transitionDirection.value = 'panorama-right'
     selectedImage.value--
   }
 }
@@ -102,11 +105,11 @@ const handleSwipe = () => {
 const onKeydown = (e) => {
   if (selectedImage.value === null) return
   if (e.key === 'ArrowRight' && selectedImage.value < props.images.length - 1) {
-    transitionDirection.value = 'left'
+    transitionDirection.value = 'panorama-left'
     selectedImage.value++
   }
   if (e.key === 'ArrowLeft' && selectedImage.value > 0) {
-    transitionDirection.value = 'right'
+    transitionDirection.value = 'panorama-right'
     selectedImage.value--
   }
   if (e.key === 'Escape') closeModal()
@@ -119,13 +122,8 @@ onBeforeUnmount(() => {
   window.removeEventListener('keydown', onKeydown)
 })
 watch(selectedImage, (newVal) => {
-  if (newVal !== null) {
-    document.body.style.overflow = 'hidden'
-  } else {
-    document.body.style.overflow = ''
-  }
+  document.body.style.overflow = newVal !== null ? 'hidden' : ''
 })
-
 </script>
 
 <style scoped>
@@ -159,6 +157,26 @@ watch(selectedImage, (newVal) => {
   justify-content: center;
   align-items: center;
   z-index: 999;
+  touch-action: none;
+  overflow: hidden;
+}
+.modal-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: blur(24px) brightness(0.3);
+  z-index: 0;
+}
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-height: 90vh;
+  gap: 16px;
+  z-index: 1;
 }
 .modal-image-wrapper {
   width: 100%;
@@ -170,6 +188,8 @@ watch(selectedImage, (newVal) => {
   max-width: 100%;
   max-height: 70vh;
   object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 0 12px #000;
 }
 .close-btn {
   position: absolute;
@@ -184,7 +204,6 @@ watch(selectedImage, (newVal) => {
 .modal-dots {
   display: flex;
   justify-content: center;
-  margin-top: 16px;
   gap: 10px;
 }
 .dot {
@@ -201,46 +220,22 @@ watch(selectedImage, (newVal) => {
   transform: scale(1.4);
   background: #fff;
 }
-/* Animations */
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.2s ease;
+/* Panorama-style swipe transitions */
+.panorama-left-enter-active,
+.panorama-right-leave-active {
+  transform: translateX(100%);
 }
-.fade-enter-from, .fade-leave-to {
-  opacity: 0;
+.panorama-left-leave-active,
+.panorama-right-enter-active {
+  transform: translateX(-100%);
 }
-.left-enter-active, .left-leave-active,
-.right-enter-active, .right-leave-active {
-  transition: all 0.3s ease;
+.panorama-left-enter-active,
+.panorama-left-leave-active,
+.panorama-right-enter-active,
+.panorama-right-leave-active {
+  transition: transform 0.4s ease-in-out;
   position: absolute;
   width: 100%;
+  height: 100%;
 }
-.left-enter-from {
-  transform: translateX(100%);
-  opacity: 0;
-}
-.left-leave-to {
-  transform: translateX(-100%);
-  opacity: 0;
-}
-.right-enter-from {
-  transform: translateX(-100%);
-  opacity: 0;
-}
-.right-leave-to {
-  transform: translateX(100%);
-  opacity: 0;
-}
-.modal {
-  touch-action: none;
-}
-
-.modal-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  max-height: 90vh;
-  gap: 16px;
-}
-
 </style>
