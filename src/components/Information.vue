@@ -72,11 +72,13 @@ const onTouchEnd = (e) => {
 .tabs-track {
   display: flex;
   transition: transform 0.4s ease;
-  width: 80%; /* 100% * number of tabs */
+  width: 200%; /* 100% * number of tabs */
+  padding: 0 10%; /* Adds partial preview of adjacent tabs */
+  box-sizing: content-box;
 }
 
 .tab-panel {
-  flex: 0 0 100%;
+  flex: 0 0 80%; /* slightly less than full width to show neighbor */
   padding: 0 12px;
   opacity: 0.4;
   transform: scale(0.92);
@@ -153,5 +155,4 @@ const onTouchEnd = (e) => {
   text-overflow: ellipsis;
   vertical-align: middle;
 }
-
 </style>
