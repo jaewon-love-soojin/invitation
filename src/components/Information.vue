@@ -72,7 +72,7 @@ const onTouchEnd = (e) => {
 .tabs-track {
   display: flex;
   transition: transform 0.4s ease;
-  width: 200%; /* 100% * number of tabs */
+  width: 80%; /* 100% * number of tabs */
 }
 
 .tab-panel {
@@ -90,9 +90,12 @@ const onTouchEnd = (e) => {
 }
 
 .tab-panel img {
-  max-width: 100%;
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  display: block;
   border-radius: 10px;
-  margin-bottom: 12px;
+  margin: 0 auto 12px;
 }
 
 .highlight {
