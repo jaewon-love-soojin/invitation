@@ -1,5 +1,15 @@
 <template>
   <footer class="wed-footer">
+    <div class="image-overlay-wrapper">
+      <img :src="footerImg" alt="footer" />
+      <div class="overlay-text">
+        <p>장담하건대, 세상이 다 겨울이어도</p>
+        <p>우리 사랑은 늘 봄처럼 따뜻하고</p>
+        <p>간혹, 여름처럼 뜨거울 겁니다.</p>
+        <p>이수동, 사랑가</p>
+      </div>
+    </div>
+
     <div class="footer-line"></div>
 
     <div class="footer-text">
@@ -9,12 +19,44 @@
 
     <div class="footer-links">
       <a href="#gallery">📸 Gallery</a>
-      <a href="#map">🗺️ Map</a>
+      <a href="#location">🗺️ Map</a>
     </div>
   </footer>
 </template>
 
+<script setup>
+  const footerImg = `${import.meta.env.BASE_URL}images/footer.jpg`;
+</script>
+
 <style scoped>
+.image-overlay-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 480px;
+}
+
+.image-overlay-wrapper img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+}
+
+.overlay-text {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  transform: none;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.4;
+  text-align: left;
+}
+
 .wed-footer {
   padding: 24px 16px;
   background-color: #fdfdfd;
@@ -22,7 +64,6 @@
   font-family: 'Helvetica Neue', sans-serif;
   font-size: 14px;
   color: #444;
-  border-top: 1px solid #ddd;
   margin-top: 48px;
 }
 

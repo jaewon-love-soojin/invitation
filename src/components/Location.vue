@@ -1,5 +1,5 @@
 <template>
-  <div class="location">
+  <div class="location" id="location">
     <h2 class="title2">LOCATION</h2>
     <h2 class="title2">오시는길</h2>
     <p class="subtitle">📍 엔씨소프트 R&D 센터 지하1층 컨벤션 홀</p>
@@ -47,7 +47,16 @@ onMounted(() => {
   script.onload = () => {
     const map = new naver.maps.Map('map', {
       center: new naver.maps.LatLng(37.3995154, 127.1083402),
-      zoom: 15
+      zoom: 15,
+      draggable: false,
+      scrollWheel: false,
+      disableDoubleClickZoom: true,
+      pinchZoom: false,
+      keyboardShortcuts: false,
+      zoomControl: false,
+      mapDataControl: false,
+      scaleControl: false,
+      logoControl: false
     })
 
     new naver.maps.Marker({
