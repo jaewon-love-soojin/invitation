@@ -36,7 +36,6 @@ onMounted(() => {
 
 <template>
   <div>
-    <h3>Countdown to the Big Day 💍</h3>
     <div class="timer-container">
       <div class="timer-grid">
         <div class="timer-col-header">DAYS</div>
@@ -51,7 +50,7 @@ onMounted(() => {
       </div>
     </div>
     <p>
-      <span class="highlight">{{ timeLeft.days  + 1}}</span> days remaining.
+      재원, 수진의 결혼식이<span class="highlight">{{ timeLeft.days  + 1}}</span>일 남았습니다.
     </p>
   </div>
 </template>
@@ -59,7 +58,7 @@ onMounted(() => {
 <style scoped>
 .highlight {
   color: red;
-  padding: 2px 6px;
+  padding: 0px 1px;
   border-radius: 4px;
 }
 .timer-container {

@@ -1,5 +1,5 @@
 <template>
-  <div class="gallery-mood-wrapper">
+  <div class="gallery-mood-wrapper" id="gallery">
     <h2 class="title2">GALLERY</h2>
     <h2 class="title2">웨딩 갤러리</h2>
     <div class="gallery-mood-grid">

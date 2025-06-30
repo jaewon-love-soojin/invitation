@@ -16,7 +16,6 @@
 </template>
 
 <script setup>
-// No script needed unless you want dynamic props later
   const welcomeImage = `${import.meta.env.BASE_URL}images/1.jpg`;
 </script>
 

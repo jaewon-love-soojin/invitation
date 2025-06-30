@@ -7,9 +7,9 @@ import FallingFlowers from './components/FallingFlowers.vue'
 import Gallery from './components/Gallery.vue'
 import Calendar from './components/Calendar.vue'
 import Countdown from './components/Countdown.vue'
-import NaverMap from './components/NaverMap.vue'
-import Navigation from './components/Navigation.vue'
+import Location from './components/Location.vue'
 import Information from './components/Information.vue'
+import Account from './components/Account.vue'
 import Footer from './components/Footer.vue'
 
 const images = [
@@ -39,9 +39,9 @@ const weddingDate = new Date('2025-09-21T12:00:00')
     <Gallery :images="images" />
     <Calendar :year="2025" :month="8" :pinned-day="21" />
     <Countdown :targetDate="weddingDate" />
-    <NaverMap />
-    <Navigation />
+    <Location />
     <Information />
+    <Account />
     <Footer />
   </div>
 </template>

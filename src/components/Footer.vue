@@ -59,5 +59,9 @@
 .footer-links a:hover {
   text-decoration: underline;
 }
+
+html {
+  scroll-behavior: smooth;
+}
 </style>
 
