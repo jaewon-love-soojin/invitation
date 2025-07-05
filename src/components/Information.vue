@@ -7,13 +7,13 @@
     >
       <div
         class="swipe-track"
-        :style="{ transform: `translateX(calc(-${currentIndex * 50}% + 10%))` }"
+        :style="{ transform: `translateX(${-80 + (currentIndex * -100)}%)` }"
       >
         <div
-          v-for="(panel, i) in panels"
-          :key="i"
+          v-for="(panel, i) in infinitePanels"
+          :key="`${panel.originalIndex}-${i}`"
           class="swipe-panel"
-          :class="{ active: i === currentIndex }"
+          :class="{ active: i === activeSlideIndex }"
         >
           <div class="img-wrapper">
             <img :src="panel.img" alt="panel image" />
@@ -42,7 +42,19 @@ const panels = [
   }
 ]
 
+// Create infinite panels for seamless looping
+const infinitePanels = ref([])
 const currentIndex = ref(0)
+const activeSlideIndex = ref(1) // Start at index 1 (middle of 3 slides)
+
+// Initialize infinite panels
+const initializePanels = () => {
+  infinitePanels.value = [
+    { ...panels[1], originalIndex: 1 }, // Previous (last panel)
+    { ...panels[0], originalIndex: 0 }, // Current (first panel)
+    { ...panels[1], originalIndex: 1 }  // Next (second panel)
+  ]
+}
 
 let touchStartX = 0
 let touchEndX = 0
@@ -51,17 +63,44 @@ const SWIPE_THRESHOLD = 50
 const onTouchStart = (e) => {
   touchStartX = e.changedTouches[0].clientX
 }
+
 const onTouchEnd = (e) => {
   touchEndX = e.changedTouches[0].clientX
   const delta = touchEndX - touchStartX
   if (Math.abs(delta) < SWIPE_THRESHOLD) return
 
   if (delta < 0) {
-    currentIndex.value = (currentIndex.value + 1) % panels.length
+    // Swipe left - go to next
+    goToNext()
   } else {
-    currentIndex.value = (currentIndex.value - 1 + panels.length) % panels.length
+    // Swipe right - go to previous
+    goToPrevious()
   }
 }
+
+const goToNext = () => {
+  currentIndex.value = (currentIndex.value + 1) % panels.length
+  updatePanels()
+}
+
+const goToPrevious = () => {
+  currentIndex.value = (currentIndex.value - 1 + panels.length) % panels.length
+  updatePanels()
+}
+
+const updatePanels = () => {
+  const prevIndex = (currentIndex.value - 1 + panels.length) % panels.length
+  const nextIndex = (currentIndex.value + 1) % panels.length
+  
+  infinitePanels.value = [
+    { ...panels[prevIndex], originalIndex: prevIndex },
+    { ...panels[currentIndex.value], originalIndex: currentIndex.value },
+    { ...panels[nextIndex], originalIndex: nextIndex }
+  ]
+}
+
+// Initialize on mount
+initializePanels()
 </script>
 
 <style scoped>
@@ -83,11 +122,11 @@ const onTouchEnd = (e) => {
 .swipe-track {
   display: flex;
   transition: transform 0.4s ease;
-  width: 200%; /* Width for 2 panels */
+  width: 300%; /* 3 panels at 100% each */
 }
 
 .swipe-panel {
-  flex: 0 0 50%; /* Each panel takes 50% of track width */
+  flex: 0 0 33.333%; /* Each panel takes 1/3 of track */
   box-sizing: border-box;
   text-align: center;
   padding: 16px 8px;
