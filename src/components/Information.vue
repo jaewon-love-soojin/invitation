@@ -1,49 +1,46 @@
 <template>
-  <div class="information">
+  <div class="wrapper">
     <h2 class="title2">INFORMATION</h2>
-    <h2 class="information-text">예식정보 및 안내사항</h2>
-
-    <div
-      class="tabs-slider"
-      @touchstart="onTouchStart"
-      @touchend="onTouchEnd"
-    >
+    <h2 class="invitation-text">예식정보 및 안내사항</h2>
+    <div class="information">
       <div
-        class="tabs-track"
-        :style="{ transform: `translateX(-${currentTab * 100}%)` }"
+        class="swipe-container"
+        @touchstart="onTouchStart"
+        @touchend="onTouchEnd"
       >
-        <div v-for="(tab, i) in tabs" :key="i" class="tab-panel" :class="{ active: i === currentTab }">
-          <img :src="tab.img" :alt="'Tab ' + i" />
-          <p>{{ tab.text }}</p>
-          <p>{{ tab.item1 }}</p>
-          <p>{{ tab.item2 }}</p>
-        </div>
+        <transition-group
+          name="slide"
+          tag="div"
+          class="swipe-track"
+        >
+          <div class="swipe-panel" :key="currentIndex">
+            <img :src="panels[currentIndex].img" alt="panel image" />
+            <h3>{{ panels[currentIndex].title }}</h3>
+            <p>{{ panels[currentIndex].text }}</p>
+          </div>
+        </transition-group>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import {ref} from 'vue'
+import { ref } from 'vue'
 
-const currentTab = ref(0)
-
-const tabs = [
+const panels = [
   {
     img: `${import.meta.env.BASE_URL}images/parking.jpg`,
-    text: '자가용 및 주차 이용',
-    item1: '지하 3층 주차장 무료로 이용 가능합니다. (오후 6시까지이용 가능)',
-    item2: '주차 공간 여유 있습니다.',
-
+    title: '자가용 및 주차 이용',
+    text: '지하 3층 주차장 무료 이용 가능 (오후 6시까지). 주차 공간 여유 있음.'
   },
   {
     img: `${import.meta.env.BASE_URL}images/banquet.jpg`,
-    text: '연회 & 식사 안내',
-    item1: '식당과 웨딩홀은 지하 1층에 위치하고 있습니다.',
-    item2: '식사 시간은 오전 11시부터 오후 2시까지 입니다.',
+    title: '연회 & 식사 안내',
+    text: '식당과 웨딩홀은 지하 1층. 식사 시간: 오전 11시 ~ 오후 2시.'
   }
 ]
 
+const currentIndex = ref(0)
 let touchStartX = 0
 let touchEndX = 0
 const SWIPE_THRESHOLD = 50
@@ -54,105 +51,66 @@ const onTouchStart = (e) => {
 const onTouchEnd = (e) => {
   touchEndX = e.changedTouches[0].clientX
   const delta = touchEndX - touchStartX
+
   if (Math.abs(delta) < SWIPE_THRESHOLD) return
-  if (delta < 0 && currentTab.value < tabs.length - 1) currentTab.value++
-  else if (delta > 0 && currentTab.value > 0) currentTab.value--
+
+  if (delta < 0) {
+    // swipe left
+    currentIndex.value = (currentIndex.value + 1) % panels.length
+  } else {
+    // swipe right
+    currentIndex.value =
+      (currentIndex.value - 1 + panels.length) % panels.length
+  }
 }
 </script>
 
 <style scoped>
-.tabs-slider {
-  overflow: hidden;
-  width: 100%;
-  max-width: 480px;
-  margin: 0 auto;
-  position: relative;
-}
-
-.tabs-track {
-  display: flex;
-  transition: transform 0.4s ease;
-  width: 200%; /* 100% * number of tabs */
-  padding: 0 10%; /* Adds partial preview of adjacent tabs */
-  box-sizing: content-box;
-}
-
-.tab-panel {
-  flex: 0 0 80%; /* slightly less than full width to show neighbor */
-  padding: 0 12px;
-  opacity: 0.4;
-  transform: scale(0.92);
-  transition: all 0.3s ease;
-  text-align: center;
-}
-
-.tab-panel.active {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.tab-panel img {
-  width: 100%;
-  max-width: 480px;
-  height: auto;
-  display: block;
-  border-radius: 10px;
-  margin: 0 auto 12px;
-}
-
-.highlight {
-  color: red;
-  padding: 0px 0px;
-  border-radius: 0px;
-}
-
 .information {
-  position: relative;
   background: linear-gradient(to bottom, #fff, #fef6f9);
-  text-align: center;
-  padding: 32px 16px;
-  overflow: hidden;
-}
-.title {
-  font-family: 'Great Vibes', cursive;
-  font-size: 2.5em;
-  color: #d6336c;
-  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.subtitle {
-  font-size: 1.2em;
-  margin-bottom: 20px;
-}
-
-.names {
-  font-size: 1.8em;
-  color: #6a1b9a;
-  margin-bottom: 10px;
-}
-
-.details {
-  font-size: 1em;
-  margin-bottom: 20px;
-}
-.information-img-wrapper {
-  width: 100%;
+.swipe-container {
   max-width: 480px;
-  margin: 0 auto 12px;
-  overflow: hidden;
-}
-.information-img {
   width: 100%;
-  height: auto;
-  display: block;
+  overflow: hidden;
+  position: relative;
 }
 
-.fixed-text {
-  display: inline-block;
-  width: 55px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  vertical-align: middle;
+.swipe-track {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.swipe-panel {
+  width: 100%;
+  text-align: center;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.swipe-panel img {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: transform 0.4s ease;
+  position: absolute;
+  width: 100%;
+}
+.slide-enter-from {
+  transform: translateX(100%);
+}
+.slide-leave-to {
+  transform: translateX(-100%);
 }
 </style>

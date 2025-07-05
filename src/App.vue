@@ -30,7 +30,9 @@ const weddingDate = new Date('2025-09-21T12:00:00')
 </script>
 
 <template>
+  <!--
   <LandingOverlay />
+  -->
   <FallingFlowers />
   <div class="container">
     <BgMusic />
