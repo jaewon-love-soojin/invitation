@@ -7,7 +7,7 @@
     >
       <div
         class="swipe-track"
-        :style="{ transform: `translateX(-33.333%)` }"
+        :style="{ transform: `translateX(${translateX}%)` }"
       >
         <div
           v-for="(panel, i) in infinitePanels"
@@ -45,6 +45,7 @@ const panels = [
 // Create infinite panels for seamless looping
 const infinitePanels = ref([])
 const currentIndex = ref(0)
+const translateX = ref(-33.333) // Start positioned to show middle panel
 
 // Initialize infinite panels
 const initializePanels = () => {
@@ -83,11 +84,15 @@ const onTouchEnd = (e) => {
 const goToNext = () => {
   currentIndex.value = (currentIndex.value + 1) % panels.length
   initializePanels()
+  // Keep the translateX at the same position to show middle panel
+  translateX.value = -33.333 + 10 // -23.333%
 }
 
 const goToPrevious = () => {
   currentIndex.value = (currentIndex.value - 1 + panels.length) % panels.length
   initializePanels()
+  // Keep the translateX at the same position to show middle panel
+  translateX.value = -33.333 + 10 // -23.333%
 }
 
 // Initialize on mount
@@ -107,16 +112,37 @@ initializePanels()
   width: 100%;
   overflow: hidden;
   box-sizing: border-box;
+  position: relative;
+}
+
+.swipe-wrapper::before,
+.swipe-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 10%;
+  background: transparent;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.swipe-wrapper::before {
+  left: 0;
+}
+
+.swipe-wrapper::after {
+  right: 0;
 }
 
 .swipe-track {
   display: flex;
   transition: transform 0.4s ease;
-  width: 300%; /* 3 panels at 100% each */
+  width: 300%; /* Track needs to be 3x viewport to hold 3 panels */
 }
 
 .swipe-panel {
-  flex: 0 0 10%; /* Left and right panels: 10% of viewport */
+  flex: 0 0 33.333%; /* Each panel takes 1/3 of track (= 100% of viewport) */
   box-sizing: border-box;
   text-align: center;
   padding: 16px 8px;
@@ -129,7 +155,6 @@ initializePanels()
 }
 
 .swipe-panel.active {
-  flex: 0 0 80%; /* Center panel: 80% of viewport */
   opacity: 1;
 }
 
