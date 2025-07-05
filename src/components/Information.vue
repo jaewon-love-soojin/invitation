@@ -7,13 +7,13 @@
     >
       <div
         class="swipe-track"
-        :style="{ transform: `translateX(${-80 + (currentIndex * -100)}%)` }"
+        :style="{ transform: `translateX(-33.333%)` }"
       >
         <div
           v-for="(panel, i) in infinitePanels"
           :key="`${panel.originalIndex}-${i}`"
           class="swipe-panel"
-          :class="{ active: i === activeSlideIndex }"
+          :class="{ active: i === 1 }"
         >
           <div class="img-wrapper">
             <img :src="panel.img" alt="panel image" />
@@ -45,14 +45,16 @@ const panels = [
 // Create infinite panels for seamless looping
 const infinitePanels = ref([])
 const currentIndex = ref(0)
-const activeSlideIndex = ref(1) // Start at index 1 (middle of 3 slides)
 
 // Initialize infinite panels
 const initializePanels = () => {
+  const prevIndex = (currentIndex.value - 1 + panels.length) % panels.length
+  const nextIndex = (currentIndex.value + 1) % panels.length
+  
   infinitePanels.value = [
-    { ...panels[1], originalIndex: 1 }, // Previous (last panel)
-    { ...panels[0], originalIndex: 0 }, // Current (first panel)
-    { ...panels[1], originalIndex: 1 }  // Next (second panel)
+    { ...panels[prevIndex], originalIndex: prevIndex },
+    { ...panels[currentIndex.value], originalIndex: currentIndex.value },
+    { ...panels[nextIndex], originalIndex: nextIndex }
   ]
 }
 
@@ -80,23 +82,12 @@ const onTouchEnd = (e) => {
 
 const goToNext = () => {
   currentIndex.value = (currentIndex.value + 1) % panels.length
-  updatePanels()
+  initializePanels()
 }
 
 const goToPrevious = () => {
   currentIndex.value = (currentIndex.value - 1 + panels.length) % panels.length
-  updatePanels()
-}
-
-const updatePanels = () => {
-  const prevIndex = (currentIndex.value - 1 + panels.length) % panels.length
-  const nextIndex = (currentIndex.value + 1) % panels.length
-  
-  infinitePanels.value = [
-    { ...panels[prevIndex], originalIndex: prevIndex },
-    { ...panels[currentIndex.value], originalIndex: currentIndex.value },
-    { ...panels[nextIndex], originalIndex: nextIndex }
-  ]
+  initializePanels()
 }
 
 // Initialize on mount
@@ -116,7 +107,6 @@ initializePanels()
   width: 100%;
   overflow: hidden;
   box-sizing: border-box;
-  display: flex;
 }
 
 .swipe-track {
@@ -126,7 +116,7 @@ initializePanels()
 }
 
 .swipe-panel {
-  flex: 0 0 33.333%; /* Each panel takes 1/3 of track */
+  flex: 0 0 10%; /* Left and right panels: 10% of viewport */
   box-sizing: border-box;
   text-align: center;
   padding: 16px 8px;
@@ -135,9 +125,11 @@ initializePanels()
   display: flex;
   flex-direction: column;
   align-items: center;
+  opacity: 0.5;
 }
 
 .swipe-panel.active {
+  flex: 0 0 80%; /* Center panel: 80% of viewport */
   opacity: 1;
 }
 
