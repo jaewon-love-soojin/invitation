@@ -7,7 +7,7 @@
     >
       <div
         class="swipe-track"
-        :style="{ transform: `translateX(-${currentIndex * 80}%)` }"
+        :style="{ transform: `translateX(-${currentIndex * 10}%)` }"
       >
         <div
           v-for="(panel, i) in panels"
@@ -15,7 +15,9 @@
           class="swipe-panel"
           :class="{ active: i === currentIndex }"
         >
-          <img :src="panel.img" alt="panel image" />
+          <div class="img-wrapper">
+            <img :src="panel.img" alt="panel image" />
+          </div>
           <h3>{{ panel.title }}</h3>
           <p>{{ panel.text }}</p>
         </div>
@@ -65,10 +67,9 @@ const onTouchEnd = (e) => {
 <style scoped>
 .information {
   background: linear-gradient(to bottom, #fff, #fef6f9);
-  padding: 32px 0;
   display: flex;
   justify-content: center;
-  align-items: center;
+  padding: 32px 0;
 }
 
 .swipe-wrapper {
@@ -81,29 +82,68 @@ const onTouchEnd = (e) => {
 .swipe-track {
   display: flex;
   transition: transform 0.4s ease;
-  width: max-content;
+  width: 100%;
 }
 
 .swipe-panel {
-  flex: 0 0 80%;
-  margin: 0 10%;
+  flex: 0 0 10%;
   box-sizing: border-box;
   text-align: center;
-  padding: 16px 12px;
-  opacity: 0.5;
-  transform: scale(0.92);
+  padding: 8px 4px;
+  opacity: 0.3;
+  transform: scale(0.8);
   transition: all 0.3s ease;
+  overflow: hidden;
 }
 
 .swipe-panel.active {
+  flex: 0 0 80%;
   opacity: 1;
   transform: scale(1);
+  padding: 16px 8px;
+}
+
+.img-wrapper {
+  width: 100%;
+  height: 120px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #f5f5f5;
+}
+
+.swipe-panel.active .img-wrapper {
+  height: 200px;
 }
 
 .swipe-panel img {
   width: 100%;
-  max-width: 100%;
-  border-radius: 10px;
-  margin-bottom: 16px;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.swipe-panel h3 {
+  font-size: 12px;
+  margin: 8px 0 4px 0;
+  opacity: 0.7;
+}
+
+.swipe-panel.active h3 {
+  font-size: 18px;
+  margin: 16px 0 8px 0;
+  opacity: 1;
+}
+
+.swipe-panel p {
+  font-size: 10px;
+  margin: 0;
+  opacity: 0.5;
+  line-height: 1.2;
+}
+
+.swipe-panel.active p {
+  font-size: 14px;
+  opacity: 1;
+  line-height: 1.4;
 }
 </style>
