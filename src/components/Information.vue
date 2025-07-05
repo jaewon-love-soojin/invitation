@@ -7,7 +7,7 @@
     >
       <div
         class="swipe-track"
-        :style="{ transform: `translateX(-${currentIndex * 10}%)` }"
+        :style="{ transform: `translateX(calc(-${currentIndex * 50}% + 10%))` }"
       >
         <div
           v-for="(panel, i) in panels"
@@ -77,42 +77,37 @@ const onTouchEnd = (e) => {
   width: 100%;
   overflow: hidden;
   box-sizing: border-box;
+  display: flex;
 }
 
 .swipe-track {
   display: flex;
   transition: transform 0.4s ease;
-  width: 100%;
+  width: 200%; /* Width for 2 panels */
 }
 
 .swipe-panel {
-  flex: 0 0 10%;
+  flex: 0 0 50%; /* Each panel takes 50% of track width */
   box-sizing: border-box;
   text-align: center;
-  padding: 8px 4px;
-  opacity: 0.3;
-  transform: scale(0.8);
+  padding: 16px 8px;
   transition: all 0.3s ease;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .swipe-panel.active {
-  flex: 0 0 80%;
   opacity: 1;
-  transform: scale(1);
-  padding: 16px 8px;
 }
 
 .img-wrapper {
   width: 100%;
-  height: 120px;
+  height: 200px;
   overflow: hidden;
   border-radius: 10px;
   background: #f5f5f5;
-}
-
-.swipe-panel.active .img-wrapper {
-  height: 200px;
 }
 
 .swipe-panel img {
@@ -123,27 +118,13 @@ const onTouchEnd = (e) => {
 }
 
 .swipe-panel h3 {
-  font-size: 12px;
-  margin: 8px 0 4px 0;
-  opacity: 0.7;
-}
-
-.swipe-panel.active h3 {
   font-size: 18px;
   margin: 16px 0 8px 0;
-  opacity: 1;
 }
 
 .swipe-panel p {
-  font-size: 10px;
-  margin: 0;
-  opacity: 0.5;
-  line-height: 1.2;
-}
-
-.swipe-panel.active p {
   font-size: 14px;
-  opacity: 1;
+  margin: 0;
   line-height: 1.4;
 }
 </style>
