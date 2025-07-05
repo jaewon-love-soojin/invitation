@@ -1,25 +1,20 @@
 <template>
-  <div class="wrapper">
-    <h2 class="title2">INFORMATION</h2>
-    <h2 class="invitation-text">예식정보 및 안내사항</h2>
-    <div class="information">
-      <div
-        class="swipe-container"
-        @touchstart="onTouchStart"
-        @touchend="onTouchEnd"
+  <div class="information">
+    <div
+      class="swipe-container"
+      @touchstart="onTouchStart"
+      @touchend="onTouchEnd"
+    >
+      <transition
+        :name="swipeDirection"
+        mode="out-in"
       >
-        <transition-group
-          name="slide"
-          tag="div"
-          class="swipe-track"
-        >
-          <div class="swipe-panel" :key="currentIndex">
-            <img :src="panels[currentIndex].img" alt="panel image" />
-            <h3>{{ panels[currentIndex].title }}</h3>
-            <p>{{ panels[currentIndex].text }}</p>
-          </div>
-        </transition-group>
-      </div>
+        <div class="swipe-panel" :key="currentIndex">
+          <img :src="panels[currentIndex].img" alt="panel image" />
+          <h3>{{ panels[currentIndex].title }}</h3>
+          <p>{{ panels[currentIndex].text }}</p>
+        </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -41,6 +36,8 @@ const panels = [
 ]
 
 const currentIndex = ref(0)
+const swipeDirection = ref('slide-left')
+
 let touchStartX = 0
 let touchEndX = 0
 const SWIPE_THRESHOLD = 50
@@ -51,14 +48,13 @@ const onTouchStart = (e) => {
 const onTouchEnd = (e) => {
   touchEndX = e.changedTouches[0].clientX
   const delta = touchEndX - touchStartX
-
   if (Math.abs(delta) < SWIPE_THRESHOLD) return
 
   if (delta < 0) {
-    // swipe left
+    swipeDirection.value = 'slide-left'
     currentIndex.value = (currentIndex.value + 1) % panels.length
   } else {
-    // swipe right
+    swipeDirection.value = 'slide-right'
     currentIndex.value =
       (currentIndex.value - 1 + panels.length) % panels.length
   }
@@ -68,6 +64,7 @@ const onTouchEnd = (e) => {
 <style scoped>
 .information {
   background: linear-gradient(to bottom, #fff, #fef6f9);
+  height: 30vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -76,15 +73,12 @@ const onTouchEnd = (e) => {
 .swipe-container {
   max-width: 480px;
   width: 100%;
+  height: 100%;
   overflow: hidden;
   position: relative;
-}
-
-.swipe-track {
   display: flex;
-  width: 100%;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 .swipe-panel {
@@ -92,6 +86,9 @@ const onTouchEnd = (e) => {
   text-align: center;
   padding: 16px;
   box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .swipe-panel img {
@@ -101,16 +98,27 @@ const onTouchEnd = (e) => {
   margin-bottom: 16px;
 }
 
-.slide-enter-active,
-.slide-leave-active {
+/* Slide left animation */
+.slide-left-enter-active,
+.slide-left-leave-active {
   transition: transform 0.4s ease;
-  position: absolute;
-  width: 100%;
 }
-.slide-enter-from {
+.slide-left-enter-from {
   transform: translateX(100%);
 }
-.slide-leave-to {
+.slide-left-leave-to {
   transform: translateX(-100%);
+}
+
+/* Slide right animation */
+.slide-right-enter-active,
+.slide-right-leave-active {
+  transition: transform 0.4s ease;
+}
+.slide-right-enter-from {
+  transform: translateX(-100%);
+}
+.slide-right-leave-to {
+  transform: translateX(100%);
 }
 </style>
