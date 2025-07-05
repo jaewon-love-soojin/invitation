@@ -65,7 +65,7 @@ const onTouchEnd = (e) => {
 <style scoped>
 .information {
   background: linear-gradient(to bottom, #fff, #fef6f9);
-  height: 50vh;
+  padding: 32px 0;
   display: flex;
   justify-content: center;
   align-items: center;
