@@ -1,20 +1,25 @@
 <template>
   <div class="information">
     <div
-      class="swipe-container"
+      class="swipe-wrapper"
       @touchstart="onTouchStart"
       @touchend="onTouchEnd"
     >
-      <transition
-        :name="swipeDirection"
-        mode="out-in"
+      <div
+        class="swipe-track"
+        :style="{ transform: `translateX(-${currentIndex * 80}%)` }"
       >
-        <div class="swipe-panel" :key="currentIndex">
-          <img :src="panels[currentIndex].img" alt="panel image" />
-          <h3>{{ panels[currentIndex].title }}</h3>
-          <p>{{ panels[currentIndex].text }}</p>
+        <div
+          v-for="(panel, i) in panels"
+          :key="i"
+          class="swipe-panel"
+          :class="{ active: i === currentIndex }"
+        >
+          <img :src="panel.img" alt="panel image" />
+          <h3>{{ panel.title }}</h3>
+          <p>{{ panel.text }}</p>
         </div>
-      </transition>
+      </div>
     </div>
   </div>
 </template>
@@ -36,7 +41,6 @@ const panels = [
 ]
 
 const currentIndex = ref(0)
-const swipeDirection = ref('slide-left')
 
 let touchStartX = 0
 let touchEndX = 0
@@ -51,12 +55,9 @@ const onTouchEnd = (e) => {
   if (Math.abs(delta) < SWIPE_THRESHOLD) return
 
   if (delta < 0) {
-    swipeDirection.value = 'slide-left'
     currentIndex.value = (currentIndex.value + 1) % panels.length
   } else {
-    swipeDirection.value = 'slide-right'
-    currentIndex.value =
-      (currentIndex.value - 1 + panels.length) % panels.length
+    currentIndex.value = (currentIndex.value - 1 + panels.length) % panels.length
   }
 }
 </script>
@@ -64,31 +65,39 @@ const onTouchEnd = (e) => {
 <style scoped>
 .information {
   background: linear-gradient(to bottom, #fff, #fef6f9);
-  height: 30vh;
+  height: 50vh;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
-.swipe-container {
+.swipe-wrapper {
   max-width: 480px;
   width: 100%;
-  height: 100%;
   overflow: hidden;
-  position: relative;
+  box-sizing: border-box;
+}
+
+.swipe-track {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  transition: transform 0.4s ease;
+  width: max-content;
 }
 
 .swipe-panel {
-  width: 100%;
-  text-align: center;
-  padding: 16px;
+  flex: 0 0 80%;
+  margin: 0 10%;
   box-sizing: border-box;
-  position: absolute;
-  top: 0;
-  left: 0;
+  text-align: center;
+  padding: 16px 12px;
+  opacity: 0.5;
+  transform: scale(0.92);
+  transition: all 0.3s ease;
+}
+
+.swipe-panel.active {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .swipe-panel img {
@@ -96,29 +105,5 @@ const onTouchEnd = (e) => {
   max-width: 100%;
   border-radius: 10px;
   margin-bottom: 16px;
-}
-
-/* Slide left animation */
-.slide-left-enter-active,
-.slide-left-leave-active {
-  transition: transform 0.4s ease;
-}
-.slide-left-enter-from {
-  transform: translateX(100%);
-}
-.slide-left-leave-to {
-  transform: translateX(-100%);
-}
-
-/* Slide right animation */
-.slide-right-enter-active,
-.slide-right-leave-active {
-  transition: transform 0.4s ease;
-}
-.slide-right-enter-from {
-  transform: translateX(-100%);
-}
-.slide-right-leave-to {
-  transform: translateX(100%);
 }
 </style>
