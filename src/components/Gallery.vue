@@ -7,7 +7,10 @@
       @touchstart="onTouchStart"
       @touchend="onTouchEnd"
     >
-      <div class="gallery-track" :style="{ transform: `translateX(-${currentIndex * 100}%)` }">
+      <div
+        class="gallery-track"
+        :style="{ transform: `translateX(-${currentIndex * 100}%)` }"
+      >
         <div class="gallery-slide" v-for="(img, index) in images" :key="index">
           <img :src="img" alt="gallery image" />
         </div>
@@ -23,7 +26,7 @@
 <script setup>
 import { ref } from 'vue'
 
-defineProps({
+const props = defineProps({
   images: {
     type: Array,
     required: true
@@ -43,10 +46,11 @@ const onTouchEnd = (e) => {
   touchEndX = e.changedTouches[0].clientX
   const delta = touchEndX - touchStartX
   if (Math.abs(delta) < SWIPE_THRESHOLD) return
-  if (delta < 0) {
-    currentIndex.value = (currentIndex.value + 1) % images.length
-  } else {
-    currentIndex.value = (currentIndex.value - 1 + images.length) % images.length
+
+  if (delta < 0 && currentIndex.value < props.images.length - 1) {
+    currentIndex.value++
+  } else if (delta > 0 && currentIndex.value > 0) {
+    currentIndex.value--
   }
 }
 </script>
@@ -77,7 +81,6 @@ const onTouchEnd = (e) => {
 .gallery-track {
   display: flex;
   transition: transform 0.4s ease;
-  width: 100%;
 }
 
 .gallery-slide {
@@ -98,17 +101,5 @@ const onTouchEnd = (e) => {
   font-size: 0.95rem;
   color: #555;
   font-weight: 500;
-}
-
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: #ccc;
-  transition: background-color 0.3s ease;
-}
-
-.dot.active {
-  background-color: #d6336c;
 }
 </style>
