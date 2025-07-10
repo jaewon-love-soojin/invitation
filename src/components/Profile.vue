@@ -1,12 +1,14 @@
 <template>
-  <div class="couple-grid">
-    <div class="profile" v-for="(person, index) in couple" :key="index">
-      <img :src="person.img" :alt="person.name" />
-      <h3 class="name">{{ person.name }}</h3>
-      <p class="role" :class="person.role === '신랑' ? 'groom' : 'bride'">
-        {{ person.role }}
-      </p>
-      <p class="description">{{ person.description}}</p>
+  <div class="profile-section">
+    <h2 class="title">Profile</h2>
+    <div class="couple-grid">
+      <div class="profile" v-for="(person, index) in couple" :key="index">
+        <img :src="person.img" :alt="person.name" />
+        <span class="role" :class="person.role === '신랑' ? 'groom' : 'bride'">{{ person.role }}</span>
+        <span class="name">{{ person.name }}</span>
+        <p class="parent">{{ person.parent}}</p>
+        <p class="description">{{ person.description }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -18,19 +20,32 @@ const couple = [
   {
     name: '최재원',
     role: '신랑',
-    description: '',
-    img: jaewonImg
+    img: jaewonImg,
+    parent: '최인석, 배현숙의 아들',
+    description: '든든하고 믿음직한 남편이 되겠습니다.'
   },
   {
     name: '나수진',
     role: '신부',
-    description: '',
-    img: soojinImg
+    img: soojinImg,
+    parent: '나택근, 김경희의 딸',
+    description: '언제나 밝고 따뜻한 아내가 되겠습니다.'
   }
 ]
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+.title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.2rem;
+  font-weight: normal;
+  text-align: center;
+  color: #d6336c;
+  margin-bottom: 24px;
+}
+
 .couple-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -55,9 +70,9 @@ const couple = [
 }
 
 .name {
-  font-size: 1.2rem;
+  font-size: 1.0rem;
   font-weight: bold;
-  margin: 0;
+  margin: 10;
 }
 
 .role {
@@ -72,5 +87,17 @@ const couple = [
 
 .role.bride {
   color: #e94e77; /* pink for 신부 */
+}
+
+.parent {
+  font-size: 0.9rem;
+  color: #444;
+  margin-top: 4px;
+}
+
+.description {
+  font-size: 0.9rem;
+  color: #444;
+  margin-top: 4px;
 }
 </style>

@@ -14,18 +14,18 @@ import Account from './components/Account.vue'
 import Footer from './components/Footer.vue'
 
 const images = [
-  { src: '/images/2.jpg', alt: 'Image 2' },
-  { src: '/images/3.jpg', alt: 'Image 3' },
-  { src: '/images/4.jpg', alt: 'Image 4' },
-  { src: '/images/5.jpg', alt: 'Image 5' },
-  { src: '/images/6.jpg', alt: 'Image 6' },
-  { src: '/images/7.jpg', alt: 'Image 7' },
-  { src: '/images/8.jpg', alt: 'Image 8' },
-  { src: '/images/9.jpg', alt: 'Image 9' },
-  { src: '/images/10.jpg', alt: 'Image 10' },
-  { src: '/images/11.jpg', alt: 'Image 11' },
-  { src: '/images/12.jpg', alt: 'Image 12' },
-  { src: '/images/13.jpg', alt: 'Image 13' },
+  `${import.meta.env.BASE_URL}images/2.jpg`,
+  `${import.meta.env.BASE_URL}images/3.jpg`,
+  `${import.meta.env.BASE_URL}images/4.jpg`,
+  `${import.meta.env.BASE_URL}images/5.jpg`,
+  `${import.meta.env.BASE_URL}images/6.jpg`,
+  `${import.meta.env.BASE_URL}images/7.jpg`,
+  `${import.meta.env.BASE_URL}images/8.jpg`,
+  `${import.meta.env.BASE_URL}images/9.jpg`,
+  `${import.meta.env.BASE_URL}images/10.jpg`,
+  `${import.meta.env.BASE_URL}images/11.jpg`,
+  `${import.meta.env.BASE_URL}images/12.jpg`,
+  `${import.meta.env.BASE_URL}images/13.jpg`,
 ]
 const weddingDate = new Date('2025-09-21T12:00:00')
 </script>
@@ -51,8 +51,6 @@ const weddingDate = new Date('2025-09-21T12:00:00')
 </template>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans&display=swap');
-
 .container {
   max-width: 480px;         /* typical mobile max */
   margin: 0 auto;
