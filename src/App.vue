@@ -3,11 +3,12 @@ import BgMusic from './components/BgMusic.vue'
 import LandingOverlay from './components/LandingOverlay.vue'
 import TopBar from './components/TopBar.vue'
 import Invitation from './components/Invitation.vue'
+import Profile from './components/Profile.vue'
 import FallingFlowers from './components/FallingFlowers.vue'
 import Gallery from './components/Gallery.vue'
+import Location from './components/Location.vue'
 import Calendar from './components/Calendar.vue'
 import Countdown from './components/Countdown.vue'
-import Location from './components/Location.vue'
 import Information from './components/Information.vue'
 import Account from './components/Account.vue'
 import Footer from './components/Footer.vue'
@@ -38,10 +39,11 @@ const weddingDate = new Date('2025-09-21T12:00:00')
     <BgMusic />
     <TopBar />
     <Invitation />
+    <Profile />
     <Gallery :images="images" />
+    <Location />
     <Calendar :year="2025" :month="8" :pinned-day="21" />
     <Countdown :targetDate="weddingDate" />
-    <Location />
     <Information />
     <Account />
     <Footer />
