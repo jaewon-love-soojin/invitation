@@ -68,14 +68,4 @@ const weddingDate = new Date('2025-09-21T12:00:00')
     margin-top: 2rem;
   }
 }
-
-html, body {
-  overflow-x: hidden;
-  width: 100%;
-}
-
-#app {
-  overflow-x: hidden;
-}
-
 </style>

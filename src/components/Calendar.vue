@@ -61,13 +61,13 @@ const date = computed(() => {
   text-align: center;
   padding: 16px;
   border-radius: 8px;
-  max-width: 360px;
+  width: 100%;
 }
 .calendar {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 4px;
-  width: fit-content;
+  width: 100%;
 }
 .header,
 .day {
