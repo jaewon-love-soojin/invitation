@@ -18,9 +18,12 @@
                 <p class="name">{{ item.name }}</p>
                 <p class="account">{{ item.account }}</p>
               </div>
-              <button class="copy-btn" @click="copyToClipboard(item.account, $event)">
-                복사
-              </button>
+              <div class="button-group">
+                <button class="copy-btn" @click="copyToClipboard(item.account, $event)">
+                  복사
+                </button>
+              <a class="kakaopay-btn" :href="'https://qr.kakaopay.com/Ej8nPNzo6'" target="_blank"><img :src="kakaopayImg"/></a>
+              </div>
             </div>
           </div>
         </transition>
@@ -39,9 +42,12 @@
                 <p class="name">{{ item.name }}</p>
                 <p class="account">{{ item.account }}</p>
               </div>
-              <button class="copy-btn" @click="copyToClipboard(item.account, $event)">
-                복사
-              </button>
+              <div class="button-group">
+                <button class="copy-btn" @click="copyToClipboard(item.account, $event)">
+                  복사
+                </button>
+                <a class="kakaopay-btn" :href="'https://qr.kakaopay.com/Fdcdi1F4T'" target="_blank"><img :src="kakaopayImg"/></a>
+              </div>
             </div>
           </div>
         </transition>
@@ -53,6 +59,8 @@
 <script setup>
 import { ref } from 'vue'
 import SectionTitle from './SectionTitle.vue'
+
+const kakaopayImg = `${import.meta.env.BASE_URL}images/kakaopay.svg`;
 
 const openSection = ref(null)
 const toggle = (section) => {
@@ -153,13 +161,32 @@ const copyToClipboard = async (text, event) => {
   color: #555;
   word-break: break-all;
 }
-.copy-btn {
-  white-space: nowrap;
+.button-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  max-width: 140px;
+}
+
+.kakaopay-btn img {
+  width: 80px;
+  height: auto;
+  display: block;
+}
+.kakaopay-btn {
+  width: 100%;
+  display: inline-block;
 }
 
 .copy-btn {
-  background: #a678e2;
-  color: white;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.copy-btn {
+  background: gray;
+  color: #f2f3f5;
   border: none;
   padding: 6px 10px;
   border-radius: 6px;
@@ -169,6 +196,12 @@ const copyToClipboard = async (text, event) => {
 }
 .copy-btn:hover {
   background: #9258d6;
+}
+
+.button-column {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 /* Slide transition */
