@@ -23,28 +23,47 @@ const welcomeImage = `${import.meta.env.BASE_URL}images/1.jpg`;
 </script>
 
 <style scoped>
-.topbar {
-  position: relative;
-  background: linear-gradient(to bottom, #fff, #fef6f9);
+p {
   text-align: center;
-  padding: 0px 0px;
-  overflow: hidden;
 }
+
 .topbar-img-wrapper {
   width: 100%;
   max-width: 480px;
   margin: 0 auto 12px;
   overflow: hidden;
-  border-top-left-radius: 240px;
-  border-top-right-radius: 240px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+  position: relative; /* Needed for absolute children */
 }
+
+.topbar-img-wrapper::before,
+.topbar-img-wrapper::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.topbar-img-wrapper::before {
+  top: 0;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+}
+
+.topbar-img-wrapper::after {
+  bottom: 0;
+  background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+}
+
 .topbar-img {
   width: 100%;
   height: auto;
   display: block;
+  position: relative;
+  z-index: 0;
 }
+
 .flower-container {
   pointer-events: none;
 }

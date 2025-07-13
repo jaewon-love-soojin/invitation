@@ -20,12 +20,12 @@ defineProps({
 .en {
   font-family: 'Great Vibes', cursive;
   font-size: 1.8rem;
-  color: #BA68C8;
+  color: #93729B;
   margin-bottom: 0.2rem;
 }
 .ko {
   font-family: 'Noto Sans KR', sans-serif;
   font-size: 1.2rem;
-  color: #BA68C8;
+  color: #93729B;
 }
 </style>

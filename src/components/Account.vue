@@ -119,7 +119,7 @@ const copyToClipboard = async (text, event) => {
 
 .card-header {
   padding: 0px 8px;
-  font-size: 16px;
+  font-size: 14px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -134,7 +134,7 @@ const copyToClipboard = async (text, event) => {
 
 .card-body {
   padding: 0px 8px;
-  font-size: 15px;
+  font-size: 10px;
   color: #444;
   background: white;
   text-align: left;
@@ -174,7 +174,7 @@ const copyToClipboard = async (text, event) => {
 }
 
 .kakaopay-btn img {
-  width: 80px;
+  width: 60px;
   height: auto;
   display: block;
 }
@@ -192,9 +192,9 @@ const copyToClipboard = async (text, event) => {
   background: gray;
   color: #f2f3f5;
   border: none;
-  padding: 6px 10px;
+  padding: 4px 8px;
   border-radius: 6px;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   cursor: pointer;
   transition: background-color 0.2s ease;
 }

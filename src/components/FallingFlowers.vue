@@ -50,7 +50,6 @@ onMounted(() => {
   pointer-events: none;
   overflow: hidden;
   z-index: 1; /* Behind content */
-  background: rgba(255, 0, 0, 0.05); /* soft red tint for debug */
 }
 
 .flower {

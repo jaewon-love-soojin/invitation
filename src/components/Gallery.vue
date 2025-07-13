@@ -122,7 +122,6 @@ const handleSwipe = (deltaX) => {
 
 .gallery-slide img {
   width: 100%;
-  border-radius: 12px;
   object-fit: cover;
   display: block;
 }
