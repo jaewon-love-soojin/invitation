@@ -1,9 +1,7 @@
 <template>
   <div class="account">
-    <h2 class="title2">ACCOUNT</h2>
-    <h2 class="invitation-text">마음 전하실 곳</h2>
-    <p><span>참석이 어려우신 분들을 위해</span></p>
-    <p><span>계좌번호를 기재하였습니다.</span></p>
+    <h2 class="title2">마음을 전하는 곳</h2>
+    <p><span>참석이 어려우신 분들을 위해 계좌번호를 기재하였습니다.</span></p>
     <p><span>너그러운 마음으로 양해 부탁드립니다.</span></p>
 
     <div class="menu-page">

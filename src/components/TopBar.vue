@@ -16,7 +16,7 @@
       <span>나수진</span>
     </p>
     <p class="subtitle">🗓️ 2025년 9월 21일 일요일 낮 12시</p>
-    <p class="subtitle">📍 엔씨소프트 R&D 센터 지하1층 컨벤션 홀</p>
+    <p class="subtitle">📍 엔씨소프트 R&D 센터 컨벤션 홀</p>
   </div>
 </template>
 

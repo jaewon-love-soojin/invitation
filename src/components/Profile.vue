@@ -7,7 +7,7 @@
         <span class="role" :class="person.role === '신랑' ? 'groom' : 'bride'">{{ person.role }}</span>
         <span class="name">{{ person.name }}</span>
         <p class="parent">{{ person.parent}}</p>
-        <p class="description">{{ person.description }}</p>
+        <p class="description" v-html="person.description.replace(/\n/g, '<br>')"></p>
       </div>
     </div>
   </div>
@@ -18,18 +18,18 @@ const jaewonImg = `${import.meta.env.BASE_URL}images/jaewon.jpg`;
 const soojinImg = `${import.meta.env.BASE_URL}images/soojin.jpg`;
 const couple = [
   {
-    name: '최재원',
+    name: ' 최재원',
     role: '신랑',
     img: jaewonImg,
     parent: '최인석, 배현숙의 아들',
-    description: '든든하고 믿음직한 남편이 되겠습니다.'
+    description: '든든하고 믿음직한\n남편이 되겠습니다.🤵'
   },
   {
-    name: '나수진',
+    name: ' 나수진',
     role: '신부',
     img: soojinImg,
     parent: '나택근, 김경희의 딸',
-    description: '언제나 밝고 따뜻한 아내가 되겠습니다.'
+    description: '언제나 밝고 따뜻한\n아내가 되겠습니다.👰🏻‍♀️'
   }
 ]
 </script>

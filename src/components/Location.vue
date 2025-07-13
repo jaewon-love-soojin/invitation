@@ -1,36 +1,47 @@
 <template>
-  <div class="location" id="location">
-    <h2 class="title2">LOCATION</h2>
-    <h2 class="title2">오시는길</h2>
-    <p class="subtitle">📍 엔씨소프트 R&D 센터 지하1층 컨벤션 홀</p>
-    <p class="subtitle">경기 성남시 분당구 대왕판교로644번길 12</p>
-    <div class="map">
-      <div id="map" class="map-container"></div>
-    </div>
+  <div class="location-section">
+    <h2 class="location-title">LOCATION</h2>
+    <h2 class="location-title">오시는길</h2>
+    <div class="location" id="location">
+      <p class="subtitle">📍 엔씨소프트 R&D 센터 컨벤션홀</p>
+      <p class="subtitle">경기 성남시 분당구 대왕판교로644번길 12</p>
+      <p class="subtitle">지하1층 컨벤션홀</p>
+      <div class="map">
+        <div id="map" class="map-container"></div>
+      </div>
 
-    <div class="left-text">
-      <p>내비게이션</p>
-      <p>원하시는 앱을 선택하시면 길안내가 시작됩니다.</p>
-    </div>
-    <div class="nav-links">
-      <a :href="naverLink" target="_blank">🚘 Naver Map</a>
-      <a :href="tmapLink" target="_blank">📍 Tmap</a>
-      <a :href="kakaoLink" target="_blank">🧭 Kakao Map</a>
-    </div>
+      <div class="left-text">
+        <p>내비게이션</p>
+        <p>원하시는 앱을 선택하시면 길안내가 시작됩니다.</p>
+      </div>
+      <div class="nav-links">
+        <a :href="naverLink" target="_blank">🚘 Naver Map</a>
+        <a :href="tmapLink" target="_blank">📍 Tmap</a>
+        <a :href="kakaoLink" target="_blank">🧭 Kakao Map</a>
+      </div>
 
-    <div class="left-text">
-      <p class="subtitle">지하철</p>
-      <span class="color-circle red"></span> 신분당선,
-      <span class="color-circle blue"></span> 경강선 판교역
-      <p>﹒4번 출구, 도보 11분</p>
-    </div>
+      <div class="left-text">
+        <p class="subtitle">지하철</p>
+        <span class="color-circle red"></span> 신분당선,
+        <span class="color-circle blue"></span> 경강선 판교역
+        <p>﹒1번 또는 4번 출구, 도보 11분</p>
+      </div>
 
-    <div class="left-text">
-      <p class="subtitle">버스</p>
-      <p>NC소프트 하차</p>
-      <p><span class="color-circle green"></span> 일반 : 375, 380</p>
-      <p><span class="color-circle dark-orange"></span> 급행 : 9007</p>
-      <p><span class="color-circle light-green"></span> 마을 : 66, 73, 82, 602-1A, 602-1B, 602-2B</p>
+      <div class="left-text">
+        <p class="subtitle">버스</p>
+        <p>NC소프트 하차</p>
+        <p><span class="color-circle green"></span> 일반 : 375, 380</p>
+        <p><span class="color-circle dark-orange"></span> 급행 : 9007</p>
+        <p><span class="color-circle light-green"></span> 마을 : 66, 73, 82, 602-1A, 602-1B, 602-2B</p>
+      </div>
+
+      <div class="left-text">
+        <p class="subtitle">자가용 및 주차 이용</p>
+        <p>내비게이션 엔씨소프트R&D센터 검색</p>
+        <p>﹒지하 3층 주차장 무료 이용 가능합니다.</p>
+        <p>﹒주차 공간 여유 있습니다.</p>
+      </div>
+
     </div>
   </div>
 </template>
@@ -84,6 +95,20 @@ const kakaoLink = `kakaomap://route?ep=${lat},${lng}&by=CAR`
 </script>
 
 <style scoped>
+.location-section {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 32px 16px;
+  text-align: center;
+}
+
+.location-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.2rem;
+  color: #d6336c;
+  margin-bottom: 24px;
+}
+
 .map-container {
   width: 100%;
   height: 400px;

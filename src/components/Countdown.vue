@@ -50,7 +50,7 @@ onMounted(() => {
       </div>
     </div>
     <p>
-      재원, 수진의 결혼식이<span class="highlight">{{ timeLeft.days  + 1}}</span>일 남았습니다.
+      최재원 ❤️ 나수진 예식일까지 <span class="highlight">{{ timeLeft.days  + 1}}</span>일 남았습니다.
     </p>
   </div>
 </template>

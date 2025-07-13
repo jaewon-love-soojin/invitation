@@ -6,6 +6,8 @@
       class="gallery-wrapper"
       @touchstart="onTouchStart"
       @touchend="onTouchEnd"
+      @mousedown="onMouseDown"
+      @mouseup="onMouseUp"
     >
       <div
         class="gallery-track"
@@ -15,6 +17,16 @@
           <img :src="img" alt="gallery image" />
         </div>
       </div>
+
+      <!-- ⬅ Arrow Left -->
+      <button class="arrow left" @click="goPrev" :disabled="currentIndex === 0">
+        ‹
+      </button>
+
+      <!-- ➡ Arrow Right -->
+      <button class="arrow right" @click="goNext" :disabled="currentIndex === images.length - 1">
+        ›
+      </button>
     </div>
 
     <div class="gallery-indicator">
@@ -35,6 +47,18 @@ const props = defineProps({
 
 const currentIndex = ref(0)
 
+const goNext = () => {
+  if (currentIndex.value < props.images.length - 1) {
+    currentIndex.value++
+  }
+}
+
+const goPrev = () => {
+  if (currentIndex.value > 0) {
+    currentIndex.value--
+  }
+}
+
 let touchStartX = 0
 let touchEndX = 0
 const SWIPE_THRESHOLD = 50
@@ -44,14 +68,21 @@ const onTouchStart = (e) => {
 }
 const onTouchEnd = (e) => {
   touchEndX = e.changedTouches[0].clientX
-  const delta = touchEndX - touchStartX
-  if (Math.abs(delta) < SWIPE_THRESHOLD) return
+  handleSwipe(touchEndX - touchStartX)
+}
 
-  if (delta < 0 && currentIndex.value < props.images.length - 1) {
-    currentIndex.value++
-  } else if (delta > 0 && currentIndex.value > 0) {
-    currentIndex.value--
-  }
+const onMouseDown = (e) => {
+  touchStartX = e.clientX
+}
+const onMouseUp = (e) => {
+  touchEndX = e.clientX
+  handleSwipe(touchEndX - touchStartX)
+}
+
+const handleSwipe = (deltaX) => {
+  if (Math.abs(deltaX) < SWIPE_THRESHOLD) return
+  if (deltaX < 0) goNext()
+  else goPrev()
 }
 </script>
 
@@ -76,6 +107,7 @@ const onTouchEnd = (e) => {
   overflow: hidden;
   width: 100%;
   position: relative;
+  cursor: grab;
 }
 
 .gallery-track {
@@ -94,6 +126,34 @@ const onTouchEnd = (e) => {
   border-radius: 12px;
   object-fit: cover;
   display: block;
+}
+
+/* Arrows */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  font-size: 2rem;
+  color: #d6336c;
+  padding: 4px 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color 0.3s ease;
+}
+
+.arrow.left {
+  left: 10px;
+}
+.arrow.right {
+  right: 10px;
+}
+
+.arrow:disabled {
+  opacity: 0.4;
+  cursor: default;
 }
 
 .gallery-indicator {
