@@ -9,33 +9,45 @@
         <div id="map" class="map-container"></div>
       </div>
 
-      <div class="left-text">
-        <p>내비게이션</p>
-        <p>원하시는 앱을 선택하시면 길안내가 시작됩니다.</p>
-      </div>
       <div class="nav-links">
-        <a :href="naverLink" target="_blank">🚘 Naver Map</a>
-        <a :href="tmapLink" target="_blank">📍 Tmap</a>
-        <a :href="kakaoLink" target="_blank">🧭 Kakao Map</a>
+        <a :href="naverLink" target="_blank">
+          <img :src="naverMap" class="nav-icon" alt="naver" />
+          네이버지도
+        </a>
+        <a :href="tmapLink" target="_blank">
+          <img :src="tMap" class="nav-icon" alt="tmap" />
+          티맵
+        </a>
+        <a :href="kakaoLink" target="_blank">
+          <img :src="kakaoMap" class="nav-icon" alt="kakao" />
+          카카오내비
+        </a>
       </div>
 
       <div class="left-text">
-        <p class="subtitle">지하철</p>
+        <p class="subtitle">🚇 지하철</p>
+        <hr class="divider" />
         <span class="color-circle red"></span> 신분당선,
         <span class="color-circle blue"></span> 경강선 판교역
         <p>﹒1번 또는 4번 출구, 도보 11분</p>
       </div>
 
       <div class="left-text">
-        <p class="subtitle">버스</p>
+        <p class="subtitle">🚌 버스</p>
+        <hr class="divider" />
         <p>NC소프트 하차</p>
         <p><span class="color-circle green"></span> 일반 : 375, 380</p>
+        <p>&nbsp;</p>
+        <p>NC소프트.안랩 하차</p>
+        <p><span class="color-circle green"></span> 일반 : 101, 375, 380, 390</p>
         <p><span class="color-circle dark-orange"></span> 급행 : 9007</p>
         <p><span class="color-circle light-green"></span> 마을 : 66, 73, 82, 602-1A, 602-1B, 602-2B</p>
+
       </div>
 
       <div class="left-text">
-        <p class="subtitle">자가용 및 주차 이용</p>
+        <p class="subtitle">🚗 자가용 및 주차 이용</p>
+        <hr class="divider" />
         <p>내비게이션 엔씨소프트R&D센터 검색</p>
         <p>﹒지하 3층 주차장 무료 이용 가능합니다.</p>
         <p>﹒주차 공간 여유 있습니다.</p>
@@ -48,6 +60,10 @@
 <script setup>
 import SectionTitle from './SectionTitle.vue';
 import { onMounted } from 'vue'
+
+const naverMap = `${import.meta.env.BASE_URL}images/navermap.webp`;
+const kakaoMap = `${import.meta.env.BASE_URL}images/kakaomap.svg`;
+const tMap = `${import.meta.env.BASE_URL}images/tmap.webp`;
 
 onMounted(() => {
   const script = document.createElement('script')
@@ -114,6 +130,37 @@ const kakaoLink = `kakaomap://route?ep=${lat},${lng}&by=CAR`
   margin-top: 2rem;
 }
 
+.nav-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.nav-links a {
+  max-width: 480px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px;
+  padding: 8px 12px;
+  background: white !important;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+.divider {
+  margin: 16px 0 6px;
+  border: none;
+  height: 1px;
+  background-color: #eee;
+  width: 100%;
+}
+
 .highlight {
   color: red;
   padding: 0px 0px;
@@ -158,6 +205,8 @@ const kakaoLink = `kakaomap://route?ep=${lat},${lng}&by=CAR`
 
 .left-text {
   text-align: left;
+  margin: 6px;
+  padding: 8px 20px;
 }
 
 .color-circle {

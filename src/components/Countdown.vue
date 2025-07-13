@@ -87,8 +87,19 @@ onMounted(() => {
 .timer-value {
   font-size: 22px;
   font-weight: bold;
-  border-radius: 6px;
+  border-radius: 999px; /* pill style */
   padding: 10px;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  background-color: #f3e8ff; /* soft purple */
+  color: #6a1b9a;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
+
+p {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 16px;
+  color: #444;
+}
+
+
 </style>

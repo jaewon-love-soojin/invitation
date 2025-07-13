@@ -1,6 +1,6 @@
 <!-- Calendar.vue -->
 <template>
-    <SectionTitle en="Calendar" ko="SEPTEMBER" />
+  <SectionTitle en="Calendar" ko="SEPTEMBER" />
   <div class="calendar-wrapper">
     <div class="calendar-container">
       <div class="calendar">
@@ -63,12 +63,20 @@ const date = computed(() => {
   border-radius: 8px;
   width: 100%;
 }
+
 .calendar {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 4px;
   width: 100%;
+
+  border-color: #e0e0e0;
+
+  border-top: 1px solid #ccc;     /* ✅ top border */
+  border-bottom: 1px solid #ccc;  /* ✅ bottom border */
+  padding: 12px 0;                /* ✅ some vertical spacing inside */
 }
+
 .header,
 .day {
   padding: 10px;
