@@ -1,5 +1,5 @@
 <template>
-  <div class="gallery-section">
+  <div class="gallery-section" id="gallery">
     <SectionTitle en="Gallery"/>
     <div
       class="gallery-wrapper"

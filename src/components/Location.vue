@@ -1,7 +1,7 @@
 <template>
-  <div class="location-section">
+  <div class="location-section" id="location">
     <SectionTitle en="Location" ko="오시는길" />
-    <div class="location" id="location">
+    <div class="location">
       <p class="subtitle">📍 엔씨소프트 R&D 센터 컨벤션홀</p>
       <p class="subtitle">경기 성남시 분당구 대왕판교로644번길 12</p>
       <p class="subtitle">지하1층 컨벤션홀</p>

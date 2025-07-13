@@ -89,7 +89,7 @@ const copyToClipboard = async (text, event) => {
 }
 
 .account-cards {
-  max-width: 360px;
+  width: 100%;
   margin: 32px auto 0;
   display: flex;
   flex-direction: column;
@@ -110,7 +110,7 @@ const copyToClipboard = async (text, event) => {
 }
 
 .card-header {
-  padding: 14px 18px;
+  padding: 0px 8px;
   font-size: 16px;
   display: flex;
   justify-content: space-between;
@@ -125,7 +125,7 @@ const copyToClipboard = async (text, event) => {
 }
 
 .card-body {
-  padding: 12px 18px;
+  padding: 0px 8px;
   font-size: 15px;
   color: #444;
   background: white;
@@ -134,21 +134,27 @@ const copyToClipboard = async (text, event) => {
 
 /* Account info layout */
 .account-line {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0px;
   align-items: center;
-  padding: 8px 0;
+  padding: 0px 0;
   border-bottom: 1px solid #eee;
 }
-
+.info {
+  overflow: hidden;
+}
 .name {
   font-weight: bold;
-  margin-bottom: 4px;
+  margin-bottom: 0px;
 }
-
 .account {
   font-size: 0.95rem;
   color: #555;
+  word-break: break-all;
+}
+.copy-btn {
+  white-space: nowrap;
 }
 
 .copy-btn {
