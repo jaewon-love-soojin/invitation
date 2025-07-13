@@ -40,6 +40,7 @@ const weddingDate = new Date('2025-09-21T12:00:00')
     <Intro />
     <Invitation />
     <Profile />
+    <!--
     <Gallery :images="images" />
     <Location />
     <Calendar :year="2025" :month="8" :pinned-day="21" />
@@ -47,6 +48,7 @@ const weddingDate = new Date('2025-09-21T12:00:00')
     <Information />
     <Account />
     <Footer />
+    -->
   </div>
 </template>
 
@@ -68,4 +70,5 @@ const weddingDate = new Date('2025-09-21T12:00:00')
     margin-top: 2rem;
   }
 }
+
 </style>
