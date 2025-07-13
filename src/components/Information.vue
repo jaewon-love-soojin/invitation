@@ -1,7 +1,6 @@
 <template>
   <div class="information-section">
-    <h2 class="information-title">Information</h2>
-    <h2 class="information-title">안내 사항</h2>
+    <SectionTitle en="Information" ko="안내 사항" />
     <div class="tabs">
       <button
         v-for="(tab, index) in tabs"
@@ -21,6 +20,7 @@
 </template>
 
 <script setup>
+import SectionTitle from './SectionTitle.vue';
 import { ref } from 'vue'
 
 const tabs = [
@@ -49,13 +49,6 @@ const currentTab = ref(0)
   text-align: center;
 }
 
-.information-title {
-  font-family: 'Great Vibes', cursive;
-  font-size: 2.2rem;
-  color: #d6336c;
-  margin-bottom: 24px;
-}
-
 /* Pill-style tab buttons with underline on active */
 .tabs {
   display: flex;
@@ -77,7 +70,7 @@ const currentTab = ref(0)
 }
 
 .tab-button.active {
-  color: #d6336c;
+  color: #BA68C8;
   font-weight: 600;
 }
 
@@ -88,7 +81,7 @@ const currentTab = ref(0)
   left: 0;
   right: 0;
   height: 2px;
-  background-color: #d6336c;
+  background-color: #BA68C8;
   border-radius: 2px;
 }
 

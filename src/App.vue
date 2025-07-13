@@ -1,7 +1,7 @@
 <script setup>
 import BgMusic from './components/BgMusic.vue'
 import LandingOverlay from './components/LandingOverlay.vue'
-import TopBar from './components/TopBar.vue'
+import Intro from './components/Intro.vue'
 import Invitation from './components/Invitation.vue'
 import Profile from './components/Profile.vue'
 import FallingFlowers from './components/FallingFlowers.vue'
@@ -37,7 +37,7 @@ const weddingDate = new Date('2025-09-21T12:00:00')
   <FallingFlowers />
   <div class="container">
     <BgMusic />
-    <TopBar />
+    <Intro />
     <Invitation />
     <Profile />
     <Gallery :images="images" />
@@ -52,9 +52,19 @@ const weddingDate = new Date('2025-09-21T12:00:00')
 
 <style scoped>
 .container {
-  max-width: 480px;         /* typical mobile max */
+  max-width: 480px;
   margin: 0 auto;
   width: 100%;
-  background: white;        /* optional background */
+  box-sizing: border-box;
+  background: white;
+}
+
+/* fallback for wider screens */
+@media (min-width: 600px) {
+  .container {
+    border-radius: 1rem;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
+  }
 }
 </style>

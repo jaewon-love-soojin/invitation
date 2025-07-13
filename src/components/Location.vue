@@ -1,7 +1,6 @@
 <template>
   <div class="location-section">
-    <h2 class="location-title">LOCATION</h2>
-    <h2 class="location-title">오시는길</h2>
+    <SectionTitle en="Location" ko="오시는길" />
     <div class="location" id="location">
       <p class="subtitle">📍 엔씨소프트 R&D 센터 컨벤션홀</p>
       <p class="subtitle">경기 성남시 분당구 대왕판교로644번길 12</p>
@@ -47,6 +46,7 @@
 </template>
 
 <script setup>
+import SectionTitle from './SectionTitle.vue';
 import { onMounted } from 'vue'
 
 onMounted(() => {
@@ -96,9 +96,8 @@ const kakaoLink = `kakaomap://route?ep=${lat},${lng}&by=CAR`
 
 <style scoped>
 .location-section {
-  max-width: 480px;
   margin: 0 auto;
-  padding: 32px 16px;
+  padding: 0px 0px;
   text-align: center;
 }
 

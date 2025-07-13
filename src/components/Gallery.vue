@@ -1,7 +1,6 @@
 <template>
   <div class="gallery-section">
-    <h2 class="gallery-title">Gallery</h2>
-
+    <SectionTitle en="Gallery"/>
     <div
       class="gallery-wrapper"
       @touchstart="onTouchStart"
@@ -36,6 +35,7 @@
 </template>
 
 <script setup>
+import SectionTitle from './SectionTitle.vue';
 import { ref } from 'vue'
 
 const props = defineProps({
@@ -90,9 +90,8 @@ const handleSwipe = (deltaX) => {
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 
 .gallery-section {
-  max-width: 480px;
   margin: 0 auto;
-  padding: 32px 16px;
+  padding: 0px 0px;
   text-align: center;
 }
 
@@ -118,7 +117,7 @@ const handleSwipe = (deltaX) => {
 .gallery-slide {
   flex: 0 0 100%;
   box-sizing: border-box;
-  padding: 0 8px;
+  padding: 0;
 }
 
 .gallery-slide img {

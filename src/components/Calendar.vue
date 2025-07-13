@@ -1,8 +1,8 @@
 <!-- Calendar.vue -->
 <template>
+    <SectionTitle en="Calendar" ko="SEPTEMBER" />
   <div class="calendar-wrapper">
     <div class="calendar-container">
-      <h2>{{ year }}.{{ monthName }} {{ date }}</h2>
       <div class="calendar">
         <div v-for="(d, i) in daysOfWeek" :key="d" :class="['header', i === 0 ? 'sunday' : '']" > {{ d }} </div>
         <div v-for="blank in firstDayOfMonth" :key="'b' + blank" class="day"></div>
@@ -18,6 +18,7 @@
 </template>
 
 <script setup>
+import SectionTitle from './SectionTitle.vue';
 import { computed } from 'vue'
 
 const props = defineProps({
@@ -78,7 +79,8 @@ const date = computed(() => {
   font-weight: bold;
 }
 .pinned {
-  background-color: #ffecb3;
+  background-color: #a678e2;
+  color: white !important;
   font-weight: bold;
   border-radius: 50%;
   width: 32px;

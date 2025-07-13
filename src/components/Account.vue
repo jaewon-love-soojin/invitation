@@ -1,125 +1,185 @@
 <template>
   <div class="account">
-    <h2 class="title2">마음을 전하는 곳</h2>
+    <SectionTitle ko="마음을 전하는 곳" />
     <p><span>참석이 어려우신 분들을 위해 계좌번호를 기재하였습니다.</span></p>
     <p><span>너그러운 마음으로 양해 부탁드립니다.</span></p>
 
-    <div class="menu-page">
-      <!-- First Menu -->
-      <Menu as="div" class="menu-block" v-slot="{ open }">
-        <MenuButton class="menu-button">
-          <span>신랑측</span>
-          <span class="arrow" :class="{ open }">▼</span>
-        </MenuButton>
-        <Transition
-          enter-active-class="transition duration-200 ease-out"
-          enter-from-class="transform scale-y-0 opacity-0"
-          enter-to-class="transform scale-y-100 opacity-100"
-          leave-active-class="transition duration-150 ease-in"
-          leave-from-class="transform scale-y-100 opacity-100"
-          leave-to-class="transform scale-y-0 opacity-0"
-        >
-          <MenuItems class="menu-items">
-            <MenuItem v-slot="{ active }">
-              <button :class="['menu-item', { active }]">카카오뱅크 3333-05-4626401</button>
-            </MenuItem>
-          </MenuItems>
-        </Transition>
-      </Menu>
+    <div class="account-cards">
+      <!-- 신랑측 -->
+      <div class="card" @click="toggle('groom')">
+        <div class="card-header">
+          <span>신랑측 계좌번호</span>
+          <span class="arrow" :class="{ open: openSection === 'groom' }">▼</span>
+        </div>
+        <transition name="slide">
+          <div class="card-body" v-if="openSection === 'groom'" @click.stop>
+            <div class="account-line" v-for="item in groomAccounts" :key="item.account">
+              <div class="info">
+                <p class="name">{{ item.name }}</p>
+                <p class="account">{{ item.account }}</p>
+              </div>
+              <button class="copy-btn" @click="copyToClipboard(item.account, $event)">
+                복사
+              </button>
+            </div>
+          </div>
+        </transition>
+      </div>
 
-      <!-- Second Menu -->
-      <Menu as="div" class="menu-block" v-slot="{ open }">
-        <MenuButton class="menu-button">
-          <span>신부측</span>
-          <span class="arrow" :class="{ open }">▼</span>
-        </MenuButton>
-        <Transition
-          enter-active-class="transition duration-200 ease-out"
-          enter-from-class="transform scale-y-0 opacity-0"
-          enter-to-class="transform scale-y-100 opacity-100"
-          leave-active-class="transition duration-150 ease-in"
-          leave-from-class="transform scale-y-100 opacity-100"
-          leave-to-class="transform scale-y-0 opacity-0"
-        >
-          <MenuItems class="menu-items">
-            <MenuItem v-slot="{ active }">
-              <button :class="['menu-item', { active }]">카카오뱅크 3333-04-8945160</button>
-            </MenuItem>
-          </MenuItems>
-        </Transition>
-      </Menu>
+      <!-- 신부측 -->
+      <div class="card" @click="toggle('bride')">
+        <div class="card-header">
+          <span>신부측 계좌번호</span>
+          <span class="arrow" :class="{ open: openSection === 'bride' }">▼</span>
+        </div>
+        <transition name="slide">
+          <div class="card-body" v-if="openSection === 'bride'" @click.stop>
+            <div class="account-line" v-for="item in brideAccounts" :key="item.account">
+              <div class="info">
+                <p class="name">{{ item.name }}</p>
+                <p class="account">{{ item.account }}</p>
+              </div>
+              <button class="copy-btn" @click="copyToClipboard(item.account, $event)">
+                복사
+              </button>
+            </div>
+          </div>
+        </transition>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
+import { ref } from 'vue'
+import SectionTitle from './SectionTitle.vue'
+
+const openSection = ref(null)
+const toggle = (section) => {
+  openSection.value = openSection.value === section ? null : section
+}
+
+const groomAccounts = [
+  { name: '최재원', account: '카카오뱅크 3333-05-4626401' },
+]
+
+const brideAccounts = [
+  { name: '나수진', account: '카카오뱅크 3333-04-8945160' },
+]
+
+const copyToClipboard = async (text, event) => {
+  try {
+    await navigator.clipboard.writeText(text)
+    const btn = event.currentTarget
+    const original = btn.innerText
+    btn.innerText = '복사됨'
+    setTimeout(() => {
+      btn.innerText = original
+    }, 1200)
+  } catch (err) {
+    alert('복사에 실패했습니다.')
+  }
+}
 </script>
 
 <style scoped>
-.menu-page {
+.account {
+  text-align: center;
+  padding: 24px 16px;
+}
+
+.account-cards {
+  max-width: 360px;
+  margin: 32px auto 0;
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  max-width: 300px;
-  margin: 40px auto;
-  font-family: sans-serif;
+  gap: 16px;
 }
 
-.menu-block {
-  position: relative;
-}
-
-.menu-button {
-  padding: 10px 16px;
-  background: #f3f4f6;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  width: 100%;
-  font-size: 16px;
+.card {
+  background: #f9f9fb;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
   cursor: pointer;
+  transition: box-shadow 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+.card-header {
+  padding: 14px 18px;
+  font-size: 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .arrow {
-  transition: transform 0.2s ease;
-  display: inline-block;
-  margin-left: 8px;
+  transition: transform 0.3s ease;
 }
-
 .arrow.open {
   transform: rotate(180deg);
 }
 
-.menu-items {
-  transform-origin: top;
-  position: absolute;
-  top: 110%;
-  left: 0;
+.card-body {
+  padding: 12px 18px;
+  font-size: 15px;
+  color: #444;
   background: white;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  width: 100%;
-  z-index: 10;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.menu-item {
-  display: block;
-  width: 100%;
-  padding: 10px 16px;
   text-align: left;
-  background: white;
-  border: none;
-  font-size: 14px;
-  cursor: pointer;
 }
 
-.menu-item.active,
-.menu-item:hover {
-  background: #e5e7eb;
+/* Account info layout */
+.account-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.name {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.account {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.copy-btn {
+  background: #a678e2;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.copy-btn:hover {
+  background: #9258d6;
+}
+
+/* Slide transition */
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 0.3s ease;
+}
+.slide-enter-from,
+.slide-leave-to {
+  max-height: 0;
+  opacity: 0;
+  transform: scaleY(0.95);
+}
+.slide-enter-to,
+.slide-leave-from {
+  max-height: 500px;
+  opacity: 1;
+  transform: scaleY(1);
 }
 </style>
-
