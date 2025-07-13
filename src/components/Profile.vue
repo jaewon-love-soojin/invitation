@@ -50,7 +50,7 @@ const couple = [
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px;
-  max-width: 640px;
+  max-width: 400px;
   margin: 0 auto;
   padding: 16px;
 }

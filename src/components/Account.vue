@@ -15,8 +15,8 @@
           <div class="card-body" v-if="openSection === 'groom'" @click.stop>
             <div class="account-line" v-for="item in groomAccounts" :key="item.account">
               <div class="info">
-                <p class="name">{{ item.name }}</p>
                 <p class="account">{{ item.account }}</p>
+                <p class="name">{{ item.name }}</p>
               </div>
               <div class="button-group">
                 <button class="copy-btn" @click="copyToClipboard(item.account, $event)">
@@ -39,8 +39,8 @@
           <div class="card-body" v-if="openSection === 'bride'" @click.stop>
             <div class="account-line" v-for="item in brideAccounts" :key="item.account">
               <div class="info">
-                <p class="name">{{ item.name }}</p>
                 <p class="account">{{ item.account }}</p>
+                <p class="name">{{ item.name }}</p>
               </div>
               <div class="button-group">
                 <button class="copy-btn" @click="copyToClipboard(item.account, $event)">
@@ -140,27 +140,31 @@ const copyToClipboard = async (text, event) => {
   text-align: left;
 }
 
-/* Account info layout */
 .account-line {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 0px;
+  display: flex; /* changed from grid to flex */
+  justify-content: space-between;
   align-items: center;
-  padding: 0px 0;
+  padding: 8px 0;
   border-bottom: 1px solid #eee;
 }
+
 .info {
-  overflow: hidden;
+  min-width: 0;
+  flex: 1; /* take all available space */
+  padding-right: 12px; /* spacing from buttons */
 }
-.name {
-  font-weight: bold;
-  margin-bottom: 0px;
-}
+
 .account {
-  font-size: 0.95rem;
-  color: #555;
-  word-break: break-all;
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 2px;
 }
+
+.name {
+  font-size: 0.85rem;
+  color: #666;
+}
+
 .button-group {
   display: flex;
   flex-direction: column;
