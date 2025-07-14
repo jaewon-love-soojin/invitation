@@ -1,6 +1,6 @@
 <template>
   <div class="profile-section">
-    <h2 class="title">Profile</h2>
+    <SectionTitle title="Profile" />
     <div class="couple-grid">
       <div class="profile" v-for="(person, index) in couple" :key="index">
         <img :src="person.img" :alt="person.name" />
@@ -14,6 +14,7 @@
 </template>
 
 <script setup>
+import SectionTitle from './SectionTitle.vue';
 const jaewonImg = `${import.meta.env.BASE_URL}images/jaewon.jpg`;
 const soojinImg = `${import.meta.env.BASE_URL}images/soojin.jpg`;
 const couple = [
@@ -36,15 +37,6 @@ const couple = [
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
-
-.title {
-  font-family: 'Great Vibes', cursive;
-  font-size: 2.2rem;
-  font-weight: normal;
-  text-align: center;
-  color: #d6336c;
-  margin-bottom: 24px;
-}
 
 .couple-grid {
   display: grid;

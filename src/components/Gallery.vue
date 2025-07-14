@@ -87,19 +87,10 @@ const handleSwipe = (deltaX) => {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
-
 .gallery-section {
   margin: 0 auto;
   padding: 0px 0px;
   text-align: center;
-}
-
-.gallery-title {
-  font-family: 'Great Vibes', cursive;
-  font-size: 2.2rem;
-  color: #d6336c;
-  margin-bottom: 24px;
 }
 
 .gallery-wrapper {

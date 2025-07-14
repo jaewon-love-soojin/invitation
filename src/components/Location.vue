@@ -117,13 +117,6 @@ const kakaoLink = `kakaomap://route?ep=${lat},${lng}&by=CAR`
   text-align: center;
 }
 
-.location-title {
-  font-family: 'Great Vibes', cursive;
-  font-size: 2.2rem;
-  color: #d6336c;
-  margin-bottom: 24px;
-}
-
 .map-container {
   width: 100%;
   height: 400px;
@@ -165,13 +158,6 @@ const kakaoLink = `kakaomap://route?ep=${lat},${lng}&by=CAR`
   color: red;
   padding: 0px 0px;
   border-radius: 0px;
-}
-
-.title {
-  font-family: 'Great Vibes', cursive;
-  font-size: 2.5em;
-  color: #d6336c;
-  margin-bottom: 10px;
 }
 
 .subtitle {
