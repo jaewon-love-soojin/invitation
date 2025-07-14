@@ -1,6 +1,6 @@
 <template>
   <div class="profile-section">
-    <SectionTitle title="Profile" />
+    <SectionTitle en="Profile" />
     <div class="couple-grid">
       <div class="profile" v-for="(person, index) in couple" :key="index">
         <img :src="person.img" :alt="person.name" />
