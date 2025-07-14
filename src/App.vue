@@ -37,7 +37,9 @@ const weddingDate = new Date('2025-09-21T12:00:00')
   <FallingFlowers />
   <div class="container">
     <BgMusic />
+<!--
     <Intro />
+-->
     <Invitation />
     <Profile />
     <Gallery :images="images" />
