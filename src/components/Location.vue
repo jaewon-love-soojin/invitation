@@ -37,8 +37,7 @@
         <hr class="divider" />
         <p>NC소프트 하차</p>
         <p><span class="color-circle green"></span> 일반 : 375, 380</p>
-        <p>&nbsp;</p>
-        <p>NC소프트.안랩 하차</p>
+        <p class="ncsoft">NC소프트.안랩 하차</p>
         <p><span class="color-circle green"></span> 일반 : 101, 375, 380, 390</p>
         <p><span class="color-circle dark-orange"></span> 급행 : 9007</p>
         <p><span class="color-circle light-green"></span> 마을 : 66, 73, 82, 602-1A, 602-1B, 602-2B</p>
@@ -49,8 +48,8 @@
         <p class="subtitle">🚗 자가용 및 주차 이용</p>
         <hr class="divider" />
         <p>내비게이션 엔씨소프트R&D센터 검색</p>
-        <p>﹒지하 3층 주차장 무료 이용 가능합니다.</p>
-        <p>﹒주차 공간 여유 있습니다.</p>
+        <p class="item">﹒지하 3층 주차장 무료 이용 가능합니다.</p>
+        <p class="item">﹒주차 공간 여유 있습니다.</p>
       </div>
     </div>
   </div>
@@ -110,8 +109,16 @@ const kakaoLink = `kakaomap://route?ep=${lat},${lng}&by=CAR`
 </script>
 
 <style scoped>
+.ncsoft {
+  margin-top: 2rem;
+}
+
+.item {
+  margin: 4px 0;
+}
+
 .location-section {
-  margin-top: 5rem;
+  margin-top: 2rem;
   margin-bottom: 2rem;
   padding: 0px 0px;
   text-align: center;
@@ -148,6 +155,7 @@ const kakaoLink = `kakaomap://route?ep=${lat},${lng}&by=CAR`
   color: #333;
   font-weight: 500;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
 }
 
 .divider {
@@ -179,19 +187,6 @@ const kakaoLink = `kakaomap://route?ep=${lat},${lng}&by=CAR`
 .details {
   font-size: 1em;
   margin-bottom: 20px;
-}
-
-.nav-links a {
-  max-width: 480px;
-  display: inline-block;
-  margin: 6px;
-  padding: 8px 12px;
-  background: #f4f4f4;
-  border-radius: 6px;
-  text-decoration: none;
-  color: #333;
-  font-weight: 500;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
 }
 
 .left-text {

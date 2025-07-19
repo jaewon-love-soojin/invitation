@@ -97,6 +97,7 @@ const currentTab = ref(0)
 
 .description {
   font-size: 0.95rem;
+  height: 100px; /* ✅ Set a consistent height */
   color: #444;
 }
 </style>

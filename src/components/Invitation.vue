@@ -1,6 +1,5 @@
 <template>
   <div class="invitation">
-    <p class="heart">💜</p>
     <SectionTitle ko="초대합니다." />
     <div class="space"></div>
     <p><span>언제나 함께 있을 것 같던 자녀가</span></p>
@@ -13,7 +12,7 @@
     <p><span>소중하고 힘찬 내디딤이 될 수 있도록</span></p>
     <p><span>함께 축복해 주시면</span></p>
     <p><span>더없는 기쁨으로 간직하겠습니다.</span></p>
-
+    <p class="heart">💜</p>
     <div class="invitation-img-wrapper">
       <img :src="invitationImg" alt="invitation" class="invitation-img" />
     </div>
@@ -33,7 +32,7 @@ p {
 
 .heart {
   text-align: center;
-  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
 .space {

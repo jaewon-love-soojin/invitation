@@ -4,16 +4,15 @@
       <img :src="footerImg" alt="footer" />
       <div class="overlay-text">
         <p>장담하건대, 세상이 다 겨울이어도</p>
-        <p>우리 사랑은 늘 봄처럼 따뜻하고</p>
-        <p>간혹, 여름처럼 뜨거울 겁니다.</p>
-        <p>이수동, 사랑가</p>
+        <p>우리 사랑은 늘 봄처럼 따뜻하고 간혹, 여름처럼 뜨거울 겁니다.</p>
+        <p class="writer">이수동, 사랑가</p>
       </div>
     </div>
 
+    <p>카카오톡으로 공유하기</p>
     <div class="footer-line"></div>
-
     <div class="footer-text">
-      <p class="footer-names">💍 Jaewon & Soojin</p>
+      <p class="footer-names">Jaewon 💜 Soojin</p>
       <p class="footer-date">September 21, 2025 · Pangyo</p>
     </div>
 
@@ -29,6 +28,13 @@
 </script>
 
 <style scoped>
+p {
+  margin: 4px 0;
+}
+p.writer {
+  margin-top: 8px;
+}
+
 .image-overlay-wrapper {
   width: 100%;
   max-width: 480px;
@@ -68,6 +74,7 @@
 
 .overlay-text {
   position: absolute;
+  width: 400px;
   bottom: 50px;
   left: 16px;
   transform: none;
@@ -92,6 +99,7 @@
   width: 60px;
   height: 2px;
   background-color: #93729B;
+  margin-top: 5rem;
   margin: 0 auto 12px;
 }
 

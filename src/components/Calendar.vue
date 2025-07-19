@@ -56,7 +56,7 @@ const isSunday = (day) => {
   return date.getDay() === 0;
 };
 
-const daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
+const daysOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
 
 const firstDayOfMonth = computed(() =>
   new Date(props.year, props.month, 1).getDay()
