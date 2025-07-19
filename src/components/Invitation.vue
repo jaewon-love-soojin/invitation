@@ -1,6 +1,6 @@
 <template>
   <div class="invitation">
-    <img :src="flowerImg" class="flower-img" />
+    💜
     <SectionTitle ko="초대합니다."/>
     <p><span>언제나 함께 있을 것 같던 자녀가</span></p>
     <p><span>아름다운 인연을 만나 사랑을 하고</span></p>
@@ -19,37 +19,38 @@
 </template>
 
 <script setup>
-  import SectionTitle from './SectionTitle.vue';
-  const flowerImg = `${import.meta.env.BASE_URL}images/flower.png`;
-  const invitationImg = `${import.meta.env.BASE_URL}images/invitation.jpg`;
+import SectionTitle from './SectionTitle.vue';
+const invitationImg = `${import.meta.env.BASE_URL}images/invitation.jpg`;
 </script>
 
 <style scoped>
-.invitation {
-  position: relative;
-  background: linear-gradient(to bottom, #fff, #fef6f9);
-  text-align: center;
-  padding: 0px 0px;
-  overflow: hidden;
+p {
+  margin: 4px 0;
 }
 
-.flower-img {
-  width: 7%;
-  height: auto;
-  display: block;
-  margin: 0 auto 16px;
+.invitation {
+  margin-top: 3rem;
+  position: relative;
+  text-align: center;
+  padding: 0 16px;  /* ✅ Move padding here */
+  overflow: hidden;
 }
 
 .invitation-img-wrapper {
   width: 100%;
-  margin: 0 auto;
+  max-width: 480px;
+  margin: 3rem auto 0;
   overflow: hidden;
+  height: 550px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
+
 .invitation-img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: bottom;
   display: block;
 }
-
 </style>
-

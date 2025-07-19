@@ -15,13 +15,13 @@
         </div>
       </div>
       <SectionTitle en="The wedding of" />
-      <p>
-        <span>최재원</span>
+      <p class="main">
+        <span class="name">최재원</span>
         <span class="and">그리고</span>
-        <span>나수진</span>
+        <span class="name">나수진</span>
       </p>
-      <p class="subtitle">🗓️ 2025년 9월 21일 일요일 낮 12시</p>
-      <p class="subtitle">📍 엔씨소프트 R&D 센터 컨벤션 홀</p>
+      <p class="subtitle">2025년 9월 21일 일요일 낮 12시</p>
+      <p class="subtitle">엔씨소프트 R&D 센터 컨벤션홀</p>
     </div>
   </div>
 </template>
@@ -36,11 +36,14 @@ const welcomeImage = `${import.meta.env.BASE_URL}images/intro.jpg`;
 .intro-wrapper {
   overflow-x: hidden;
   position: relative;
+  font-family: 'Gowun Dodum', sans-serif;
 }
 
 /* Layout */
-p {
+.main {
+  font-size: 1.5em;
   text-align: center;
+  margin-bottom: 3.0rem;
 }
 
 .topbar-img-wrapper {
@@ -154,13 +157,8 @@ p {
 
 .subtitle {
   font-size: 1.2em;
-  margin-bottom: 20px;
-}
-
-.names {
-  font-size: 1.8em;
-  color: #6a1b9a;
-  margin-bottom: 10px;
+  text-align: center;
+  margin: 4px 0; /* Reduced vertical spacing */
 }
 
 .details {
@@ -168,9 +166,16 @@ p {
   margin-bottom: 20px;
 }
 
-.and {
+.name {
+  font-size: 1.15em;
+  font-weight: bold;
   display: inline-block;
-  width: 55px;
+}
+
+.and {
+  font-size: 0.8em;
+  display: inline-block;
+  width: 70px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

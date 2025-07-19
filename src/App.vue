@@ -64,6 +64,7 @@ const weddingDate = new Date('2025-09-21T12:00:00')
 
 <style scoped>
 .container {
+  font-family: 'Gowun Dodum', sans-serif;
   max-width: 480px;
   margin: 0 auto;
   width: 100%;

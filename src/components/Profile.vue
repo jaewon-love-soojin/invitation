@@ -43,8 +43,12 @@ const couple = [
   grid-template-columns: 1fr 1fr;
   gap: 24px;
   max-width: 400px;
-  margin: 0 auto;
+  margin: 0px auto 0;
   padding: 16px;
+}
+
+.profile-section {
+  margin-top: 5rem;
 }
 
 .profile {

@@ -88,12 +88,13 @@ const handleSwipe = (deltaX) => {
 
 <style scoped>
 .gallery-section {
-  margin: 0 auto;
+  margin-top: 2rem;
   padding: 0px 0px;
   text-align: center;
 }
 
 .gallery-wrapper {
+  margin-top: 2rem;
   overflow: hidden;
   width: 100%;
   position: relative;
@@ -117,20 +118,17 @@ const handleSwipe = (deltaX) => {
   display: block;
 }
 
-/* Arrows */
 .arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.8);
   border: none;
   font-size: 2rem;
-  color: #d6336c;
   padding: 4px 12px;
-  border-radius: 50%;
   cursor: pointer;
   z-index: 10;
-  transition: background-color 0.3s ease;
+  background: none;           /* ✅ Explicitly remove background */
+  color: grey;
 }
 
 .arrow.left {
@@ -148,7 +146,8 @@ const handleSwipe = (deltaX) => {
 .gallery-indicator {
   margin-top: 12px;
   font-size: 0.95rem;
-  color: #555;
   font-weight: 500;
+  padding: 0;
+  border-radius: 0;
 }
 </style>
