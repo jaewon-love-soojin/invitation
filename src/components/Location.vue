@@ -37,18 +37,17 @@
         <p>NC소프트 하차</p>
         <p><span class="color-circle green"></span> 일반 : 375, 380</p>
         <p class="ncsoft">NC소프트.안랩 하차</p>
-        <p><span class="color-circle green"></span> 일반 : 101, 375, 380, 390</p>
-        <p><span class="color-circle dark-orange"></span> 급행 : 9007</p>
-        <p><span class="color-circle light-green"></span> 마을 : 66, 73, 82, 602-1A, 602-1B, 602-2B</p>
-
+        <p class="bus"><span class="color-circle green"></span> 일반 : 101, 375, 380, 390</p>
+        <p class="bus"><span class="color-circle dark-orange"></span> 급행 : 9007</p>
+        <p class="bus"><span class="color-circle light-green"></span> 마을 : 66, 73, 82, 602-1A, 602-1B, 602-2B</p>
       </div>
 
       <div class="left-text">
         <p class="subtitle">🚗 자가용 및 주차 이용</p>
         <hr class="divider" />
         <p>내비게이션 엔씨소프트R&D센터 검색</p>
-        <p class="item">﹒지하 3층 주차장 무료 이용 가능합니다.</p>
-        <p class="item">﹒주차 공간 여유 있습니다.</p>
+        <p class="item"><span class="color-circle dark-grey"></span>지하 3층 주차장 무료 이용 가능합니다.</p>
+        <p class="item"><span class="color-circle dark-grey"></span>주차 공간 여유 있습니다.</p>
       </div>
     </div>
   </div>
@@ -108,6 +107,10 @@ const kakaoLink = `kakaomap://route?ep=${lat},${lng}&by=CAR`
 </script>
 
 <style scoped>
+.bus {
+  margin-top: -0.8rem;
+}
+
 .ncsoft {
   margin-top: 2rem;
 }
@@ -207,5 +210,6 @@ const kakaoLink = `kakaomap://route?ep=${lat},${lng}&by=CAR`
 .green        { background-color: #43a047; }
 .light-green  { background-color: #a5d6a7; }
 .dark-orange  { background-color: #f4511e; }
+.dark-grey    { background-color: #a8aaac; }
 </style>
 
