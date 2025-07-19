@@ -1,9 +1,10 @@
 <template>
   <div class="gallery-section" id="gallery">
-    <SectionTitle en="Gallery"/>
+    <SectionTitle en="Gallery" />
     <div
       class="gallery-wrapper"
       @touchstart="onTouchStart"
+      @touchmove="onTouchMove"
       @touchend="onTouchEnd"
       @mousedown="onMouseDown"
       @mouseup="onMouseUp"
@@ -36,60 +37,75 @@
 
 <script setup>
 import SectionTitle from './SectionTitle.vue';
-import { ref } from 'vue'
+import { ref } from 'vue';
 
 const props = defineProps({
   images: {
     type: Array,
     required: true
   }
-})
+});
 
-const currentIndex = ref(0)
+const currentIndex = ref(0);
 
 const goNext = () => {
   if (currentIndex.value < props.images.length - 1) {
-    currentIndex.value++
+    currentIndex.value++;
   }
-}
+};
 
 const goPrev = () => {
   if (currentIndex.value > 0) {
-    currentIndex.value--
+    currentIndex.value--;
   }
-}
+};
 
-let touchStartX = 0
-let touchEndX = 0
-const SWIPE_THRESHOLD = 50
+let touchStartX = 0;
+let touchStartY = 0;
+let isSwiping = false;
 
 const onTouchStart = (e) => {
-  touchStartX = e.changedTouches[0].clientX
-}
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+  isSwiping = false;
+};
+
+const onTouchMove = (e) => {
+  const deltaX = e.touches[0].clientX - touchStartX;
+  const deltaY = e.touches[0].clientY - touchStartY;
+
+  if (Math.abs(deltaX) > Math.abs(deltaY)) {
+    e.preventDefault(); // 🚫 prevent vertical scroll
+    isSwiping = true;
+  }
+};
+
 const onTouchEnd = (e) => {
-  touchEndX = e.changedTouches[0].clientX
-  handleSwipe(touchEndX - touchStartX)
-}
+  if (!isSwiping) return;
+  const touchEndX = e.changedTouches[0].clientX;
+  handleSwipe(touchEndX - touchStartX);
+};
 
 const onMouseDown = (e) => {
-  touchStartX = e.clientX
-}
-const onMouseUp = (e) => {
-  touchEndX = e.clientX
-  handleSwipe(touchEndX - touchStartX)
-}
+  touchStartX = e.clientX;
+};
 
+const onMouseUp = (e) => {
+  const touchEndX = e.clientX;
+  handleSwipe(touchEndX - touchStartX);
+};
+
+const SWIPE_THRESHOLD = 50;
 const handleSwipe = (deltaX) => {
-  if (Math.abs(deltaX) < SWIPE_THRESHOLD) return
-  if (deltaX < 0) goNext()
-  else goPrev()
-}
+  if (Math.abs(deltaX) < SWIPE_THRESHOLD) return;
+  deltaX < 0 ? goNext() : goPrev();
+};
 </script>
 
 <style scoped>
 .gallery-section {
   margin-top: 5rem;
-  padding: 0px 0px;
+  padding: 0;
   text-align: center;
 }
 
@@ -99,6 +115,7 @@ const handleSwipe = (deltaX) => {
   width: 100%;
   position: relative;
   cursor: grab;
+  touch-action: pan-y; /* ✅ allow vertical scroll when not swiping horizontally */
 }
 
 .gallery-track {
@@ -127,7 +144,7 @@ const handleSwipe = (deltaX) => {
   padding: 4px 12px;
   cursor: pointer;
   z-index: 10;
-  background: none;           /* ✅ Explicitly remove background */
+  background: none;
   color: grey;
 }
 
@@ -147,7 +164,5 @@ const handleSwipe = (deltaX) => {
   margin-top: 12px;
   font-size: 0.95rem;
   font-weight: 500;
-  padding: 0;
-  border-radius: 0;
 }
 </style>
