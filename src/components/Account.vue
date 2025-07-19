@@ -1,56 +1,58 @@
 <template>
   <div class="account">
     <SectionTitle ko="마음을 전하는 곳" />
-    <p><span>참석이 어려우신 분들을 위해 계좌번호를 기재하였습니다.</span></p>
-    <p><span>너그러운 마음으로 양해 부탁드립니다.</span></p>
+    <div class="account-section">
+      <p><span>참석이 어려우신 분들을 위해 계좌번호를 기재하였습니다.</span></p>
+      <p><span>너그러운 마음으로 양해 부탁드립니다.</span></p>
 
-    <div class="account-cards">
-      <!-- 신랑측 -->
-      <div class="card" @click="toggle('groom')">
-        <div class="card-header">
-          <span>신랑측 계좌번호</span>
-          <span class="arrow" :class="{ open: openSection === 'groom' }">▼</span>
-        </div>
-        <transition name="slide">
-          <div class="card-body" v-if="openSection === 'groom'" @click.stop>
-            <div class="account-line" v-for="item in groomAccounts" :key="item.account">
-              <div class="info">
-                <p class="account">{{ item.account }}</p>
-                <p class="name">{{ item.name }}</p>
-              </div>
-              <div class="button-group">
-                <button class="copy-btn" @click="copyToClipboard(item.account, $event)">
-                  복사
-                </button>
-              <a class="kakaopay-btn" :href="'https://qr.kakaopay.com/Ej8nPNzo6'" target="_blank"><img :src="kakaopayImg"/></a>
+      <div class="account-cards">
+        <!-- 신랑측 -->
+        <div class="card" @click="toggle('groom')">
+          <div class="card-header">
+            <span>신랑측 계좌번호</span>
+            <span class="arrow" :class="{ open: openSection === 'groom' }">▼</span>
+          </div>
+          <transition name="slide">
+            <div class="card-body" v-if="openSection === 'groom'" @click.stop>
+              <div class="account-line" v-for="item in groomAccounts" :key="item.account">
+                <div class="info">
+                  <p class="account">{{ item.account }}</p>
+                  <p class="name">{{ item.name }}</p>
+                </div>
+                <div class="button-group">
+                  <button class="copy-btn" @click="copyToClipboard(item.account, $event)">
+                    복사
+                  </button>
+                <a class="kakaopay-btn" :href="'https://qr.kakaopay.com/Ej8nPNzo6'" target="_blank"><img :src="kakaopayImg"/></a>
+                </div>
               </div>
             </div>
-          </div>
-        </transition>
-      </div>
-
-      <!-- 신부측 -->
-      <div class="card" @click="toggle('bride')">
-        <div class="card-header">
-          <span>신부측 계좌번호</span>
-          <span class="arrow" :class="{ open: openSection === 'bride' }">▼</span>
+          </transition>
         </div>
-        <transition name="slide">
-          <div class="card-body" v-if="openSection === 'bride'" @click.stop>
-            <div class="account-line" v-for="item in brideAccounts" :key="item.account">
-              <div class="info">
-                <p class="account">{{ item.account }}</p>
-                <p class="name">{{ item.name }}</p>
-              </div>
-              <div class="button-group">
-                <button class="copy-btn" @click="copyToClipboard(item.account, $event)">
-                  복사
-                </button>
-                <a class="kakaopay-btn" :href="'https://qr.kakaopay.com/Fdcdi1F4T'" target="_blank"><img :src="kakaopayImg"/></a>
+
+        <!-- 신부측 -->
+        <div class="card" @click="toggle('bride')">
+          <div class="card-header">
+            <span>신부측 계좌번호</span>
+            <span class="arrow" :class="{ open: openSection === 'bride' }">▼</span>
+          </div>
+          <transition name="slide">
+            <div class="card-body" v-if="openSection === 'bride'" @click.stop>
+              <div class="account-line" v-for="item in brideAccounts" :key="item.account">
+                <div class="info">
+                  <p class="account">{{ item.account }}</p>
+                  <p class="name">{{ item.name }}</p>
+                </div>
+                <div class="button-group">
+                  <button class="copy-btn" @click="copyToClipboard(item.account, $event)">
+                    복사
+                  </button>
+                  <a class="kakaopay-btn" :href="'https://qr.kakaopay.com/Fdcdi1F4T'" target="_blank"><img :src="kakaopayImg"/></a>
+                </div>
               </div>
             </div>
-          </div>
-        </transition>
+          </transition>
+        </div>
       </div>
     </div>
   </div>
@@ -92,8 +94,13 @@ const copyToClipboard = async (text, event) => {
 
 <style scoped>
 .account {
+  margin-top: 5rem;
   text-align: center;
-  padding: 16px 12px;
+  padding: 0px 20px;
+}
+
+.account-section {
+  margin-top: 2rem;
 }
 
 .account-cards {
@@ -113,7 +120,7 @@ const copyToClipboard = async (text, event) => {
 }
 
 .card-header {
-  padding: 6px 10px; /* reduced vertical padding */
+  padding: 0px 0px; /* reduced vertical padding */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -127,8 +134,7 @@ const copyToClipboard = async (text, event) => {
 }
 
 .card-body {
-  padding: 4px 10px; /* tighter padding inside card body */
-  background: white;
+  padding: 0px 0px; /* tighter padding inside card body */
 }
 
 .account-line {
@@ -142,10 +148,6 @@ const copyToClipboard = async (text, event) => {
 .info {
   flex: 1;
   padding-right: 8px;
-}
-
-.account {
-  margin-bottom: 2px;
 }
 
 .button-group {
