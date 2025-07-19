@@ -91,7 +91,7 @@
 .footer-line {
   width: 60px;
   height: 2px;
-  background-color: #d8a9a9;
+  background-color: #93729B;
   margin: 0 auto 12px;
 }
 
