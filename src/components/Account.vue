@@ -2,13 +2,13 @@
   <div class="account">
     <SectionTitle ko="마음을 전하는 곳" />
     <div class="account-section">
-      <p><span>참석이 어려우신 분들을 위해 계좌번호를 기재하였습니다.</span></p>
-      <p><span>너그러운 마음으로 양해 부탁드립니다.</span></p>
+      <p>참석이 어려우신 분들을 위해 계좌번호를 기재하였습니다.</p>
+      <p>너그러운 마음으로 양해 부탁드립니다.</p>
 
       <div class="account-cards">
         <!-- 신랑측 -->
-        <div class="card" @click="toggle('groom')">
-          <div class="card-header">
+        <div class="card">
+          <div class="card-header" @click="toggle('groom')" role="button">
             <span>신랑측 계좌번호</span>
             <span class="arrow" :class="{ open: openSection === 'groom' }">▼</span>
           </div>
@@ -20,10 +20,10 @@
                   <p class="name">{{ item.name }}</p>
                 </div>
                 <div class="button-group">
-                  <button class="copy-btn" @click="copyToClipboard(item.account, $event)">
-                    복사
-                  </button>
-                <a class="kakaopay-btn" :href="'https://qr.kakaopay.com/Ej8nPNzo6'" target="_blank"><img :src="kakaopayImg"/></a>
+                  <button class="copy-btn" @click="copyToClipboard(item.account, $event)">복사</button>
+                  <a class="kakaopay-btn" :href="'https://qr.kakaopay.com/Ej8nPNzo6'" target="_blank">
+                    <img :src="kakaopayImg" />
+                  </a>
                 </div>
               </div>
             </div>
@@ -31,8 +31,8 @@
         </div>
 
         <!-- 신부측 -->
-        <div class="card" @click="toggle('bride')">
-          <div class="card-header">
+        <div class="card">
+          <div class="card-header" @click="toggle('bride')" role="button">
             <span>신부측 계좌번호</span>
             <span class="arrow" :class="{ open: openSection === 'bride' }">▼</span>
           </div>
@@ -44,10 +44,10 @@
                   <p class="name">{{ item.name }}</p>
                 </div>
                 <div class="button-group">
-                  <button class="copy-btn" @click="copyToClipboard(item.account, $event)">
-                    복사
-                  </button>
-                  <a class="kakaopay-btn" :href="'https://qr.kakaopay.com/Fdcdi1F4T'" target="_blank"><img :src="kakaopayImg"/></a>
+                  <button class="copy-btn" @click="copyToClipboard(item.account, $event)">복사</button>
+                  <a class="kakaopay-btn" :href="'https://qr.kakaopay.com/Fdcdi1F4T'" target="_blank">
+                    <img :src="kakaopayImg" />
+                  </a>
                 </div>
               </div>
             </div>
@@ -94,36 +94,46 @@ const copyToClipboard = async (text, event) => {
 
 <style scoped>
 .account {
-  margin-top: 5rem;
+  margin-top: 2rem;
   text-align: center;
-  padding: 0px 20px;
+  padding: 0 16px;
 }
 
 .account-section {
   margin-top: 2rem;
 }
 
+.account-section p {
+  margin: 4px 0;
+}
+
 .account-cards {
-  margin-top: 20px;
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 8px; /* reduced from 16px */
+  gap: 6px;
 }
 
 .card {
   background: #f9f9fb;
   border: 1px solid #ddd;
-  border-radius: 8px;
+  border-radius: 6px;
   overflow: hidden;
   cursor: pointer;
   transition: box-shadow 0.2s ease;
 }
 
 .card-header {
-  padding: 0px 0px; /* reduced vertical padding */
+  padding: 0px 10px; /* reduced from 6px */
+  min-height: 2px;  /* optional: define exact height */
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.card-header span {
+  line-height: 0;
+  margin: 0;
 }
 
 .arrow {
@@ -134,14 +144,14 @@ const copyToClipboard = async (text, event) => {
 }
 
 .card-body {
-  padding: 0px 0px; /* tighter padding inside card body */
+  padding: 20px 10px;
 }
 
 .account-line {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 4px 0; /* reduced line spacing */
+  padding: 0px 0;
   border-bottom: 1px solid #eee;
 }
 
@@ -150,10 +160,18 @@ const copyToClipboard = async (text, event) => {
   padding-right: 8px;
 }
 
+.account {
+  margin: 0;
+}
+
+.name {
+  margin: 2px 0 0 0;
+}
+
 .button-group {
   display: flex;
   flex-direction: column;
-  gap: 4px; /* reduce spacing between buttons */
+  gap: 4px;
   align-items: flex-end;
   max-width: 120px;
 }
@@ -163,7 +181,7 @@ const copyToClipboard = async (text, event) => {
   color: white;
   border: none;
   padding: 4px 6px;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
 }
 .copy-btn:hover {
