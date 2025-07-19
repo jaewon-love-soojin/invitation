@@ -111,7 +111,7 @@ const kakaoLink = `kakaomap://route?ep=${lat},${lng}&by=CAR`
 
 <style scoped>
 .location-section {
-  margin-top: 2rem;
+  margin-top: 5rem;
   margin-bottom: 2rem;
   padding: 0px 0px;
   text-align: center;

@@ -88,7 +88,7 @@ const handleSwipe = (deltaX) => {
 
 <style scoped>
 .gallery-section {
-  margin-top: 2rem;
+  margin-top: 5rem;
   padding: 0px 0px;
   text-align: center;
 }

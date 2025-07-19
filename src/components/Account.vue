@@ -93,33 +93,27 @@ const copyToClipboard = async (text, event) => {
 <style scoped>
 .account {
   text-align: center;
-  padding: 24px 16px;
+  padding: 16px 12px;
 }
 
 .account-cards {
-  width: 100%;
-  margin: 32px auto 0;
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px; /* reduced from 16px */
 }
 
 .card {
   background: #f9f9fb;
   border: 1px solid #ddd;
-  border-radius: 10px;
+  border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
   transition: box-shadow 0.2s ease;
 }
 
-.card:hover {
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
-}
-
 .card-header {
-  padding: 0px 8px;
-  font-size: 14px;
+  padding: 6px 10px; /* reduced vertical padding */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -133,79 +127,52 @@ const copyToClipboard = async (text, event) => {
 }
 
 .card-body {
-  padding: 0px 8px;
-  font-size: 10px;
-  color: #444;
+  padding: 4px 10px; /* tighter padding inside card body */
   background: white;
-  text-align: left;
 }
 
 .account-line {
-  display: flex; /* changed from grid to flex */
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 0;
+  padding: 4px 0; /* reduced line spacing */
   border-bottom: 1px solid #eee;
 }
 
 .info {
-  min-width: 0;
-  flex: 1; /* take all available space */
-  padding-right: 12px; /* spacing from buttons */
+  flex: 1;
+  padding-right: 8px;
 }
 
 .account {
-  font-size: 1rem;
-  color: #333;
   margin-bottom: 2px;
-}
-
-.name {
-  font-size: 0.85rem;
-  color: #666;
 }
 
 .button-group {
   display: flex;
   flex-direction: column;
+  gap: 4px; /* reduce spacing between buttons */
   align-items: flex-end;
-  gap: 6px;
-  max-width: 140px;
-}
-
-.kakaopay-btn img {
-  width: 60px;
-  height: auto;
-  display: block;
-}
-.kakaopay-btn {
-  width: 100%;
-  display: inline-block;
-}
-
-.copy-btn {
-  white-space: nowrap;
-  width: 100%;
+  max-width: 120px;
 }
 
 .copy-btn {
   background: gray;
-  color: #f2f3f5;
+  color: white;
   border: none;
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-size: 0.75rem;
+  padding: 4px 6px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
 }
 .copy-btn:hover {
   background: #9258d6;
 }
 
-.button-column {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+.kakaopay-btn img {
+  width: 50px;
+}
+.kakaopay-btn {
+  display: inline-block;
 }
 
 /* Slide transition */

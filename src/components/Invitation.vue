@@ -27,6 +27,7 @@ const invitationImg = `${import.meta.env.BASE_URL}images/invitation.jpg`;
 <style scoped>
 p {
   margin: 4px 0;
+  font-size: 1.1em;
 }
 
 .heart {
@@ -51,7 +52,7 @@ p {
   max-width: 480px;
   margin: 3rem auto 0;
   overflow: hidden;
-  height: 550px;
+  height: 480px;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }

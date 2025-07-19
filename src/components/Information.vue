@@ -43,8 +43,8 @@ const currentTab = ref(0)
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 
 .information-section {
+  margin-top: 5rem;
   max-width: 480px;
-  margin: 0 auto;
   padding: 32px 16px;
   text-align: center;
 }
@@ -54,6 +54,7 @@ const currentTab = ref(0)
   display: flex;
   justify-content: center;
   border-bottom: 2px solid #eee;
+  margin-top: 16px;
   margin-bottom: 16px;
 }
 
