@@ -30,10 +30,33 @@
 
 <style scoped>
 .image-overlay-wrapper {
-  position: relative;
-  display: inline-block;
   width: 100%;
   max-width: 480px;
+  margin: 0 auto 12px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 3rem; /* Adjusted for better spacing */
+}
+
+.image-overlay-wrapper::before,
+.image-overlay-wrapper::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.image-overlay-wrapper::before {
+  top: 0;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+}
+
+.image-overlay-wrapper::after {
+  bottom: 0;
+  background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
 }
 
 .image-overlay-wrapper img {
@@ -45,7 +68,7 @@
 
 .overlay-text {
   position: absolute;
-  bottom: 16px;
+  bottom: 50px;
   left: 16px;
   transform: none;
   background: rgba(0, 0, 0, 0.5);
@@ -58,12 +81,11 @@
 }
 
 .wed-footer {
-  padding: 24px 16px;
+  margin-top: 5rem;
   background-color: #fdfdfd;
   text-align: center;
   font-size: 14px;
   color: #444;
-  margin-top: 48px;
 }
 
 .footer-line {

@@ -170,7 +170,7 @@ const copyToClipboard = async (text, event) => {
   flex-direction: column;
   gap: 4px;
   align-items: flex-end;
-  max-width: 120px;
+  min-width: 100px; /* same min width for both buttons */
 }
 
 .copy-btn {
@@ -180,16 +180,21 @@ const copyToClipboard = async (text, event) => {
   padding: 4px 6px;
   border-radius: 4px;
   cursor: pointer;
+  width: 50px;
+  box-sizing: border-box;
 }
 .copy-btn:hover {
   background: #9258d6;
 }
 
-.kakaopay-btn img {
-  width: 50px;
-}
 .kakaopay-btn {
   display: inline-block;
+  width: 50px;
+}
+.kakaopay-btn img {
+  width: 100%;
+  display: block;
+  object-fit: contain;
 }
 
 /* Slide transition */

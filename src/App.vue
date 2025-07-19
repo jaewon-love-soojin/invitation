@@ -36,9 +36,6 @@ const images = [
   `${import.meta.env.BASE_URL}images/20.jpg`,
   `${import.meta.env.BASE_URL}images/21.jpg`,
   `${import.meta.env.BASE_URL}images/22.jpg`,
-  `${import.meta.env.BASE_URL}images/23.jpg`,
-
-
 ]
 const weddingDate = new Date('2025-09-21T12:00:00')
 </script>
