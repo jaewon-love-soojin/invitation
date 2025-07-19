@@ -70,7 +70,7 @@ const currentTab = ref(0)
 }
 
 .tab-button.active {
-  color: #BA68C8;
+  color: #93729B;
   font-weight: 600;
 }
 
@@ -81,7 +81,7 @@ const currentTab = ref(0)
   left: 0;
   right: 0;
   height: 2px;
-  background-color: #BA68C8;
+  background-color: #93729B;
   border-radius: 2px;
 }
 

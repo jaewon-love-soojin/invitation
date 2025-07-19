@@ -49,7 +49,6 @@ onMounted(() => {
 
 .landing-content {
   text-align: center;
-  font-family: 'Noto Serif KR', serif;
   animation: fadeZoomIn 1s ease-out forwards;
   opacity: 0;
   transform: scale(0.9);
@@ -93,7 +92,6 @@ lottie-player {
 }
 
 .typewriter {
-  font-family: monospace;
   white-space: nowrap;
   overflow: hidden;
   border-right: 2px solid #555;

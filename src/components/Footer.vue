@@ -61,7 +61,6 @@
   padding: 24px 16px;
   background-color: #fdfdfd;
   text-align: center;
-  font-family: 'Helvetica Neue', sans-serif;
   font-size: 14px;
   color: #444;
   margin-top: 48px;

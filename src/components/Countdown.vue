@@ -65,7 +65,6 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'Courier New', monospace;
   margin: 20px 0;
 }
 
@@ -75,7 +74,6 @@ onMounted(() => {
   gap: 10px;
   justify-content: center;
   text-align: center;
-  font-family: 'Courier New', monospace;
 }
 
 .timer-col-header {

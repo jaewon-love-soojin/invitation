@@ -1,16 +1,38 @@
-<!-- Calendar.vue -->
 <template>
   <SectionTitle en="Calendar" ko="SEPTEMBER" />
   <div class="calendar-wrapper">
     <div class="calendar-container">
       <div class="calendar">
-        <div v-for="(d, i) in daysOfWeek" :key="d" :class="['header', i === 0 ? 'sunday' : '']" > {{ d }} </div>
-        <div v-for="blank in firstDayOfMonth" :key="'b' + blank" class="day"></div>
-        <div v-for="day in daysInMonth"
-          :key="day"
-          :class="[ 'day', isSunday(day) ? 'sunday' : '', pinnedDay == day ? 'pinned' : '' ]"
+        <div
+          v-for="(d, i) in daysOfWeek"
+          :key="d"
+          :class="['header', i === 0 ? 'sunday' : '']"
         >
-          {{ day }}
+          {{ d }}
+        </div>
+        <div
+          v-for="blank in firstDayOfMonth"
+          :key="'b' + blank"
+          class="day"
+        ></div>
+        <div
+          v-for="day in daysInMonth"
+          :key="day"
+          :class="['day', isSunday(day) ? 'sunday' : '', pinnedDay === day ? 'pinned-day' : '']"
+        >
+          <template v-if="pinnedDay === day">
+            <div class="svg-heart-wrapper">
+              <svg viewBox="0 0 32 29.6" class="svg-heart" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M23.6,0c-3.1,0-5.9,2-7.6,4.1C14.3,2,11.5,0,8.4,0C3.8,0,0,3.8,0,8.4
+                    c0,9.3,16,21.2,16,21.2s16-11.9,16-21.2C32,3.8,28.2,0,23.6,0z"
+                  fill="#a678e2"
+                />
+              </svg>
+              <span class="heart-text">{{ day }}</span>
+            </div>
+          </template>
+          <template v-else>{{ day }}</template>
         </div>
       </div>
     </div>
@@ -19,35 +41,28 @@
 
 <script setup>
 import SectionTitle from './SectionTitle.vue';
-import { computed } from 'vue'
+import { computed } from 'vue';
 
 const props = defineProps({
   year: { type: Number, default: 2025 },
-  month: { type: Number, default: 8 }, // 0 = January, 5 = June
+  month: { type: Number, default: 8 }, // 0 = Jan, so 8 = September
   pinnedDay: { type: Number, default: 21 }
-})
+});
 
 const isSunday = (day) => {
-  const date = new Date(props.year, props.month, day)
-  return date.getDay() === 0
-}
+  const date = new Date(props.year, props.month, day);
+  return date.getDay() === 0;
+};
 
-const daysOfWeek = ['일', '월', '화', '수', '목', '금', '토']
+const daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
 
 const firstDayOfMonth = computed(() =>
   new Date(props.year, props.month, 1).getDay()
-)
+);
 
 const daysInMonth = computed(() =>
   new Date(props.year, props.month + 1, 0).getDate()
-)
-
-const monthName = computed(() =>
-  new Date(props.year, props.month).toLocaleString('default', { month: 'long' })
-)
-const date = computed(() => {
-  props.pinnedDay[0]
-})
+);
 </script>
 
 <style scoped>
@@ -69,12 +84,9 @@ const date = computed(() => {
   grid-template-columns: repeat(7, 1fr);
   gap: 4px;
   width: 100%;
-
-  border-color: #e0e0e0;
-
-  border-top: 1px solid #ccc;     /* ✅ top border */
-  border-bottom: 1px solid #ccc;  /* ✅ bottom border */
-  padding: 12px 0;                /* ✅ some vertical spacing inside */
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 12px 0;
 }
 
 .header,
@@ -86,21 +98,34 @@ const date = computed(() => {
 .header {
   font-weight: bold;
 }
-.pinned {
-  background-color: #a678e2;
-  color: white !important;
-  font-weight: bold;
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-}
 .sunday {
   color: red;
 }
 
+/* ✅ SVG heart container */
+.svg-heart-wrapper {
+  position: relative;
+  width: 32px;
+  height: 30px;
+  margin: auto;
+}
+
+/* ✅ SVG heart shape */
+.svg-heart {
+  width: 100%;
+  height: 100%;
+}
+
+/* ✅ Number inside heart */
+.heart-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  color: white;
+  font-size: 0.8rem;
+  font-weight: bold;
+  pointer-events: none;
+}
 </style>
 

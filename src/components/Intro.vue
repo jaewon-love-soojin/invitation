@@ -36,7 +36,6 @@ const welcomeImage = `${import.meta.env.BASE_URL}images/intro.jpg`;
 .intro-wrapper {
   overflow-x: hidden;
   position: relative;
-  font-family: 'Gowun Dodum', sans-serif;
 }
 
 /* Layout */
