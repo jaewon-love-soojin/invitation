@@ -8,7 +8,7 @@
         <div v-for="n in 10" :key="n" class="flower"
          :style="{
            '--i': n,
-           '--scale': (Math.random() * 0.6 + 0.7).toFixed(2),  // scale 0.7 to 1.3
+           '--scale': (Math.random() * 0.2 + 0.5).toFixed(2),
            '--direction': Math.random() > 0.5 ? '1' : '-1'     // spin direction
          }"
           >
@@ -98,16 +98,16 @@ p {
   left: calc((100vw - 18px) * var(--i) / 10);
   width: calc(18px * var(--scale));
   height: calc(16px * var(--scale));
-  background: pink;
-  animation: flutter 8s linear infinite;
+  background: #f8f3fc;
+  animation: flutter 12s linear infinite;
   animation-delay: calc(-1s * var(--i));
   opacity: 0.8;
   transform: rotate(-45deg);
   transform-origin: center;
   box-shadow:
-    0 0 2px #fbb,
-    0 0 6px #fcc,
-    0 0 10px rgba(255, 192, 203, 0.5);
+    0 0 2px #cba8f0,
+    0 0 6px #e0bbff,
+    0 0 10px rgba(216, 180, 248, 0.5);
   border-radius: 0 0 50% 50%;
 }
 
@@ -117,7 +117,7 @@ p {
   position: absolute;
   width: calc(18px * var(--scale));
   height: calc(16px * var(--scale));
-  background: pink;
+  background: #f8f3fc;
   border-radius: 50%;
 }
 
