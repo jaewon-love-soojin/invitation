@@ -14,6 +14,7 @@ import Account from './components/Account.vue'
 import Footer from './components/Footer.vue'
 
 const images = [
+  `${import.meta.env.BASE_URL}images/1.jpg`,
   `${import.meta.env.BASE_URL}images/2.jpg`,
   `${import.meta.env.BASE_URL}images/3.jpg`,
   `${import.meta.env.BASE_URL}images/4.jpg`,
@@ -26,6 +27,18 @@ const images = [
   `${import.meta.env.BASE_URL}images/11.jpg`,
   `${import.meta.env.BASE_URL}images/12.jpg`,
   `${import.meta.env.BASE_URL}images/13.jpg`,
+  `${import.meta.env.BASE_URL}images/14.jpg`,
+  `${import.meta.env.BASE_URL}images/15.jpg`,
+  `${import.meta.env.BASE_URL}images/16.jpg`,
+  `${import.meta.env.BASE_URL}images/17.jpg`,
+  `${import.meta.env.BASE_URL}images/18.jpg`,
+  `${import.meta.env.BASE_URL}images/19.jpg`,
+  `${import.meta.env.BASE_URL}images/20.jpg`,
+  `${import.meta.env.BASE_URL}images/21.jpg`,
+  `${import.meta.env.BASE_URL}images/22.jpg`,
+  `${import.meta.env.BASE_URL}images/23.jpg`,
+
+
 ]
 const weddingDate = new Date('2025-09-21T12:00:00')
 </script>
@@ -34,7 +47,6 @@ const weddingDate = new Date('2025-09-21T12:00:00')
   <!--
   <LandingOverlay />
   -->
-  <FallingFlowers />
   <div class="container">
     <BgMusic />
     <Intro />

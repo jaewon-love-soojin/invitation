@@ -5,7 +5,14 @@
         <img :src="welcomeImage" alt="Welcome" class="topbar-img" />
       </div>
       <div class="flower-container">
-        <div v-for="n in 10" :key="n" class="flower" :style="{ '--i': n }"></div>
+        <div v-for="n in 10" :key="n" class="flower"
+         :style="{
+           '--i': n,
+           '--scale': (Math.random() * 0.6 + 0.7).toFixed(2),  // scale 0.7 to 1.3
+           '--direction': Math.random() > 0.5 ? '1' : '-1'     // spin direction
+         }"
+          >
+        </div>
       </div>
       <SectionTitle en="The wedding of" />
       <p>
@@ -21,7 +28,7 @@
 
 <script setup>
 import SectionTitle from './SectionTitle.vue';
-const welcomeImage = `${import.meta.env.BASE_URL}images/1.jpg`;
+const welcomeImage = `${import.meta.env.BASE_URL}images/intro.jpg`;
 </script>
 
 <style scoped>
@@ -73,7 +80,7 @@ p {
   z-index: 0;
 }
 
-/* ✅ Prevent flowers from overflowing */
+/* ✅ Flower animation container */
 .flower-container {
   position: absolute;
   top: 0;
@@ -89,25 +96,60 @@ p {
   position: absolute;
   top: -30px;
   left: calc((100vw - 18px) * var(--i) / 10);
-  width: 18px;
-  height: 18px;
-  background: white;
-  border-radius: 50%;
-  opacity: 0.8;
+  width: calc(18px * var(--scale));
+  height: calc(16px * var(--scale));
+  background: pink;
   animation: flutter 8s linear infinite;
   animation-delay: calc(-1s * var(--i));
+  opacity: 0.8;
+  transform: rotate(-45deg);
+  transform-origin: center;
   box-shadow:
-    0 0 2px #ccc,
-    0 0 6px #eee,
-    0 0 10px rgba(255, 255, 255, 0.5);
+    0 0 2px #fbb,
+    0 0 6px #fcc,
+    0 0 10px rgba(255, 192, 203, 0.5);
+  border-radius: 0 0 50% 50%;
 }
 
+.flower::before,
+.flower::after {
+  content: "";
+  position: absolute;
+  width: calc(18px * var(--scale));
+  height: calc(16px * var(--scale));
+  background: pink;
+  border-radius: 50%;
+}
+
+.flower::before {
+  top: calc(-9px * var(--scale));
+  left: 0;
+}
+
+.flower::after {
+  top: 0;
+  left: calc(9px * var(--scale));
+}
+
+/* Updated animation: scale & spin direction */
 @keyframes flutter {
-  0% { transform: translateY(-20px) translateX(0px) rotate(0deg); opacity: 0.8; }
-  25% { transform: translateY(25vh) translateX(-10px) rotate(45deg); }
-  50% { transform: translateY(50vh) translateX(10px) rotate(90deg); }
-  75% { transform: translateY(75vh) translateX(-15px) rotate(135deg); }
-  100% { transform: translateY(120vh) translateX(0px) rotate(180deg); opacity: 0; }
+  0% {
+    transform: translateY(-20px) rotate(calc(0deg * var(--direction))) scale(var(--scale));
+    opacity: 0.8;
+  }
+  25% {
+    transform: translateY(25vh) translateX(-10px) rotate(calc(45deg * var(--direction))) scale(var(--scale));
+  }
+  50% {
+    transform: translateY(50vh) translateX(10px) rotate(calc(90deg * var(--direction))) scale(var(--scale));
+  }
+  75% {
+    transform: translateY(75vh) translateX(-15px) rotate(calc(135deg * var(--direction))) scale(var(--scale));
+  }
+  100% {
+    transform: translateY(120vh) rotate(calc(180deg * var(--direction))) scale(var(--scale));
+    opacity: 0;
+  }
 }
 
 .subtitle {
