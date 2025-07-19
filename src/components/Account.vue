@@ -116,7 +116,7 @@ const copyToClipboard = async (text, event) => {
 }
 
 .card {
-  background: #f9f9fb;
+  background: #f3eff5;
   border: 1px solid #ddd;
   border-radius: 6px;
   overflow: hidden;
