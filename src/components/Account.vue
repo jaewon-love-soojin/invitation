@@ -101,6 +101,7 @@ const copyToClipboard = async (text, event) => {
 
 .account-section {
   margin-top: 2rem;
+  font-size: 0.9em;
 }
 
 .account-section p {
@@ -158,10 +159,6 @@ const copyToClipboard = async (text, event) => {
 .info {
   flex: 1;
   padding-right: 8px;
-}
-
-.account {
-  margin: 0;
 }
 
 .name {
