@@ -3,13 +3,16 @@
     <div class="image-overlay-wrapper">
       <img :src="footerImg" alt="footer" />
       <div class="overlay-text">
-        <p>장담하건대, 세상이 다 겨울이어도</p>
-        <p>우리 사랑은 늘 봄처럼 따뜻하고 간혹, 여름처럼 뜨거울 겁니다.</p>
+        <p class="text">장담하건대, 세상이 다 겨울이어도</p>
+        <p class="text">우리 사랑은 늘 봄처럼 따뜻하고</p>
+        <p class="text">간혹, 여름처럼 뜨거울 겁니다.</p>
         <p class="writer">이수동, 사랑가</p>
       </div>
     </div>
 
-    <p>카카오톡으로 공유하기</p>
+    <button class="kakao-share-btn" @click="shareKakao">
+      카카오톡으로 공유하기
+    </button>
     <div class="footer-line"></div>
     <div class="footer-text">
       <p class="footer-names">Jaewon 💜 Soojin</p>
@@ -24,15 +27,67 @@
 </template>
 
 <script setup>
-  const footerImg = `${import.meta.env.BASE_URL}images/footer.jpg`;
+const footerImg = `${import.meta.env.BASE_URL}images/footer.jpg`;
+import { onMounted } from 'vue'
+
+onMounted(() => {
+  if (window.Kakao && !window.Kakao.isInitialized()) {
+    window.Kakao.init('5253a5841fb13831a22c9d877a3f5941')
+  }
+})
+
+const shareKakao = () => {
+  if (!window.Kakao) return alert("Kakao SDK not loaded")
+
+  window.Kakao.Share.sendDefault({
+    objectType: 'feed',
+    content: {
+      title: '최재원 ❤️ 나수진 결혼식 초대장',
+      description: '2025년 9월 21일, 엔씨소프트 R&D 센터 컨벤션홀',
+      imageUrl: `${import.meta.env.BASE_URL}images/invitation.jpg`,
+      link: {
+        mobileWebUrl: window.location.href,
+        webUrl: window.location.href,
+      },
+    },
+    buttons: [
+      {
+        title: '초대장 보기',
+        link: {
+          mobileWebUrl: window.location.href,
+          webUrl: window.location.href,
+        },
+      },
+    ],
+  })
+}
+
 </script>
 
 <style scoped>
+.kakao-share-btn {
+  background: #fee500;
+  color: #3c1e1e;
+  border: none;
+  padding: 4px 6px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 80px;
+}
+.kakao-share-btn:hover {
+  background: #ffe100;
+}
+
 p {
   margin: 4px 0;
 }
 p.writer {
   margin-top: 8px;
+  margin-left: 2rem;
+}
+p.text {
+  margin-left: 2rem;
 }
 
 .image-overlay-wrapper {
@@ -74,14 +129,11 @@ p.writer {
 
 .overlay-text {
   position: absolute;
-  width: 400px;
+  width: 100%;
   bottom: 50px;
-  left: 16px;
   transform: none;
   background: rgba(0, 0, 0, 0.5);
   color: white;
-  padding: 12px 16px;
-  border-radius: 12px;
   font-size: 14px;
   line-height: 1.4;
   text-align: left;

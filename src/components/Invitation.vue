@@ -1,5 +1,8 @@
 <template>
   <div class="invitation">
+    <div class="ribon-img-wrapper">
+      <img :src="ribonImg" class="ribon-img" />
+    </div>
     <SectionTitle ko="초대합니다." />
     <div class="space"></div>
     <p><span>언제나 함께 있을 것 같던 자녀가</span></p>
@@ -22,6 +25,7 @@
 <script setup>
 import SectionTitle from './SectionTitle.vue';
 const invitationImg = `${import.meta.env.BASE_URL}images/invitation.jpg`;
+const ribonImg = `${import.meta.env.BASE_URL}images/ribon.jpg`;
 </script>
 
 <style scoped>
@@ -36,7 +40,7 @@ p {
 }
 
 .space {
-  margin-top: 1rem;
+  margin-top: 2.5rem;
 }
 
 .invitation {
@@ -45,6 +49,17 @@ p {
   text-align: center;
   padding: 0 16px;
   overflow: hidden;
+}
+.ribon-img-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: -1rem;
+}
+
+.ribon-img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
 }
 
 .invitation-img-wrapper {
