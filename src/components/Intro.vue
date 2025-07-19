@@ -43,7 +43,7 @@ const welcomeImage = `${import.meta.env.BASE_URL}images/intro.jpg`;
 .main {
   font-size: 1.5em;
   text-align: center;
-  margin-bottom: 3.0rem;
+  margin: 0 auto 1.5rem; /* ✅ Small bottom spacing only */
 }
 
 .topbar-img-wrapper {
@@ -52,6 +52,7 @@ const welcomeImage = `${import.meta.env.BASE_URL}images/intro.jpg`;
   margin: 0 auto 12px;
   overflow: hidden;
   position: relative;
+  margin-bottom: 3rem; /* Adjusted for better spacing */
 }
 
 .topbar-img-wrapper::before,

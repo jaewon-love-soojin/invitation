@@ -1,7 +1,8 @@
 <template>
   <div class="invitation">
-    💜
+    <p class="heart">💜</p>
     <SectionTitle ko="초대합니다."/>
+    <div class="space"></div>
     <p><span>언제나 함께 있을 것 같던 자녀가</span></p>
     <p><span>아름다운 인연을 만나 사랑을 하고</span></p>
     <p><span>이제 평생의 동반자를 만나</span></p>
@@ -26,6 +27,15 @@ const invitationImg = `${import.meta.env.BASE_URL}images/invitation.jpg`;
 <style scoped>
 p {
   margin: 4px 0;
+}
+
+.heart {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.space {
+  margin-top: 1rem;
 }
 
 .invitation {

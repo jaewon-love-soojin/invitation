@@ -2,7 +2,7 @@
   <div class="location-section" id="location">
     <SectionTitle en="Location" ko="오시는길" />
     <div class="location">
-      <p class="subtitle">📍 엔씨소프트 R&D 센터 컨벤션홀</p>
+      <p class="subtitle">엔씨소프트 R&D 센터 컨벤션홀</p>
       <p class="subtitle">경기 성남시 분당구 대왕판교로644번길 12</p>
       <p class="subtitle">지하1층 컨벤션홀</p>
       <div class="map">
@@ -52,7 +52,6 @@
         <p>﹒지하 3층 주차장 무료 이용 가능합니다.</p>
         <p>﹒주차 공간 여유 있습니다.</p>
       </div>
-
     </div>
   </div>
 </template>
@@ -113,8 +112,13 @@ const kakaoLink = `kakaomap://route?ep=${lat},${lng}&by=CAR`
 <style scoped>
 .location-section {
   margin-top: 2rem;
+  margin-bottom: 2rem;
   padding: 0px 0px;
   text-align: center;
+}
+
+.location {
+  margin-top: 2rem;
 }
 
 .map-container {
@@ -163,6 +167,7 @@ const kakaoLink = `kakaomap://route?ep=${lat},${lng}&by=CAR`
 .subtitle {
   font-size: 1.2em;
   margin-bottom: 20px;
+  margin: 4px 0; /* Reduced vertical spacing */
 }
 
 .names {
