@@ -19,7 +19,7 @@
 import { ref, onMounted } from 'vue'
 
 const musicUrl = import.meta.env.MODE === 'production'
-  ? 'https://cdn.jsdelivr.net/gh/hellojaewon/wed/public/assets/AShamaluevMusic.mp3'
+  ? 'https://cdn.jsdelivr.net/gh/jaewon-love-soojin/invitation/public/assets/AShamaluevMusic.mp3'
   : `${import.meta.env.BASE_URL}assets/AShamaluevMusic.mp3`
 
 const audio = ref(null)
