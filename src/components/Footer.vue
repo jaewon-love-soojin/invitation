@@ -27,17 +27,21 @@
 </template>
 
 <script setup>
-const footerImg = `${import.meta.env.BASE_URL}images/footer.jpg`;
 import { onMounted } from 'vue'
 
-onMounted(() => {
+const footerImg = `${import.meta.env.BASE_URL}images/footer.jpg`;
+
+const initializeKakao = () => {
   if (window.Kakao && !window.Kakao.isInitialized()) {
-    window.Kakao.init('5253a5841fb13831a22c9d877a3f5941')
+    window.Kakao.init('5253a5841fb13831a22c9d877a3f5941');
   }
-})
+};
 
 const shareKakao = () => {
-  if (!window.Kakao) return alert("Kakao SDK not loaded")
+  if (!window.Kakao || !window.Kakao.Share) {
+    alert('Kakao SDK not loaded');
+    return;
+  }
 
   window.Kakao.Share.sendDefault({
     objectType: 'feed',
@@ -59,9 +63,21 @@ const shareKakao = () => {
         },
       },
     ],
-  })
-}
+  });
+};
 
+onMounted(() => {
+  // Retry until Kakao SDK is ready (up to 2 seconds)
+  let retry = 0;
+  const interval = setInterval(() => {
+    if (window.Kakao) {
+      initializeKakao();
+      clearInterval(interval);
+    }
+    retry++;
+    if (retry > 20) clearInterval(interval); // Stop after 2s
+  }, 100);
+});
 </script>
 
 <style scoped>
