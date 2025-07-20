@@ -31,6 +31,8 @@
 <script setup>
 import { onMounted } from 'vue'
 
+const siteUrl = 'https://hellojaewon.github.io/wed';
+
 const footerImg = `${import.meta.env.BASE_URL}images/footer.jpg`;
 const kakaoIcon = `${import.meta.env.BASE_URL}images/kakao.png`;
 const sharingImg = 'https://raw.githubusercontent.com/hellojaewon/wed/d8f4de79054ee64509040151c0456b1367d397af/public/images/sharing.jpg';
@@ -56,16 +58,16 @@ const shareKakao = () => {
       description: '2025년 9월 21일 일요일 낮 12시, 엔씨소프트R&D센터 컨벤션홀',
       imageUrl: sharingImg,
       link: {
-        mobileWebUrl: window.location.href,
-        webUrl: window.location.href,
+        mobileWebUrl: siteUrl,
+        webUrl: siteUrl,
       },
     },
     buttons: [
       {
         title: '청첩장 보기',
         link: {
-          mobileWebUrl: window.location.href,
-          webUrl: window.location.href,
+          mobileWebUrl: siteUrl,
+          webUrl: siteUrl,
         },
       },
       {
