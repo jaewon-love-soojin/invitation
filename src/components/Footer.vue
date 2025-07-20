@@ -33,7 +33,11 @@ import { onMounted } from 'vue'
 
 const footerImg = `${import.meta.env.BASE_URL}images/footer.jpg`;
 const kakaoIcon = `${import.meta.env.BASE_URL}images/kakao.png`;
-const sharingImg = `${import.meta.env.BASE_URL}images/sharing.jpg`;
+const sharingImg = 'https://raw.githubusercontent.com/hellojaewon/wed/d8f4de79054ee64509040151c0456b1367d397af/public/images/sharing.jpg';
+
+const name = '엔씨소프트R&D센터'
+const naverLink = `https://map.naver.com/v5/search/${encodeURIComponent(name)}`
+
 
 const initializeKakao = () => {
   if (window.Kakao && !window.Kakao.isInitialized()) {
@@ -60,10 +64,17 @@ const shareKakao = () => {
     },
     buttons: [
       {
-        title: '초대장 보기',
+        title: '청첩장 보기',
         link: {
           mobileWebUrl: window.location.href,
           webUrl: window.location.href,
+        },
+      },
+      {
+        title: '위치 보기',
+        link: {
+          mobileWebUrl: naverLink,
+          webUrl: naverLink,
         },
       },
     ],
