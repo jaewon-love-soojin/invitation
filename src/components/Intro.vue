@@ -6,13 +6,12 @@
       </div>
       <div class="flower-container">
         <div v-for="n in 10" :key="n" class="flower"
-         :style="{
-           '--i': n,
-           '--scale': (Math.random() * 0.2 + 0.5).toFixed(2),
-           '--direction': Math.random() > 0.5 ? '1' : '-1'     // spin direction
-         }"
-          >
-        </div>
+          :style="{
+            '--i': n,
+            '--scale': (Math.random() * 0.2 + 0.5).toFixed(2),
+            '--direction': Math.random() > 0.5 ? '1' : '-1'
+          }"
+        />
       </div>
       <SectionTitle en="The wedding of" />
       <p class="main">
@@ -32,9 +31,8 @@ const welcomeImage = `${import.meta.env.BASE_URL}images/intro.jpg`;
 </script>
 
 <style scoped>
-/* ✅ Prevent horizontal scroll */
 .intro-wrapper {
-  overflow-x: hidden;
+  overflow: hidden; /* ✅ Prevent scroll */
   position: relative;
 }
 
@@ -42,7 +40,7 @@ const welcomeImage = `${import.meta.env.BASE_URL}images/intro.jpg`;
 .main {
   font-size: 1.5em;
   text-align: center;
-  margin: 0 auto 1.5rem; /* ✅ Small bottom spacing only */
+  margin: 0 auto 1.5rem;
 }
 
 .topbar-img-wrapper {
@@ -51,7 +49,7 @@ const welcomeImage = `${import.meta.env.BASE_URL}images/intro.jpg`;
   margin: 0 auto 12px;
   overflow: hidden;
   position: relative;
-  margin-bottom: 3rem; /* Adjusted for better spacing */
+  margin-bottom: 3rem;
 }
 
 .topbar-img-wrapper::before,
@@ -83,13 +81,12 @@ const welcomeImage = `${import.meta.env.BASE_URL}images/intro.jpg`;
   z-index: 0;
 }
 
-/* ✅ Flower animation container */
 .flower-container {
   position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100vh; /* ✅ keeps it full screen */
   overflow: hidden;
   pointer-events: none;
   z-index: 0;
@@ -102,7 +99,7 @@ const welcomeImage = `${import.meta.env.BASE_URL}images/intro.jpg`;
   width: calc(18px * var(--scale));
   height: calc(16px * var(--scale));
   background: #f8f3fc;
-  animation: flutter 12s linear infinite;
+  animation: flutter 10s linear infinite;
   animation-delay: calc(-1s * var(--i));
   opacity: 0.8;
   transform: rotate(-45deg);
@@ -134,23 +131,13 @@ const welcomeImage = `${import.meta.env.BASE_URL}images/intro.jpg`;
   left: calc(9px * var(--scale));
 }
 
-/* Updated animation: scale & spin direction */
 @keyframes flutter {
   0% {
     transform: translateY(-20px) rotate(calc(0deg * var(--direction))) scale(var(--scale));
     opacity: 0.8;
   }
-  25% {
-    transform: translateY(25vh) translateX(-10px) rotate(calc(45deg * var(--direction))) scale(var(--scale));
-  }
-  50% {
-    transform: translateY(50vh) translateX(10px) rotate(calc(90deg * var(--direction))) scale(var(--scale));
-  }
-  75% {
-    transform: translateY(75vh) translateX(-15px) rotate(calc(135deg * var(--direction))) scale(var(--scale));
-  }
   100% {
-    transform: translateY(120vh) rotate(calc(180deg * var(--direction))) scale(var(--scale));
+    transform: translateY(100vh) rotate(calc(180deg * var(--direction))) scale(var(--scale));
     opacity: 0;
   }
 }
@@ -158,7 +145,7 @@ const welcomeImage = `${import.meta.env.BASE_URL}images/intro.jpg`;
 .subtitle {
   font-size: 1.2em;
   text-align: center;
-  margin: 4px 0; /* Reduced vertical spacing */
+  margin: 4px 0;
 }
 
 .details {
