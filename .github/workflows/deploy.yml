@@ -29,6 +29,7 @@ jobs:
 
       - name: Create env.production
         run: |
+          echo "VITE_SITE_URL=https://hellojaewon.github.io/wed" >> .env.production
           echo "VITE_X_NCP_APIGW_API_KEY_ID=$X_NCP_APIGW_API_KEY_ID" >> .env.production
           echo "VITE_KAKAO_KEY=$KAKAO_KEY" >> .env.production
 
