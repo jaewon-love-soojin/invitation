@@ -39,7 +39,6 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: production
-          VITE_SITE_URL: ${{ secrets.VITE_SITE_URL }}
 
 #      - name: Add CNAME file
 #        run: echo 'blu2print.site' > ./dist/CNAME
