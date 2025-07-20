@@ -70,23 +70,23 @@ const daysInMonth = computed(() =>
 <style scoped>
 .calendar-section {
   margin-top: 5rem;
-  padding: 0 16px; /* ✅ Add padding for better spacing */
+  padding: 0 16px;
 }
 
 .calendar-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 16px; /* Add side spacing */
+  width: 100%;
+  overflow-x: auto;
 }
 
 .calendar-container {
-  text-align: center;
   padding: 16px;
   border-radius: 8px;
-  width: 100%;
-  max-width: 400px; /* Prevent overflow on mobile */
-  margin: 0 auto;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .calendar {
@@ -95,11 +95,11 @@ const daysInMonth = computed(() =>
   gap: 4px;
   width: 100%;
   max-width: 400px;
-  margin: 0 auto;
   padding: 12px 0;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   box-sizing: border-box;
+  background-color: white;
 }
 
 .header,
@@ -115,7 +115,6 @@ const daysInMonth = computed(() =>
   color: red;
 }
 
-/* ✅ SVG heart container */
 .svg-heart-wrapper {
   position: relative;
   width: 32px;
@@ -123,13 +122,11 @@ const daysInMonth = computed(() =>
   margin: auto;
 }
 
-/* ✅ SVG heart shape */
 .svg-heart {
   width: 100%;
   height: 100%;
 }
 
-/* ✅ Number inside heart */
 .heart-text {
   position: absolute;
   top: 50%;
