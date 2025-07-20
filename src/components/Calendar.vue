@@ -77,12 +77,15 @@ const daysInMonth = computed(() =>
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0 16px; /* Add side spacing */
 }
+
 .calendar-container {
   text-align: center;
   padding: 16px;
   border-radius: 8px;
   width: 100%;
+  max-width: 400px; /* Prevent overflow on mobile */
 }
 
 .calendar {

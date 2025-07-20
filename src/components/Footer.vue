@@ -127,8 +127,10 @@ p {
 p.writer {
   margin-top: 8px;
   margin-left: 2rem;
+  font-size: 13px;
 }
 p.text {
+  font-size: 12px;
   margin-left: 2rem;
 }
 
@@ -179,6 +181,8 @@ p.text {
   font-size: 14px;
   line-height: 1.4;
   text-align: left;
+  height: 100px;
+  padding: 10px 2px;
 }
 
 .wed-footer {

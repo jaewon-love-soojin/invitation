@@ -56,6 +56,7 @@ const currentTab = ref(0)
   border-bottom: 2px solid #eee;
   margin-top: 16px;
   margin-bottom: 16px;
+  gap: 50px;
 }
 
 .tab-button {

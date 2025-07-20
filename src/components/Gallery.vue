@@ -38,6 +38,10 @@
 <script setup>
 import SectionTitle from './SectionTitle.vue';
 import { ref } from 'vue';
+import mediumZoom from 'medium-zoom'
+onMounted(() => {
+  mediumZoom('.gallery-slide img')
+})
 
 const props = defineProps({
   images: {
@@ -75,7 +79,6 @@ const onTouchMove = (e) => {
   const deltaY = e.touches[0].clientY - touchStartY;
 
   if (Math.abs(deltaX) > Math.abs(deltaY)) {
-    e.preventDefault(); // 🚫 prevent vertical scroll
     isSwiping = true;
   }
 };
@@ -131,7 +134,8 @@ const handleSwipe = (deltaX) => {
 
 .gallery-slide img {
   width: 100%;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain; /* ✅ shows entire image */
   display: block;
 }
 
