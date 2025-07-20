@@ -86,13 +86,16 @@ const daysInMonth = computed(() =>
   border-radius: 8px;
   width: 100%;
   max-width: 400px; /* Prevent overflow on mobile */
+  margin: 0 auto;
 }
 
 .calendar {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 4px;
-  width: 100%;
+  max-width: 100%;           /* ✅ control grid width */
+  width: fit-content;         /* ✅ shrink to fit */
+  margin: 0 auto;             /* ✅ center inside container */
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   padding: 12px 0;

@@ -38,10 +38,6 @@
 <script setup>
 import SectionTitle from './SectionTitle.vue';
 import { ref, onMounted } from 'vue';
-import mediumZoom from 'medium-zoom'
-onMounted(() => {
-  mediumZoom('.gallery-slide img')
-})
 
 const props = defineProps({
   images: {
