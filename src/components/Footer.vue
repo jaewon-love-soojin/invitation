@@ -48,14 +48,9 @@ const shareKakao = () => {
   }
 
   const siteUrl = import.meta.env.VITE_SITE_URL;
-  const kakaoMapUrl = 'https://map.kakao.com/link/search/엔씨소프트R&D센터'
+  const name = '엔씨소프트R&D센터'
+  const naverLink = `https://map.naver.com/v5/search/${encodeURIComponent(name)}`
   const sharingImg = 'https://raw.githubusercontent.com/hellojaewon/wed/d8f4de79054ee64509040151c0456b1367d397af/public/images/sharing.jpg';
-
-  console.log(JSON.stringify({
-    mobileWebUrl: siteUrl,
-    webUrl: siteUrl,
-    mapUrl: kakaoMapUrl
-  }, null, 2));
 
   window.Kakao.Share.sendDefault({
     objectType: 'feed',
@@ -79,8 +74,8 @@ const shareKakao = () => {
       {
         title: '위치 보기',
         link: {
-          mobileWebUrl: kakaoMapUrl,
-          webUrl: kakaoMapUrl,
+          mobileWebUrl: naverLink,
+          webUrl: naverLink,
         },
       },
     ],
