@@ -37,6 +37,12 @@ const images = [
   `${import.meta.env.BASE_URL}images/22.jpg`,
 ]
 const weddingDate = new Date('2025-09-21T12:00:00')
+
+import { onMounted } from 'vue';
+
+onMounted(() => {
+  window.scrollTo(0, 0);
+});
 </script>
 
 <template>
