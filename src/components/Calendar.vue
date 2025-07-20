@@ -93,12 +93,13 @@ const daysInMonth = computed(() =>
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 4px;
-  max-width: 100%;           /* ✅ control grid width */
-  width: fit-content;         /* ✅ shrink to fit */
-  margin: 0 auto;             /* ✅ center inside container */
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 12px 0;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
-  padding: 12px 0;
+  box-sizing: border-box;
 }
 
 .header,
