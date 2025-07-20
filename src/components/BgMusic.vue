@@ -10,14 +10,13 @@
     :src="musicUrl"
     preload="auto"
     loop
+    playsinline
     @canplay="autoplay"
-  ></audio>
+  />
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
-
-const isProd = import.meta.env.MODE === 'production'
 
 // 📁 Replace with your own local or hosted music file
 const musicUrl = import.meta.env.MODE === 'production'
@@ -49,13 +48,20 @@ const autoplay = () => {
 }
 
 onMounted(() => {
-  // optional: attach gesture listener for iOS
-  document.body.addEventListener('click', () => {
-    if (!isPlaying.value) {
-      audio.value?.play()
+  // Try to autoplay immediately (will work in some browsers)
+  audio.value?.play()
+    .then(() => {
       isPlaying.value = true
-    }
-  }, { once: true })
+    })
+    .catch(() => {
+      // If autoplay fails, wait for first user interaction
+      document.body.addEventListener('click', () => {
+        if (!isPlaying.value) {
+          audio.value?.play()
+          isPlaying.value = true
+        }
+      }, { once: true })
+    })
 })
 </script>
 
