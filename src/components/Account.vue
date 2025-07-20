@@ -9,7 +9,7 @@
         <!-- 신랑측 -->
         <div class="card">
           <div class="card-header" @click="toggle('groom')" role="button">
-            <span>신랑측 계좌번호</span>
+            <span class="account-number">신랑측 계좌번호</span>
             <span class="arrow" :class="{ open: openSection === 'groom' }">▼</span>
           </div>
           <transition name="slide">
@@ -33,7 +33,7 @@
         <!-- 신부측 -->
         <div class="card">
           <div class="card-header" @click="toggle('bride')" role="button">
-            <span>신부측 계좌번호</span>
+            <span class="account-number">신부측 계좌번호</span>
             <span class="arrow" :class="{ open: openSection === 'bride' }">▼</span>
           </div>
           <transition name="slide">
@@ -100,41 +100,52 @@ const copyToClipboard = async (text, event) => {
 }
 
 .account-section {
-  margin-top: 2rem;
-  font-size: 0.9em;
+  margin-top: 1.5rem;
+  font-size: 0.85em;
 }
 
 .account-section p {
-  margin: 4px 0;
+  margin: 2px 0;
 }
 
 .account-cards {
-  margin-top: 2rem;
+  margin-top: 1.2rem;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
 
+.account-number {
+  flex: 1;
+  text-align: center;
+}
+
+/* ───────────────────────────────────────────── */
+/* 🟣 Compact Card Styling */
 .card {
-  background: #f3eff5;
-  border: 1px solid #ddd;
-  border-radius: 6px;
+  background: #fdfdfd;
+  border: 1px solid #e0dfe4;
+  border-radius: 5px;
   overflow: hidden;
-  cursor: pointer;
+  font-size: 1.0em;
+  line-height: 1.2;
+  padding: 0;
   transition: box-shadow 0.2s ease;
 }
 
+/* Header – Clickable Area */
 .card-header {
-  padding: 0px 10px; /* reduced from 6px */
-  min-height: 2px;  /* optional: define exact height */
+  padding: 14px 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: #f8f6fa;
+  cursor: pointer;
 }
 
 .card-header span {
-  line-height: 0;
   margin: 0;
+  line-height: 1.2;
 }
 
 .arrow {
@@ -144,15 +155,16 @@ const copyToClipboard = async (text, event) => {
   transform: rotate(180deg);
 }
 
+/* Expanded Body Section */
 .card-body {
-  padding: 20px 10px;
+  padding: 8px 10px;
 }
 
 .account-line {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 0;
+  padding: 4px 0;
   border-bottom: 1px solid #eee;
 }
 
@@ -161,26 +173,32 @@ const copyToClipboard = async (text, event) => {
   padding-right: 8px;
 }
 
+.account {
+  margin: 0;
+}
+
 .name {
   margin: 2px 0 0 0;
+  font-size: 0.85em;
 }
 
 .button-group {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
   align-items: flex-end;
-  min-width: 100px; /* same min width for both buttons */
+  min-width: 88px;
 }
 
 .copy-btn {
   background: gray;
   color: white;
   border: none;
-  padding: 4px 6px;
+  padding: 3px 5px;
   border-radius: 4px;
   cursor: pointer;
-  width: 50px;
+  width: 48px;
+  font-size: 0.75em;
   box-sizing: border-box;
 }
 .copy-btn:hover {
@@ -189,7 +207,7 @@ const copyToClipboard = async (text, event) => {
 
 .kakaopay-btn {
   display: inline-block;
-  width: 50px;
+  width: 48px;
 }
 .kakaopay-btn img {
   width: 100%;
@@ -197,7 +215,7 @@ const copyToClipboard = async (text, event) => {
   object-fit: contain;
 }
 
-/* Slide transition */
+/* Slide Transition */
 .slide-enter-active,
 .slide-leave-active {
   transition: all 0.3s ease;
