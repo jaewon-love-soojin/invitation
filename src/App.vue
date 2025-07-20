@@ -38,6 +38,7 @@ const images = [
   `${import.meta.env.BASE_URL}images/22.jpg`,
 ]
 const weddingDate = new Date('2025-09-21T12:00:00')
+console.log('VITE_SITE_URL:', import.meta.env.VITE_SITE_URL);
 </script>
 
 <template>
