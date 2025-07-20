@@ -165,7 +165,6 @@ const copyToClipboard = async (text, event) => {
   justify-content: space-between;
   align-items: center;
   padding: 4px 0;
-  border-bottom: 1px solid #eee;
 }
 
 .info {
