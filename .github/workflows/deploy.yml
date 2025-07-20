@@ -36,6 +36,9 @@ jobs:
       - name: Rename env.production to .env
         run: mv .env.production .env
 
+      - name: Debug .env file content
+        run: cat .env
+
       - name: Install dependencies
         run: npm ci
 
