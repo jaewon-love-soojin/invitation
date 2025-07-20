@@ -12,7 +12,7 @@
 
     <button class="kakao-share-btn" @click="shareKakao">
       <img :src="kakaoIcon" alt="카카오톡 아이콘" />
-      <span>카카오톡으로 공유하기</span>
+      <span class="kakao-text">카카오톡으로 공유하기</span>
     </button>
 
     <div class="footer-line"></div>
@@ -35,9 +35,7 @@ const footerImg = `${import.meta.env.BASE_URL}images/footer.jpg`;
 const kakaoIcon = `${import.meta.env.BASE_URL}images/kakao.png`;
 const sharingImg = 'https://raw.githubusercontent.com/hellojaewon/wed/d8f4de79054ee64509040151c0456b1367d397af/public/images/sharing.jpg';
 
-const name = '엔씨소프트R&D센터'
-const naverLink = `https://map.naver.com/v5/search/${encodeURIComponent(name)}`
-
+const kakaoMapUrl = 'https://map.kakao.com/link/search/엔씨소프트R&D센터'
 
 const initializeKakao = () => {
   if (window.Kakao && !window.Kakao.isInitialized()) {
@@ -73,8 +71,8 @@ const shareKakao = () => {
       {
         title: '위치 보기',
         link: {
-          mobileWebUrl: naverLink,
-          webUrl: naverLink,
+          mobileWebUrl: kakaoMapUrl,
+          webUrl: kakaoMapUrl,
         },
       },
     ],
@@ -96,6 +94,10 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.kakao-text {
+  color: black;
+}
+
 .kakao-share-btn {
   background: none;
   border: none;
