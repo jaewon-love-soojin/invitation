@@ -32,6 +32,7 @@
 import { onMounted } from 'vue'
 
 const siteUrl = 'https://hellojaewon.github.io/wed';
+const kakaoKey = import.meta.env.VITE_KAKAO_KEY
 
 const footerImg = `${import.meta.env.BASE_URL}images/footer.jpg`;
 const kakaoIcon = `${import.meta.env.BASE_URL}images/kakao.png`;
@@ -41,7 +42,7 @@ const kakaoMapUrl = 'https://map.kakao.com/link/search/엔씨소프트R&D센터'
 
 const initializeKakao = () => {
   if (window.Kakao && !window.Kakao.isInitialized()) {
-    window.Kakao.init('5253a5841fb13831a22c9d877a3f5941');
+    window.Kakao.init(kakaoKey);
   }
 };
 

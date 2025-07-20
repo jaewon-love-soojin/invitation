@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       X_NCP_APIGW_API_KEY_ID: ${{secrets.X_NCP_APIGW_API_KEY_ID}}
+      KAKAO_KEY: ${{secrets.KAKAO_KEY}}
 
     steps:
       - name: Checkout repository
@@ -29,6 +30,7 @@ jobs:
       - name: Create env file
         run: |
           echo "VITE_X_NCP_APIGW_API_KEY_ID=$X_NCP_APIGW_API_KEY_ID" >> .env
+          echo "VITE_KAKAO_KEY=$KAKAO_KEY" >> .env
 
       - name: Install dependencies
         run: npm ci
