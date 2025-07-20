@@ -27,7 +27,7 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
-      - name: Create env.prodution
+      - name: Create env.production
         run: |
           echo "VITE_X_NCP_APIGW_API_KEY_ID=$X_NCP_APIGW_API_KEY_ID" >> .env.production
           echo "VITE_KAKAO_KEY=$KAKAO_KEY" >> .env.production
@@ -39,7 +39,7 @@ jobs:
         run: npm run build
         env:
           NODE_ENV: production
-          VITE_APP_API_URL: ${{ secrets.VITE_APP_API_URL }}
+          VITE_SITE_URL: ${{ secrets.VITE_SITE_URL }}
 
 #      - name: Add CNAME file
 #        run: echo 'blu2print.site' > ./dist/CNAME
