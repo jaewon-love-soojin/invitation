@@ -31,7 +31,7 @@
 <script setup>
 import { onMounted } from 'vue'
 
-const siteUrl = 'https://hellojaewon.github.io/wed';
+const siteUrl = import.meta.env.VITE_SITE_URL;
 const kakaoKey = import.meta.env.VITE_KAKAO_KEY
 
 const footerImg = `${import.meta.env.BASE_URL}images/footer.jpg`;
