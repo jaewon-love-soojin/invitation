@@ -11,8 +11,10 @@
     </div>
 
     <button class="kakao-share-btn" @click="shareKakao">
-      카카오톡으로 공유하기
+      <img :src="kakaoIcon" alt="카카오톡 아이콘" />
+      <span>카카오톡으로 공유하기</span>
     </button>
+
     <div class="footer-line"></div>
     <div class="footer-text">
       <p class="footer-names">Jaewon 💜 Soojin</p>
@@ -30,6 +32,8 @@
 import { onMounted } from 'vue'
 
 const footerImg = `${import.meta.env.BASE_URL}images/footer.jpg`;
+const kakaoIcon = `${import.meta.env.BASE_URL}images/kakao.png`;
+const sharingImg = `${import.meta.env.BASE_URL}images/sharing.jpg`;
 
 const initializeKakao = () => {
   if (window.Kakao && !window.Kakao.isInitialized()) {
@@ -46,9 +50,9 @@ const shareKakao = () => {
   window.Kakao.Share.sendDefault({
     objectType: 'feed',
     content: {
-      title: '최재원 ❤️ 나수진 결혼식 초대장',
-      description: '2025년 9월 21일, 엔씨소프트 R&D 센터 컨벤션홀',
-      imageUrl: `${import.meta.env.BASE_URL}images/invitation.jpg`,
+      title: '저희 아들❤️딸이 결혼합니다',
+      description: '2025년 9월 21일 일요일 낮 12시, 엔씨소프트R&D센터 컨벤션홀',
+      imageUrl: sharingImg,
       link: {
         mobileWebUrl: window.location.href,
         webUrl: window.location.href,
@@ -82,17 +86,23 @@ onMounted(() => {
 
 <style scoped>
 .kakao-share-btn {
-  background: #fee500;
-  color: #3c1e1e;
+  background: none;
   border: none;
-  padding: 4px 6px;
-  border-radius: 4px;
-  font-weight: bold;
+  padding: 6px 10px;
   cursor: pointer;
-  width: 80px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  margin-bottom: 2rem;
 }
-.kakao-share-btn:hover {
-  background: #ffe100;
+
+.kakao-share-btn img {
+  width: 20px;
+  height: 20px;
+  display: block;
 }
 
 p {
