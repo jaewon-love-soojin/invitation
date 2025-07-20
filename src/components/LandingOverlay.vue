@@ -2,6 +2,15 @@
   <transition name="fade">
   <div v-if="show" class="landing-overlay">
     <div class="landing-content">
+      <div class="svg-heart-wrapper">
+        <svg viewBox="0 0 32 29.6" class="svg-heart" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M23.6,0c-3.1,0-5.9,2-7.6,4.1C14.3,2,11.5,0,8.4,0C3.8,0,0,3.8,0,8.4
+              c0,9.3,16,21.2,16,21.2s16-11.9,16-21.2C32,3.8,28.2,0,23.6,0z"
+            fill="white"
+          />
+        </svg>
+      </div>
       <p class="text">저희 아들, 딸이 결혼합니다.</p>
       <p class="text">최재원 그리고 나수진</p>
     </div>
@@ -10,18 +19,44 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, defineEmits } from 'vue'
+
+const emit = defineEmits(['hide'])
 
 const show = ref(true)
 
 onMounted(() => {
   setTimeout(() => {
     show.value = false
-  }, 3500)
+    emit('hide')
+  }, 5000)
 })
 </script>
 
 <style scoped>
+.svg-heart-wrapper {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 12px;
+  animation: heartPulse 1.5s ease-in-out infinite;
+  opacity: 1;
+}
+
+
+.svg-heart {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes heartPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
 .landing-overlay {
   position: fixed;
   max-width: 480px;
@@ -45,18 +80,17 @@ onMounted(() => {
 
 .text {
   font-size: 16px;
-  color: #555;
   animation: slideUpFade 0.8s ease-out forwards;
   opacity: 0;
   margin: 4px 0;
 }
 
-.text:nth-child(1) {
-  animation-delay: 1.0s;
-}
-
 .text:nth-child(2) {
   animation-delay: 2.0s;
+}
+
+.text:nth-child(3) {
+  animation-delay: 3.0s;
 }
 
 @keyframes slideUpFade {
@@ -88,8 +122,8 @@ onMounted(() => {
 }
 
 .landing-content p {
-  font-size: 16px;
-  color: #555;
+  font-size: 20px;
+  color: #794886;
 }
 
 /* fade transition */
