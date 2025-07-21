@@ -94,7 +94,7 @@ const daysInMonth = computed(() =>
   grid-template-columns: repeat(7, 1fr);
   gap: 4px;
   width: 100%;
-  max-width: 400px;
+  max-width: 360px;
   padding: 12px 0;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
