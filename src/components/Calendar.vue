@@ -91,7 +91,7 @@ const daysInMonth = computed(() =>
 
 .calendar {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(7, minmax(0, 1fr)); /* ✅ prevents overflow */
   gap: 4px;
   width: 100%;
   max-width: 360px;
