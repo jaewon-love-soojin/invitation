@@ -178,7 +178,6 @@ const copyToClipboard = async (text, event) => {
 
 .name {
   margin: 2px 0 0 0;
-  font-size: 0.85em;
 }
 
 .button-group {
