@@ -162,6 +162,10 @@ onMounted(() => {
   height: 18px;
 }
 
+.copy-text {
+  color: black;
+}
+
 p {
   margin: 4px 0;
 }

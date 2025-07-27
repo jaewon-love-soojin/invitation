@@ -8,19 +8,21 @@
         <div id="map" class="map-container"></div>
       </div>
 
-      <div class="nav-links">
-        <a :href="naverLink" target="_blank">
-          <img :src="naverMap" class="nav-icon" alt="naver" />
-          네이버지도
-        </a>
-        <a :href="tmapLink" target="_blank">
-          <img :src="tMap" class="nav-icon" alt="tmap" />
-          티맵
-        </a>
-        <a :href="kakaoLink" target="_blank">
-          <img :src="kakaoMap" class="nav-icon" alt="kakao" />
-          카카오내비
-        </a>
+      <div class="nav-links-container">
+        <div class="nav-links">
+          <a :href="naverLink" target="_blank">
+            <img :src="naverMap" class="nav-icon" alt="naver" />
+            네이버지도
+          </a>
+          <a :href="tmapLink" target="_blank">
+            <img :src="tMap" class="nav-icon" alt="tmap" />
+            티맵
+          </a>
+          <a :href="kakaoLink" target="_blank">
+            <img :src="kakaoMap" class="nav-icon" alt="kakao" />
+            카카오내비
+          </a>
+        </div>
       </div>
 
       <div class="left-text">
@@ -143,11 +145,16 @@ const kakaoLink = `kakaomap://route?ep=${lat},${lng}&by=CAR`
   vertical-align: middle;
 }
 
+.nav-links-container {
+  padding: 0 16px;
+}
+
 .nav-links {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 8px;
+  margin-top: 1rem;
   margin-bottom: 2rem;
 }
 
