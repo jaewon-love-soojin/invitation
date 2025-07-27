@@ -166,7 +166,8 @@ const kakaoLink = `kakaomap://route?ep=${lat},${lng}&by=CAR`
   justify-content: center;
   gap: 6px;
   padding: 6px 10px;
-  min-width: 100px;
+  min-width: 80px;
+  max-width: 100px;
   white-space: nowrap;
   background: white !important;
   border: 1px solid #ddd;
@@ -177,7 +178,6 @@ const kakaoLink = `kakaomap://route?ep=${lat},${lng}&by=CAR`
   font-size: 0.9rem;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
   flex: 1 1 auto;
-  max-width: 140px;
 }
 
 .divider {
