@@ -40,7 +40,7 @@ import { onMounted } from 'vue'
 
 const footerImg = `${import.meta.env.BASE_URL}images/footer.jpg`;
 const kakaoIcon = `${import.meta.env.BASE_URL}images/kakao.png`;
-const copyIcon = `${import.meta.env.BASE_URL}images/copy.svg`
+const copyIcon = `${import.meta.env.BASE_URL}images/copy.svg`;
 
 const copyLink = async () => {
   try {
@@ -118,7 +118,7 @@ onMounted(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px; /* space between buttons */
+  gap: 4px;
   margin-bottom: 2rem;
 }
 
