@@ -10,10 +10,17 @@
       </div>
     </div>
 
-    <button class="kakao-share-btn" @click="shareKakao">
-      <img :src="kakaoIcon" alt="카카오톡 아이콘" />
-      <span class="kakao-text">카카오톡으로 공유하기</span>
-    </button>
+    <div class="share-buttons">
+      <button class="kakao-share-btn" @click="shareKakao">
+        <img :src="kakaoIcon" alt="카카오톡 아이콘" />
+        <span class="kakao-text">카카오톡으로 공유하기</span>
+      </button>
+
+      <button class="copy-link-btn" @click="copyLink">
+        <img :src="copyIcon" alt="copy" class="icon" />
+        <span class="copy-text">청첩장 주소 복사하기</span>
+      </button>
+    </div>
 
     <div class="footer-line"></div>
     <div class="footer-text">
@@ -33,6 +40,16 @@ import { onMounted } from 'vue'
 
 const footerImg = `${import.meta.env.BASE_URL}images/footer.jpg`;
 const kakaoIcon = `${import.meta.env.BASE_URL}images/kakao.png`;
+const copyIcon = `${import.meta.env.BASE_URL}images/copy.svg`
+
+const copyLink = async () => {
+  try {
+    await navigator.clipboard.writeText(window.location.href)
+    alert('링크가 복사되었습니다!')
+  } catch (err) {
+    alert('복사에 실패했습니다.')
+  }
+}
 
 const initializeKakao = () => {
   const kakaoKey = import.meta.env.VITE_KAKAO_KEY
@@ -97,6 +114,14 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.share-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px; /* space between buttons */
+  margin-bottom: 2rem;
+}
+
 .kakao-text {
   color: black;
 }
@@ -112,13 +137,29 @@ onMounted(() => {
   font-weight: bold;
   border-radius: 4px;
   transition: background-color 0.2s ease;
-  margin-bottom: 2rem;
 }
 
 .kakao-share-btn img {
   width: 20px;
   height: 20px;
   display: block;
+}
+
+.copy-link-btn {
+  background: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.copy-link-btn .icon {
+  width: 18px;
+  height: 18px;
 }
 
 p {

@@ -143,21 +143,32 @@ const kakaoLink = `kakaomap://route?ep=${lat},${lng}&by=CAR`
   vertical-align: middle;
 }
 
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 2rem;
+}
+
 .nav-links a {
-  max-width: 480px;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  margin: 6px;
-  padding: 8px 12px;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 10px;
+  min-width: 100px;
+  white-space: nowrap;
   background: white !important;
   border: 1px solid #ddd;
   border-radius: 6px;
   text-decoration: none;
   color: #333;
   font-weight: 500;
+  font-size: 0.9rem;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
-  margin-bottom: 2rem;
+  flex: 1 1 auto;
+  max-width: 140px;
 }
 
 .divider {
