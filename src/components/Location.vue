@@ -147,11 +147,13 @@ const kakaoLink = `kakaomap://route?ep=${lat},${lng}&by=CAR`
 
 .nav-links-container {
   padding: 0 16px;
+  overflow: hidden;
 }
 
 .nav-links {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow-x: auto;
   justify-content: center;
   gap: 8px;
   margin-top: 1rem;
