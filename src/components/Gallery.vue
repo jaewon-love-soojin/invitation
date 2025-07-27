@@ -19,12 +19,12 @@
       </div>
 
       <!-- ⬅ Arrow Left -->
-      <button class="arrow left" @click="goPrev" :disabled="currentIndex === 0">
+      <button class="arrow left" @click="goPrev">
         ‹
       </button>
 
       <!-- ➡ Arrow Right -->
-      <button class="arrow right" @click="goNext" :disabled="currentIndex === images.length - 1">
+      <button class="arrow right" @click="goNext">
         ›
       </button>
     </div>
@@ -49,15 +49,12 @@ const props = defineProps({
 const currentIndex = ref(0);
 
 const goNext = () => {
-  if (currentIndex.value < props.images.length - 1) {
-    currentIndex.value++;
-  }
+  currentIndex.value = (currentIndex.value + 1) % props.images.length;
 };
 
 const goPrev = () => {
-  if (currentIndex.value > 0) {
-    currentIndex.value--;
-  }
+  currentIndex.value =
+    (currentIndex.value - 1 + props.images.length) % props.images.length;
 };
 
 let touchStartX = 0;
@@ -165,4 +162,12 @@ const handleSwipe = (deltaX) => {
   font-size: 0.95rem;
   font-weight: 500;
 }
+
+.fade-slide-enter-active, .fade-slide-leave-active {
+    transition: opacity 0.6s ease;
+}
+.fade-slide-enter-from, .fade-slide-leave-to {
+    opacity: 0;
+}
+
 </style>
