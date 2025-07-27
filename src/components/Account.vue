@@ -94,7 +94,7 @@ const copyToClipboard = async (text, event) => {
 
 <style scoped>
 .account {
-  margin-top: 2rem;
+  margin-top: 3rem;
   text-align: center;
   padding: 0 16px;
 }
